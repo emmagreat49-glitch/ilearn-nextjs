@@ -2,208 +2,99 @@
 import { useState } from 'react'
 
 const COURSES = [
-  {
-    id: 1,
-    title: 'Data Analysis',
-    description: 'Master data visualization, statistics, and insights',
-    icon: '📊',
-    lessons: 4,
-    difficulty: 'Intermediate',
-    duration: '4 weeks',
-    students: '2.4K',
-    rating: 4.9,
-    color: 'from-blue-500 to-cyan-500',
-    topics: ['Excel', 'Python', 'Tableau'],
-  },
-  {
-    id: 2,
-    title: 'Web Development',
-    description: 'Build modern websites with HTML, CSS, and JavaScript',
-    icon: '🌐',
-    lessons: 6,
-    difficulty: 'Beginner',
-    duration: '6 weeks',
-    students: '3.1K',
-    rating: 4.8,
-    color: 'from-purple-500 to-pink-500',
-    topics: ['HTML', 'CSS', 'JavaScript'],
-  },
-  {
-    id: 3,
-    title: 'AI Fundamentals',
-    description: 'Understand machine learning and artificial intelligence',
-    icon: '🤖',
-    lessons: 5,
-    difficulty: 'Advanced',
-    duration: '8 weeks',
-    students: '1.8K',
-    rating: 4.7,
-    color: 'from-green-500 to-emerald-500',
-    topics: ['ML', 'TensorFlow', 'Python'],
-  },
-  {
-    id: 4,
-    title: 'Digital Skills',
-    description: 'Essential tools for the modern workplace',
-    icon: '💻',
-    lessons: 4,
-    difficulty: 'Beginner',
-    duration: '3 weeks',
-    students: '4.2K',
-    rating: 4.9,
-    color: 'from-orange-500 to-red-500',
-    topics: ['Office', 'Communication', 'Tools'],
-  },
-  {
-    id: 5,
-    title: 'Career Paths',
-    description: 'Navigate your tech career with confidence',
-    icon: '🚀',
-    lessons: 3,
-    difficulty: 'Intermediate',
-    duration: '2 weeks',
-    students: '1.5K',
-    rating: 4.8,
-    color: 'from-indigo-500 to-blue-500',
-    topics: ['Resume', 'Interview', 'Networking'],
-  },
+  { id: 1, title: 'Data Analysis', desc: 'Master data visualization and insights.', icon: '📊', level: 'Intermediate', duration: '4 weeks', students: '2.4K', rating: 4.9 },
+  { id: 2, title: 'Web Development', desc: 'Build modern websites with HTML, CSS, JS.', icon: '🌐', level: 'Beginner', duration: '6 weeks', students: '3.1K', rating: 4.8 },
+  { id: 3, title: 'AI Fundamentals', desc: 'Learn machine learning and AI basics.', icon: '🤖', level: 'Advanced', duration: '8 weeks', students: '1.8K', rating: 4.7 },
+  { id: 4, title: 'Digital Skills', desc: 'Master workplace tools and communication.', icon: '💻', level: 'Beginner', duration: '3 weeks', students: '4.2K', rating: 4.9 },
+  { id: 5, title: 'Career Paths', desc: 'Navigate your tech career with guidance.', icon: '🚀', level: 'Intermediate', duration: '2 weeks', students: '1.5K', rating: 4.8 },
 ]
 
 export default function CoursesPage() {
-  const [selectedDifficulty, setSelectedDifficulty] = useState('All')
-  const difficulties = ['All', 'Beginner', 'Intermediate', 'Advanced']
-  
-  const filteredCourses = selectedDifficulty === 'All' 
-    ? COURSES 
-    : COURSES.filter(c => c.difficulty === selectedDifficulty)
+  const [level, setLevel] = useState('All')
+  const filtered = level === 'All' ? COURSES : COURSES.filter(c => c.level === level)
+
+  const styles = {
+    container: { maxWidth: '1280px', margin: '0 auto', padding: '24px' },
+    header: { fontSize: '48px', fontWeight: 'bold', marginBottom: '24px', lineHeight: '1.2' },
+    gradient: { background: 'linear-gradient(90deg, #60a5fa, #06b6d4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' },
+    filterBtn: (active: boolean) => ({ padding: '12px 24px', borderRadius: '8px', border: 'none', cursor: 'pointer', fontWeight: '600', background: active ? 'linear-gradient(135deg, #3b82f6, #06b6d4)' : '#1a1f2e', color: 'white', marginRight: '12px', marginBottom: '12px' }),
+    grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginTop: '40px' },
+    card: { borderRadius: '16px', border: '1px solid #2d3748', background: 'linear-gradient(135deg, rgba(26, 31, 46, 0.6), rgba(37, 45, 61, 0.3))', padding: '24px', backdropFilter: 'blur(10px)', transition: 'all 0.3s', cursor: 'pointer' },
+    icon: { fontSize: '48px', marginBottom: '16px' },
+    title: { fontSize: '20px', fontWeight: '700', marginBottom: '8px', color: '#fff' },
+    desc: { fontSize: '14px', color: '#a0aec0', marginBottom: '16px' },
+    stats: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', paddingTop: '16px', paddingBottom: '16px', borderTop: '1px solid #2d3748', borderBottom: '1px solid #2d3748', marginBottom: '16px' },
+    stat: { textAlign: 'center' as const },
+    statLabel: { fontSize: '12px', color: '#6b7280', marginBottom: '4px' },
+    statValue: { fontSize: '16px', fontWeight: '600', color: '#fff' },
+    btn: { width: '100%', padding: '12px', background: 'linear-gradient(135deg, #3b82f6, #06b6d4)', color: 'white', border: 'none', borderRadius: '8px', fontWeight: '600', cursor: 'pointer' },
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-      {/* Header */}
-      <div className="border-b border-slate-700/50 backdrop-blur-xl sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">i</span>
-            </div>
-            <h1 className="text-xl font-bold">iLEARN</h1>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0a0e1a, #0f1419)' }}>
+      {/* Nav */}
+      <div style={{ position: 'sticky', top: 0, borderBottom: '1px solid #2d3748', backdropFilter: 'blur(10px)', background: 'rgba(10, 14, 26, 0.8)', zIndex: 50 }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', height: '64px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'linear-gradient(135deg, #3b82f6, #06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '700', fontSize: '16px', color: 'white' }}>i</div>
+            <span style={{ fontSize: '18px', fontWeight: '700', color: 'white' }}>iLEARN</span>
           </div>
-          <button className="px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-sm font-medium transition">
-            Dashboard
-          </button>
+          <button style={{ padding: '8px 16px', borderRadius: '8px', background: 'linear-gradient(135deg, #3b82f6, #06b6d4)', color: 'white', border: 'none', fontWeight: '600', cursor: 'pointer' }}>Dashboard</button>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        {/* Page Header */}
-        <div className="mb-16 animate-fadeInUp">
-          <h2 className="text-5xl font-bold mb-4">
-            Explore Our
-            <br />
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-              Courses
-            </span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl">
-            Choose from our curated collection of professional courses designed to accelerate your learning journey.
+      {/* Main */}
+      <div style={styles.container}>
+        {/* Header */}
+        <div style={{ marginBottom: '48px' }}>
+          <h1 style={styles.header}>
+            Explore Our <br />
+            <span style={styles.gradient}>Courses</span>
+          </h1>
+          <p style={{ color: '#a0aec0', fontSize: '16px', maxWidth: '600px', marginTop: '16px' }}>
+            Choose from our hand-picked professional courses designed to accelerate your learning.
           </p>
         </div>
 
-        {/* Difficulty Filter */}
-        <div className="mb-12 flex gap-3 flex-wrap">
-          {difficulties.map(diff => (
-            <button
-              key={diff}
-              onClick={() => setSelectedDifficulty(diff)}
-              className={`px-6 py-2 rounded-lg font-medium transition ${
-                selectedDifficulty === diff
-                  ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white'
-                  : 'bg-slate-800/50 text-gray-300 border border-slate-700/50 hover:border-slate-600'
-              }`}
-            >
-              {diff}
+        {/* Filters */}
+        <div style={{ marginBottom: '40px' }}>
+          {['All', 'Beginner', 'Intermediate', 'Advanced'].map(l => (
+            <button key={l} onClick={() => setLevel(l)} style={styles.filterBtn(level === l)}>
+              {l}
             </button>
           ))}
         </div>
 
-        {/* Courses Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCourses.map((course, index) => (
-            <div
-              key={course.id}
-              className="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/40 border border-slate-700/50 rounded-2xl overflow-hidden hover:border-slate-600/80 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10 cursor-pointer animate-fadeInUp"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Content */}
-              <div className="p-8 relative z-10">
-                {/* Icon and Badge */}
-                <div className="flex justify-between items-start mb-6">
-                  <div className="text-5xl group-hover:scale-110 transition-transform">
-                    {course.icon}
-                  </div>
-                  <span className="px-3 py-1 bg-slate-700/50 rounded-full text-xs font-semibold text-gray-200">
-                    {course.difficulty}
-                  </span>
-                </div>
-
-                {/* Title and Description */}
-                <h3 className="text-2xl font-bold mb-2 group-hover:text-blue-400 transition">
-                  {course.title}
-                </h3>
-                <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                  {course.description}
-                </p>
-
-                {/* Meta Info */}
-                <div className="grid grid-cols-2 gap-4 mb-6 py-6 border-y border-slate-700/50">
-                  <div>
-                    <p className="text-xs text-gray-500 mb-1">Lessons</p>
-                    <p className="text-lg font-bold">{course.lessons}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500 mb-1">Duration</p>
-                    <p className="text-lg font-bold">{course.duration}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500 mb-1">Students</p>
-                    <p className="text-lg font-bold">{course.students}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500 mb-1">Rating</p>
-                    <p className="text-lg font-bold">⭐ {course.rating}</p>
-                  </div>
-                </div>
-
-                {/* Topics */}
-                <div className="mb-6">
-                  <p className="text-xs text-gray-500 mb-2">Topics</p>
-                  <div className="flex flex-wrap gap-2">
-                    {course.topics.map(topic => (
-                      <span
-                        key={topic}
-                        className="text-xs px-3 py-1 bg-slate-700/30 rounded-full text-gray-300"
-                      >
-                        {topic}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* CTA Button */}
-                <button className={`w-full py-3 bg-gradient-to-r ${course.color} text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/30 transition-all transform group-hover:scale-105 active:scale-95`}>
-                  Enroll Now
-                </button>
+        {/* Grid */}
+        <div style={styles.grid}>
+          {filtered.map(course => (
+            <div key={course.id} style={styles.card}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+                <div style={styles.icon}>{course.icon}</div>
+                <span style={{ background: 'rgba(59, 130, 246, 0.2)', color: '#60a5fa', padding: '6px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: '600' }}>
+                  {course.level}
+                </span>
               </div>
+              <h3 style={styles.title}>{course.title}</h3>
+              <p style={styles.desc}>{course.desc}</p>
+              <div style={styles.stats}>
+                <div style={styles.stat}>
+                  <div style={styles.statLabel}>DURATION</div>
+                  <div style={styles.statValue}>{course.duration}</div>
+                </div>
+                <div style={styles.stat}>
+                  <div style={styles.statLabel}>STUDENTS</div>
+                  <div style={styles.statValue}>{course.students}</div>
+                </div>
+                <div style={styles.stat}>
+                  <div style={styles.statLabel}>RATING</div>
+                  <div style={styles.statValue}>⭐ {course.rating}</div>
+                </div>
+              </div>
+              <button style={styles.btn}>Enroll Now</button>
             </div>
           ))}
         </div>
-
-        {/* Empty State */}
-        {filteredCourses.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-400 text-lg">No courses found for this difficulty level.</p>
-          </div>
-        )}
       </div>
     </div>
   )
