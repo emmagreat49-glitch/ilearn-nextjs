@@ -2,6 +2,66 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
+const FEATURES = [
+  {
+    icon: '🎯',
+    title: 'Personalized Learning',
+    desc: 'AI-powered paths that adapt to your learning style and pace',
+  },
+  {
+    icon: '📊',
+    title: 'Progress Analytics',
+    desc: 'Detailed insights into your learning journey and achievements',
+  },
+  {
+    icon: '🔗',
+    title: 'Career Integration',
+    desc: 'Connect your skills directly with job opportunities',
+  },
+  {
+    icon: '👥',
+    title: 'Expert Community',
+    desc: 'Learn from industry professionals and peer learners',
+  },
+  {
+    icon: '🏆',
+    title: 'Verified Credentials',
+    desc: 'Earn blockchain-verified certificates employers trust',
+  },
+  {
+    icon: '⚡',
+    title: 'Live Sessions',
+    desc: 'Interactive classes with real-time feedback and mentorship',
+  },
+]
+
+const COURSES_PREVIEW = [
+  {
+    icon: '📊',
+    title: 'Data Science',
+    subtitle: 'Master analytics & insights',
+    students: '2.4K',
+    rating: 4.9,
+    color: 'from-blue-600 to-cyan-500',
+  },
+  {
+    icon: '🌐',
+    title: 'Web Dev',
+    subtitle: 'Modern fullstack development',
+    students: '3.1K',
+    rating: 4.8,
+    color: 'from-purple-600 to-pink-500',
+  },
+  {
+    icon: '🤖',
+    title: 'AI Engineering',
+    subtitle: 'LLMs & machine learning',
+    students: '1.8K',
+    rating: 4.7,
+    color: 'from-green-600 to-emerald-500',
+  },
+]
+
 export default function HomePage() {
   const [showLogin, setShowLogin] = useState(false)
   const [username, setUsername] = useState('admin')
@@ -11,404 +71,455 @@ export default function HomePage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
     if (username === 'admin' && password === 'admin123') {
-      setTimeout(() => router.push('/dashboard'), 500)
+      router.push('/dashboard')
     }
   }
 
-  const styles = {
-    hero: {
-      minHeight: '100vh',
-      background: 'linear-gradient(135deg, #0a0e1a 0%, #0f1419 50%, #0a0e1a 100%)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '40px 24px',
-      textAlign: 'center' as const,
-    },
-    heroContent: {
-      maxWidth: '800px',
-    },
-    logo: {
-      width: '64px',
-      height: '64px',
-      background: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
-      borderRadius: '16px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '32px',
-      fontWeight: '700',
-      color: 'white',
-      margin: '0 auto 24px',
-    },
-    heroTitle: {
-      fontSize: '64px',
-      fontWeight: '800',
-      lineHeight: '1.1',
-      marginBottom: '24px',
-      color: 'white',
-    },
-    gradient: {
-      background: 'linear-gradient(90deg, #60a5fa 0%, #06b6d4 100%)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-    },
-    heroDesc: {
-      fontSize: '20px',
-      color: '#a0aec0',
-      marginBottom: '40px',
-      lineHeight: '1.6',
-    },
-    ctaButton: {
-      padding: '16px 40px',
-      background: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
-      color: 'white',
-      border: 'none',
-      borderRadius: '12px',
-      fontSize: '16px',
-      fontWeight: '700',
-      cursor: 'pointer',
-      transition: 'all 0.3s',
-    },
-    section: {
-      padding: '80px 40px',
-      maxWidth: '1280px',
-      margin: '0 auto',
-    },
-    sectionTitle: {
-      fontSize: '48px',
-      fontWeight: '800',
-      marginBottom: '60px',
-      textAlign: 'center' as const,
-      color: 'white',
-    },
-    featureGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-      gap: '32px',
-      marginBottom: '80px',
-    },
-    featureCard: {
-      padding: '32px',
-      background: 'linear-gradient(135deg, rgba(26, 31, 46, 0.6), rgba(37, 45, 61, 0.3))',
-      borderRadius: '16px',
-      border: '1px solid #2d3748',
-      textAlign: 'center' as const,
-    },
-    featureIcon: {
-      fontSize: '48px',
-      marginBottom: '16px',
-    },
-    featureTitle: {
-      fontSize: '20px',
-      fontWeight: '700',
-      marginBottom: '12px',
-      color: 'white',
-    },
-    featureDesc: {
-      fontSize: '16px',
-      color: '#a0aec0',
-      lineHeight: '1.6',
-    },
-    coursesGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-      gap: '24px',
-    },
-    courseCard: {
-      padding: '24px',
-      background: 'linear-gradient(135deg, rgba(26, 31, 46, 0.6), rgba(37, 45, 61, 0.3))',
-      borderRadius: '16px',
-      border: '1px solid #2d3748',
-    },
-    courseIcon: {
-      fontSize: '40px',
-      marginBottom: '16px',
-    },
-    courseTitle: {
-      fontSize: '18px',
-      fontWeight: '700',
-      marginBottom: '8px',
-      color: 'white',
-    },
-    courseDesc: {
-      fontSize: '14px',
-      color: '#a0aec0',
-      marginBottom: '16px',
-    },
-    statsSection: {
-      background: 'linear-gradient(135deg, rgba(26, 31, 46, 0.8), rgba(37, 45, 61, 0.5))',
-      padding: '60px 40px',
-      borderRadius: '20px',
-      border: '1px solid #2d3748',
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-      gap: '40px',
-      textAlign: 'center' as const,
-    },
-    stat: {
-      fontSize: '24px',
-      fontWeight: '700',
-      color: 'white',
-    },
-    statValue: {
-      fontSize: '48px',
-      fontWeight: '800',
-      background: 'linear-gradient(90deg, #60a5fa 0%, #06b6d4 100%)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      marginBottom: '8px',
-    },
-    cta: {
-      textAlign: 'center' as const,
-      padding: '80px 40px',
-    },
-    ctaTitle: {
-      fontSize: '48px',
-      fontWeight: '800',
-      marginBottom: '24px',
-      color: 'white',
-    },
-    ctaDesc: {
-      fontSize: '18px',
-      color: '#a0aec0',
-      marginBottom: '40px',
-      maxWidth: '600px',
-      margin: '0 auto 40px',
-    },
-    modal: {
-      position: 'fixed' as const,
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      background: 'rgba(0, 0, 0, 0.8)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 1000,
-      padding: '24px',
-    },
-    modalContent: {
-      background: 'linear-gradient(135deg, rgba(26, 31, 46, 0.95), rgba(37, 45, 61, 0.7))',
-      borderRadius: '20px',
-      padding: '40px',
-      maxWidth: '400px',
-      width: '100%',
-      border: '1px solid #2d3748',
-      backdropFilter: 'blur(10px)',
-    },
-    input: {
-      width: '100%',
-      padding: '12px 16px',
-      background: '#1a1f2e',
-      border: '1px solid #2d3748',
-      borderRadius: '8px',
-      color: 'white',
-      fontSize: '16px',
-      marginBottom: '16px',
-      fontFamily: 'inherit',
-    },
-  }
-
   return (
-    <div style={{ background: 'linear-gradient(135deg, #0a0e1a 0%, #0f1419 50%, #0a0e1a 100%)' }}>
+    <div style={{ background: '#0a0d14', color: '#fff', minHeight: '100vh', fontFamily: '"Inter", -apple-system, sans-serif' }}>
       {/* Navigation */}
       <nav style={{
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        background: 'rgba(10, 14, 26, 0.8)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid #2d3748',
-        padding: '16px 24px',
+        background: 'rgba(10, 13, 20, 0.7)',
+        backdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+        padding: '16px 0',
       }}>
-        <div style={{
-          maxWidth: '1280px',
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <div style={{
-              width: '32px',
-              height: '32px',
-              background: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
-              borderRadius: '8px',
+              width: '40px',
+              height: '40px',
+              background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
+              borderRadius: '12px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontWeight: '700',
-              fontSize: '16px',
-              color: 'white',
+              fontWeight: '800',
+              fontSize: '20px',
+              letterSpacing: '-1px',
             }}>i</div>
-            <span style={{ fontSize: '18px', fontWeight: '700', color: 'white' }}>iLEARN</span>
+            <span style={{ fontSize: '18px', fontWeight: '700', letterSpacing: '-0.5px' }}>iLEARN</span>
           </div>
-          <button onClick={() => setShowLogin(true)} style={{ ...styles.ctaButton, padding: '8px 24px', fontSize: '14px' }}>
+          <button
+            onClick={() => setShowLogin(true)}
+            style={{
+              padding: '10px 24px',
+              background: 'rgba(14, 165, 233, 0.1)',
+              border: '1px solid rgba(6, 182, 212, 0.3)',
+              borderRadius: '8px',
+              color: '#06b6d4',
+              fontWeight: '600',
+              cursor: 'pointer',
+              fontSize: '14px',
+              transition: 'all 0.3s',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(14, 165, 233, 0.2)'
+              e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.6)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(14, 165, 233, 0.1)'
+              e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.3)'
+            }}
+          >
             Sign In
           </button>
         </div>
       </nav>
 
-      {/* Hero */}
-      <div style={styles.hero}>
-        <div style={styles.heroContent}>
-          <div style={styles.logo}>i</div>
-          <h1 style={styles.heroTitle}>
-            Learn, Grow, <br />
-            <span style={styles.gradient}>Achieve More</span>
+      {/* Hero Section */}
+      <section style={{ padding: '120px 40px', maxWidth: '1400px', margin: '0 auto', textAlign: 'center' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <h1 style={{
+            fontSize: '72px',
+            fontWeight: '800',
+            lineHeight: '1.1',
+            marginBottom: '24px',
+            letterSpacing: '-2px',
+            background: 'linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}>
+            Learn from the Future
           </h1>
-          <p style={styles.heroDesc}>
-            Master technology at your own pace with professional-grade e-learning designed for ambitious learners. Start your journey today.
+          <p style={{
+            fontSize: '20px',
+            color: '#94a3b8',
+            marginBottom: '48px',
+            lineHeight: '1.6',
+            maxWidth: '700px',
+            margin: '0 auto 48px',
+          }}>
+            Master in-demand skills with AI-powered personalization. Learn from industry experts in an environment designed for the modern learner.
           </p>
-          <button onClick={() => setShowLogin(true)} style={styles.ctaButton}>
-            Get Started Now
-          </button>
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => setShowLogin(true)}
+              style={{
+                padding: '14px 40px',
+                background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
+                border: 'none',
+                borderRadius: '10px',
+                color: 'white',
+                fontWeight: '600',
+                fontSize: '16px',
+                cursor: 'pointer',
+                transition: 'all 0.3s',
+                boxShadow: '0 20px 25px rgba(6, 182, 212, 0.15)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)'
+                e.currentTarget.style.boxShadow = '0 25px 35px rgba(6, 182, 212, 0.25)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = '0 20px 25px rgba(6, 182, 212, 0.15)'
+              }}
+            >
+              Start Learning Now
+            </button>
+            <a href="/courses" style={{
+              padding: '14px 40px',
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '10px',
+              color: '#e2e8f0',
+              fontWeight: '600',
+              fontSize: '16px',
+              cursor: 'pointer',
+              textDecoration: 'none',
+              transition: 'all 0.3s',
+              display: 'inline-block',
+            }}>
+              Explore Courses
+            </a>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Features */}
-      <div style={{ ...styles.section, background: 'linear-gradient(135deg, #0a0e1a 0%, #0f1419 50%)' }}>
-        <h2 style={styles.sectionTitle}>
-          Why Choose <span style={styles.gradient}>iLEARN?</span>
-        </h2>
-        <div style={styles.featureGrid}>
-          {[
-            { icon: '🎓', title: 'Expert Instruction', desc: 'Learn from industry professionals with years of experience' },
-            { icon: '⚡', title: 'Learn at Your Pace', desc: 'Study whenever and wherever it works best for you' },
-            { icon: '🏆', title: 'Recognized Certificates', desc: 'Earn verifiable credentials that boost your career' },
-            { icon: '💬', title: '24/7 Support', desc: 'Get help whenever you need it from our support team' },
-            { icon: '🌍', title: 'Global Community', desc: 'Connect with learners from around the world' },
-            { icon: '📈', title: 'Track Progress', desc: 'Monitor your learning journey with detailed analytics' },
-          ].map((feature, i) => (
-            <div key={i} style={styles.featureCard}>
-              <div style={styles.featureIcon}>{feature.icon}</div>
-              <h3 style={styles.featureTitle}>{feature.title}</h3>
-              <p style={styles.featureDesc}>{feature.desc}</p>
+      {/* Stats Section */}
+      <section style={{
+        padding: '60px 40px',
+        maxWidth: '1400px',
+        margin: '0 auto',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+        gap: '40px',
+        textAlign: 'center',
+        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+      }}>
+        {[
+          { value: '50K+', label: 'Active Learners' },
+          { value: '200+', label: 'Expert Courses' },
+          { value: '95%', label: 'Completion Rate' },
+          { value: '4.9★', label: 'Average Rating' },
+        ].map((stat, i) => (
+          <div key={i}>
+            <div style={{
+              fontSize: '40px',
+              fontWeight: '800',
+              background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              marginBottom: '8px',
+            }}>
+              {stat.value}
+            </div>
+            <div style={{ fontSize: '14px', color: '#94a3b8', fontWeight: '500' }}>{stat.label}</div>
+          </div>
+        ))}
+      </section>
+
+      {/* Features Section */}
+      <section style={{ padding: '120px 40px', maxWidth: '1400px', margin: '0 auto' }}>
+        <div style={{ marginBottom: '80px', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '48px', fontWeight: '800', marginBottom: '16px', letterSpacing: '-1px' }}>
+            Why learners choose iLEARN
+          </h2>
+          <p style={{ fontSize: '18px', color: '#94a3b8', maxWidth: '600px', margin: '0 auto' }}>
+            Built for the modern learner with AI, community, and real-world outcomes
+          </p>
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '32px',
+        }}>
+          {FEATURES.map((feature, i) => (
+            <div
+              key={i}
+              style={{
+                padding: '32px',
+                background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%)',
+                border: '1px solid rgba(226, 232, 240, 0.1)',
+                borderRadius: '16px',
+                backdropFilter: 'blur(20px)',
+                transition: 'all 0.3s',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.5)'
+                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(6, 182, 212, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%)'
+                e.currentTarget.style.transform = 'translateY(-4px)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(226, 232, 240, 0.1)'
+                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%)'
+                e.currentTarget.style.transform = 'translateY(0)'
+              }}
+            >
+              <div style={{ fontSize: '32px', marginBottom: '16px' }}>{feature.icon}</div>
+              <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px', letterSpacing: '-0.5px' }}>
+                {feature.title}
+              </h3>
+              <p style={{ fontSize: '14px', color: '#94a3b8', lineHeight: '1.6' }}>{feature.desc}</p>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
       {/* Courses Preview */}
-      <div style={{ ...styles.section, background: 'linear-gradient(135deg, #0f1419 0%, #0a0e1a 50%)' }}>
-        <h2 style={styles.sectionTitle}>
-          Our Popular <span style={styles.gradient}>Courses</span>
-        </h2>
-        <div style={styles.coursesGrid}>
-          {[
-            { icon: '📊', title: 'Data Analysis', desc: 'Master data visualization and statistical insights' },
-            { icon: '🌐', title: 'Web Development', desc: 'Build modern, responsive websites from scratch' },
-            { icon: '🤖', title: 'AI Fundamentals', desc: 'Learn machine learning and artificial intelligence' },
-            { icon: '💻', title: 'Digital Skills', desc: 'Master workplace tools and communication' },
-            { icon: '🚀', title: 'Career Paths', desc: 'Navigate your tech career with expert guidance' },
-            { icon: '🐍', title: 'Python Programming', desc: 'From basics to advanced real-world projects' },
-          ].map((course, i) => (
-            <div key={i} style={styles.courseCard}>
-              <div style={styles.courseIcon}>{course.icon}</div>
-              <h3 style={styles.courseTitle}>{course.title}</h3>
-              <p style={styles.courseDesc}>{course.desc}</p>
-              <div style={{ fontSize: '14px', color: '#60a5fa', fontWeight: '600', cursor: 'pointer' }}>
-                Learn more →
+      <section style={{ padding: '120px 40px', maxWidth: '1400px', margin: '0 auto', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
+        <div style={{ marginBottom: '80px', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '48px', fontWeight: '800', marginBottom: '16px', letterSpacing: '-1px' }}>
+            Featured Courses
+          </h2>
+          <p style={{ fontSize: '18px', color: '#94a3b8', maxWidth: '600px', margin: '0 auto' }}>
+            Start with our most popular courses, trusted by thousands of learners
+          </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px', marginBottom: '48px' }}>
+          {COURSES_PREVIEW.map((course, i) => (
+            <div
+              key={i}
+              style={{
+                padding: '32px',
+                background: `linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%)`,
+                border: '1px solid rgba(226, 232, 240, 0.1)',
+                borderRadius: '16px',
+                backdropFilter: 'blur(20px)',
+                transition: 'all 0.3s',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.5)'
+                e.currentTarget.style.transform = 'translateY(-4px)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(226, 232, 240, 0.1)'
+                e.currentTarget.style.transform = 'translateY(0)'
+              }}
+            >
+              <div style={{ fontSize: '40px', marginBottom: '16px' }}>{course.icon}</div>
+              <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '4px', letterSpacing: '-0.5px' }}>
+                {course.title}
+              </h3>
+              <p style={{ fontSize: '14px', color: '#94a3b8', marginBottom: '20px' }}>{course.subtitle}</p>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                paddingTop: '16px',
+                borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+              }}>
+                <span style={{ fontSize: '13px', color: '#64748b' }}>{course.students} students</span>
+                <span style={{ fontSize: '13px', color: '#fbbf24' }}>⭐ {course.rating}</span>
               </div>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Stats */}
-      <div style={{ ...styles.section, background: 'linear-gradient(135deg, #0a0e1a 0%, #0f1419 50%)' }}>
-        <div style={styles.statsSection}>
-          <div>
-            <div style={styles.statValue}>1000+</div>
-            <div style={styles.stat}>Active Learners</div>
-          </div>
-          <div>
-            <div style={styles.statValue}>95%</div>
-            <div style={styles.stat}>Completion Rate</div>
-          </div>
-          <div>
-            <div style={styles.statValue}>50+</div>
-            <div style={styles.stat}>Expert Courses</div>
-          </div>
-          <div>
-            <div style={styles.statValue}>4.9⭐</div>
-            <div style={styles.stat}>Average Rating</div>
-          </div>
+        <div style={{ textAlign: 'center' }}>
+          <a href="/courses" style={{
+            display: 'inline-block',
+            padding: '12px 32px',
+            background: 'rgba(255, 255, 255, 0.05)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '10px',
+            color: '#e2e8f0',
+            fontWeight: '600',
+            fontSize: '14px',
+            cursor: 'pointer',
+            textDecoration: 'none',
+            transition: 'all 0.3s',
+          }}>
+            View All Courses →
+          </a>
         </div>
-      </div>
+      </section>
 
-      {/* CTA */}
-      <div style={styles.cta}>
-        <h2 style={styles.ctaTitle}>
-          Ready to <span style={styles.gradient}>Transform Your Career?</span>
+      {/* CTA Section */}
+      <section style={{
+        padding: '80px 40px',
+        maxWidth: '1400px',
+        margin: '0 auto',
+        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+        textAlign: 'center',
+      }}>
+        <h2 style={{ fontSize: '48px', fontWeight: '800', marginBottom: '24px', letterSpacing: '-1px' }}>
+          Ready to transform your future?
         </h2>
-        <p style={styles.ctaDesc}>
-          Join thousands of learners who have already started their journey with iLEARN. Sign up today and get instant access to all our courses.
+        <p style={{ fontSize: '18px', color: '#94a3b8', marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px' }}>
+          Join thousands of professionals who are already learning, growing, and advancing their careers
         </p>
-        <button onClick={() => setShowLogin(true)} style={styles.ctaButton}>
-          Start Learning Now
+        <button
+          onClick={() => setShowLogin(true)}
+          style={{
+            padding: '14px 40px',
+            background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
+            border: 'none',
+            borderRadius: '10px',
+            color: 'white',
+            fontWeight: '600',
+            fontSize: '16px',
+            cursor: 'pointer',
+            transition: 'all 0.3s',
+            boxShadow: '0 20px 25px rgba(6, 182, 212, 0.15)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)'
+            e.currentTarget.style.boxShadow = '0 25px 35px rgba(6, 182, 212, 0.25)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.boxShadow = '0 20px 25px rgba(6, 182, 212, 0.15)'
+          }}
+        >
+          Get Started Free
         </button>
-      </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{
+        padding: '40px',
+        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+        textAlign: 'center',
+        color: '#64748b',
+        fontSize: '14px',
+      }}>
+        <p>© 2024 iLEARN. Empowering learners worldwide.</p>
+      </footer>
 
       {/* Login Modal */}
       {showLogin && (
-        <div style={styles.modal} onClick={() => setShowLogin(false)}>
-          <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <h2 style={{ color: 'white', marginBottom: '24px', fontSize: '24px', fontWeight: '700' }}>
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.6)',
+            backdropFilter: 'blur(5px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            padding: '20px',
+          }}
+          onClick={() => setShowLogin(false)}
+        >
+          <div
+            style={{
+              background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.85) 100%)',
+              border: '1px solid rgba(226, 232, 240, 0.1)',
+              borderRadius: '16px',
+              padding: '48px',
+              maxWidth: '420px',
+              width: '100%',
+              backdropFilter: 'blur(20px)',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '8px', letterSpacing: '-0.5px' }}>
               Welcome Back
             </h2>
-            <form onSubmit={handleLogin}>
+            <p style={{ color: '#94a3b8', marginBottom: '32px', fontSize: '14px' }}>
+              Sign in to continue your learning journey
+            </p>
+            <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <input
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                style={styles.input}
+                style={{
+                  padding: '12px 16px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(226, 232, 240, 0.1)',
+                  borderRadius: '8px',
+                  color: 'white',
+                  fontSize: '14px',
+                  fontFamily: 'inherit',
+                  transition: 'all 0.3s',
+                  outline: 'none',
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'
+                  e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.4)'
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
+                  e.currentTarget.style.borderColor = 'rgba(226, 232, 240, 0.1)'
+                }}
               />
               <input
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                style={styles.input}
+                style={{
+                  padding: '12px 16px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(226, 232, 240, 0.1)',
+                  borderRadius: '8px',
+                  color: 'white',
+                  fontSize: '14px',
+                  fontFamily: 'inherit',
+                  transition: 'all 0.3s',
+                  outline: 'none',
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'
+                  e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.4)'
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
+                  e.currentTarget.style.borderColor = 'rgba(226, 232, 240, 0.1)'
+                }}
               />
               <button
                 type="submit"
                 style={{
-                  width: '100%',
                   padding: '12px',
-                  background: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
-                  color: 'white',
+                  background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
                   border: 'none',
                   borderRadius: '8px',
-                  fontWeight: '700',
+                  color: 'white',
+                  fontWeight: '600',
                   cursor: 'pointer',
-                  marginBottom: '16px',
+                  marginTop: '8px',
+                  transition: 'all 0.3s',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-1px)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)'
                 }}
               >
                 Sign In
               </button>
             </form>
-            <p style={{ textAlign: 'center', color: '#a0aec0', fontSize: '14px' }}>
+            <p style={{ textAlign: 'center', color: '#64748b', fontSize: '13px', marginTop: '16px' }}>
               Demo: <strong>admin / admin123</strong>
             </p>
-            <button
-              onClick={() => setShowLogin(false)}
-              style={{
-                width: '100%',
-                padding: '8px',
-                background: 'transparent',
-                color: '#a0aec0',
-                border: '1px solid #2d3748',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                marginTop: '12px',
-              }}
-            >
-              Close
-            </button>
           </div>
         </div>
       )}
