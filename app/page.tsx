@@ -23,7 +23,7 @@ export default function HomePage() {
       fontFamily: '"Inter", -apple-system, sans-serif',
       overflow: 'hidden',
     }}>
-      {/* Animated Background Elements */}
+      {/* Animated Background */}
       <div style={{
         position: 'fixed',
         top: '-50%',
@@ -46,52 +46,42 @@ export default function HomePage() {
         background: 'rgba(10, 13, 20, 0.5)',
         backdropFilter: 'blur(30px)',
         borderBottom: '1px solid rgba(6, 182, 212, 0.1)',
-        padding: '16px 0',
+        padding: '16px 20px',
       }}>
         <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          padding: '0 40px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
+          maxWidth: '1400px',
+          margin: '0 auto',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{
-              width: '40px',
-              height: '40px',
+              width: '36px',
+              height: '36px',
               background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
-              borderRadius: '12px',
+              borderRadius: '10px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontWeight: '800',
-              fontSize: '20px',
+              fontSize: '18px',
               boxShadow: '0 8px 32px rgba(6, 182, 212, 0.2)',
             }}>i</div>
-            <span style={{ fontSize: '18px', fontWeight: '800', letterSpacing: '-0.5px' }}>iLEARN</span>
+            <span style={{ fontSize: '16px', fontWeight: '800', letterSpacing: '-0.5px' }}>iLEARN</span>
           </div>
           <button
             onClick={() => setShowLogin(true)}
             style={{
-              padding: '10px 24px',
+              padding: '9px 20px',
               background: 'rgba(6, 182, 212, 0.15)',
               border: '1px solid rgba(6, 182, 212, 0.4)',
-              borderRadius: '10px',
+              borderRadius: '8px',
               color: '#06b6d4',
               fontWeight: '600',
               cursor: 'pointer',
-              fontSize: '14px',
+              fontSize: '13px',
               transition: 'all 0.3s',
-              boxShadow: '0 4px 16px rgba(6, 182, 212, 0.1)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(6, 182, 212, 0.25)'
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(6, 182, 212, 0.2)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(6, 182, 212, 0.15)'
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(6, 182, 212, 0.1)'
             }}
           >
             Sign In
@@ -102,22 +92,22 @@ export default function HomePage() {
       {/* Hero Section */}
       <section style={{
         position: 'relative',
-        minHeight: '100vh',
+        minHeight: 'auto',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '80px 40px',
+        padding: 'clamp(60px, 15vw, 120px) 20px',
         zIndex: 1,
       }}>
-        <div style={{ maxWidth: '1000px', textAlign: 'center' }}>
+        <div style={{ maxWidth: '1000px', textAlign: 'center', width: '100%' }}>
           <div style={{
             display: 'inline-block',
-            padding: '8px 16px',
+            padding: '6px 14px',
             background: 'rgba(6, 182, 212, 0.15)',
             border: '1px solid rgba(6, 182, 212, 0.3)',
             borderRadius: '20px',
-            marginBottom: '32px',
-            fontSize: '13px',
+            marginBottom: 'clamp(20px, 5vw, 32px)',
+            fontSize: '12px',
             fontWeight: '600',
             color: '#06b6d4',
             letterSpacing: '0.5px',
@@ -126,108 +116,88 @@ export default function HomePage() {
           </div>
 
           <h1 style={{
-            fontSize: '80px',
+            fontSize: 'clamp(36px, 9vw, 80px)',
             fontWeight: '900',
             lineHeight: '1.1',
-            marginBottom: '24px',
+            marginBottom: 'clamp(16px, 4vw, 24px)',
             letterSpacing: '-2px',
             background: 'linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-            animation: 'fadeInUp 0.8s ease-out',
           }}>
             Master the Skills<br />
             That Define Tomorrow
           </h1>
 
           <p style={{
-            fontSize: '22px',
+            fontSize: 'clamp(16px, 4vw, 22px)',
             color: '#94a3b8',
-            marginBottom: '48px',
+            marginBottom: 'clamp(32px, 8vw, 48px)',
             lineHeight: '1.6',
             maxWidth: '700px',
-            margin: '0 auto 48px',
-            animation: 'fadeInUp 0.8s ease-out 0.1s both',
+            margin: '0 auto clamp(32px, 8vw, 48px)',
           }}>
             AI-powered personalization meets world-class instruction. Learn from industry experts in a platform built for the future.
           </p>
 
           <div style={{
             display: 'flex',
-            gap: '16px',
+            gap: 'clamp(12px, 3vw, 16px)',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            animation: 'fadeInUp 0.8s ease-out 0.2s both',
           }}>
             <button
               onClick={() => setShowLogin(true)}
               style={{
-                padding: '16px 48px',
+                padding: 'clamp(12px, 3vw, 16px) clamp(24px, 6vw, 48px)',
                 background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
                 border: 'none',
-                borderRadius: '12px',
+                borderRadius: '10px',
                 color: 'white',
                 fontWeight: '700',
-                fontSize: '16px',
+                fontSize: 'clamp(14px, 3vw, 16px)',
                 cursor: 'pointer',
                 transition: 'all 0.3s',
                 boxShadow: '0 20px 50px rgba(6, 182, 212, 0.3)',
-                position: 'relative',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)'
-                e.currentTarget.style.boxShadow = '0 30px 70px rgba(6, 182, 212, 0.4)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = '0 20px 50px rgba(6, 182, 212, 0.3)'
               }}
             >
-              Start Learning Now
+              Start Learning
             </button>
             <a href="#features" style={{
-              padding: '16px 48px',
+              padding: 'clamp(12px, 3vw, 16px) clamp(24px, 6vw, 48px)',
               background: 'rgba(255, 255, 255, 0.05)',
               border: '1px solid rgba(255, 255, 255, 0.1)',
-              borderRadius: '12px',
+              borderRadius: '10px',
               color: '#e2e8f0',
               fontWeight: '700',
-              fontSize: '16px',
+              fontSize: 'clamp(14px, 3vw, 16px)',
               cursor: 'pointer',
               textDecoration: 'none',
               transition: 'all 0.3s',
               display: 'inline-block',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'
             }}>
-              Explore Platform
+              Explore
             </a>
           </div>
 
-          {/* Floating Stats */}
+          {/* Stats */}
           <div style={{
-            marginTop: '80px',
+            marginTop: 'clamp(60px, 15vw, 80px)',
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-            gap: '24px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+            gap: 'clamp(16px, 4vw, 24px)',
             maxWidth: '800px',
-            margin: '80px auto 0',
+            margin: 'clamp(60px, 15vw, 80px) auto 0',
           }}>
             {[
-              { value: '50K+', label: 'Active Learners' },
-              { value: '95%', label: 'Completion Rate' },
+              { value: '50K+', label: 'Learners' },
+              { value: '95%', label: 'Completion' },
               { value: '4.9★', label: 'Rating' },
             ].map((stat, i) => (
               <div
                 key={i}
                 style={{
-                  padding: '24px',
+                  padding: 'clamp(16px, 4vw, 24px)',
                   background: 'rgba(15, 23, 42, 0.4)',
                   border: '1px solid rgba(6, 182, 212, 0.2)',
                   borderRadius: '12px',
@@ -235,16 +205,16 @@ export default function HomePage() {
                 }}
               >
                 <div style={{
-                  fontSize: '28px',
+                  fontSize: 'clamp(20px, 5vw, 28px)',
                   fontWeight: '800',
                   background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  marginBottom: '8px',
+                  marginBottom: '6px',
                 }}>
                   {stat.value}
                 </div>
-                <div style={{ fontSize: '13px', color: '#94a3b8', fontWeight: '600' }}>
+                <div style={{ fontSize: 'clamp(11px, 2.5vw, 13px)', color: '#94a3b8', fontWeight: '600' }}>
                   {stat.label}
                 </div>
               </div>
@@ -253,22 +223,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Dashboard Preview Section */}
+      {/* Dashboard Preview */}
       <section style={{
         position: 'relative',
-        padding: '120px 40px',
+        padding: 'clamp(80px, 20vw, 120px) 20px',
         maxWidth: '1400px',
         margin: '0 auto',
         zIndex: 2,
       }}>
-        <div style={{
-          textAlign: 'center',
-          marginBottom: '80px',
-        }}>
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(60px, 15vw, 80px)' }}>
           <h2 style={{
-            fontSize: '56px',
+            fontSize: 'clamp(32px, 8vw, 56px)',
             fontWeight: '800',
-            marginBottom: '16px',
+            marginBottom: 'clamp(12px, 3vw, 16px)',
             letterSpacing: '-1px',
             background: 'linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%)',
             WebkitBackgroundClip: 'text',
@@ -276,8 +243,8 @@ export default function HomePage() {
           }}>
             Your Learning Dashboard
           </h2>
-          <p style={{ fontSize: '18px', color: '#94a3b8', maxWidth: '600px', margin: '0 auto' }}>
-            Track progress, access courses, and get personalized recommendations all in one place
+          <p style={{ fontSize: 'clamp(14px, 3.5vw, 18px)', color: '#94a3b8', maxWidth: '600px', margin: '0 auto' }}>
+            Track progress and get personalized recommendations
           </p>
         </div>
 
@@ -285,49 +252,45 @@ export default function HomePage() {
         <div style={{
           background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%)',
           border: '1px solid rgba(6, 182, 212, 0.2)',
-          borderRadius: '20px',
-          padding: '40px',
+          borderRadius: '16px',
+          padding: 'clamp(20px, 5vw, 40px)',
           backdropFilter: 'blur(30px)',
-          boxShadow: '0 40px 80px rgba(6, 182, 212, 0.1)',
           overflow: 'hidden',
-          position: 'relative',
         }}>
-          {/* Fake Dashboard Content */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', marginBottom: '40px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 'clamp(12px, 3vw, 20px)', marginBottom: 'clamp(24px, 6vw, 40px)' }}>
             {[
-              { label: 'Hours Learned', value: '142' },
-              { label: 'Courses Enrolled', value: '3' },
-              { label: 'Certifications', value: '2' },
+              { label: 'Hours', value: '142' },
+              { label: 'Courses', value: '3' },
+              { label: 'Certificates', value: '2' },
             ].map((stat, i) => (
               <div key={i} style={{
-                padding: '24px',
+                padding: 'clamp(16px, 4vw, 24px)',
                 background: 'rgba(6, 182, 212, 0.1)',
-                borderRadius: '12px',
+                borderRadius: '10px',
                 border: '1px solid rgba(6, 182, 212, 0.2)',
               }}>
-                <div style={{ fontSize: '24px', fontWeight: '800', color: '#06b6d4', marginBottom: '8px' }}>
+                <div style={{ fontSize: 'clamp(18px, 5vw, 24px)', fontWeight: '800', color: '#06b6d4', marginBottom: '6px' }}>
                   {stat.value}
                 </div>
-                <div style={{ fontSize: '13px', color: '#94a3b8' }}>{stat.label}</div>
+                <div style={{ fontSize: 'clamp(11px, 2.5vw, 13px)', color: '#94a3b8' }}>{stat.label}</div>
               </div>
             ))}
           </div>
 
-          {/* Course Cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(12px, 3vw, 20px)' }}>
             {[
-              { title: 'Data Science Mastery', progress: 65 },
-              { title: 'Full Stack Web Dev', progress: 32 },
+              { title: 'Data Science', progress: 65 },
+              { title: 'Web Dev', progress: 32 },
             ].map((course, i) => (
               <div key={i} style={{
-                padding: '20px',
+                padding: 'clamp(14px, 3vw, 20px)',
                 background: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: '12px',
+                borderRadius: '10px',
                 border: '1px solid rgba(6, 182, 212, 0.2)',
               }}>
-                <p style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px' }}>{course.title}</p>
+                <p style={{ fontSize: 'clamp(12px, 3vw, 14px)', fontWeight: '700', marginBottom: '10px' }}>{course.title}</p>
                 <div style={{
-                  height: '6px',
+                  height: '5px',
                   background: 'rgba(255, 255, 255, 0.1)',
                   borderRadius: '3px',
                   overflow: 'hidden',
@@ -338,8 +301,8 @@ export default function HomePage() {
                     width: `${course.progress}%`,
                   }} />
                 </div>
-                <p style={{ fontSize: '12px', color: '#94a3b8', marginTop: '8px' }}>
-                  {course.progress}% Complete
+                <p style={{ fontSize: 'clamp(10px, 2.5vw, 12px)', color: '#94a3b8', marginTop: '6px' }}>
+                  {course.progress}%
                 </p>
               </div>
             ))}
@@ -347,19 +310,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features Section - Bento Grid */}
+      {/* Features - Bento */}
       <section id="features" style={{
         position: 'relative',
-        padding: '120px 40px',
+        padding: 'clamp(80px, 20vw, 120px) 20px',
         maxWidth: '1400px',
         margin: '0 auto',
         zIndex: 2,
       }}>
-        <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(60px, 15vw, 80px)' }}>
           <h2 style={{
-            fontSize: '56px',
+            fontSize: 'clamp(32px, 8vw, 56px)',
             fontWeight: '800',
-            marginBottom: '16px',
+            marginBottom: 'clamp(12px, 3vw, 16px)',
             letterSpacing: '-1px',
             background: 'linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%)',
             WebkitBackgroundClip: 'text',
@@ -367,75 +330,58 @@ export default function HomePage() {
           }}>
             Why learners choose iLEARN
           </h2>
-          <p style={{ fontSize: '18px', color: '#94a3b8', maxWidth: '600px', margin: '0 auto' }}>
-            Built with AI, designed for humans, powered by industry experts
-          </p>
         </div>
 
-        {/* Bento Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '24px',
-          gridAutoRows: '280px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: 'clamp(16px, 4vw, 24px)',
         }}>
           {[
-            { icon: '🎯', title: 'AI-Powered Learning', desc: 'Adaptive paths that learn with you', span: 1 },
-            { icon: '📊', title: 'Real-Time Analytics', desc: 'Track every step of your journey', span: 1 },
-            { icon: '👥', title: 'Expert Community', desc: 'Learn alongside industry pros', span: 1 },
-            { icon: '🏆', title: 'Verified Credentials', desc: 'Earn recognized certifications', span: 2 },
-            { icon: '⚡', title: 'Live Mentorship', desc: 'Direct access to instructors', span: 1 },
+            { icon: '→', title: 'AI-Powered Learning', desc: 'Adaptive paths that learn with you' },
+            { icon: '■', title: 'Real-Time Analytics', desc: 'Track every step of your journey' },
+            { icon: '●', title: 'Expert Community', desc: 'Learn alongside industry pros' },
+            { icon: '▲', title: 'Verified Credentials', desc: 'Earn recognized certifications' },
+            { icon: '◆', title: 'Live Mentorship', desc: 'Direct access to instructors' },
           ].map((feature, i) => (
             <div
               key={i}
               style={{
-                gridColumn: `span ${feature.span}`,
-                padding: '32px',
+                padding: 'clamp(20px, 5vw, 32px)',
                 background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%)',
                 border: '1px solid rgba(6, 182, 212, 0.2)',
-                borderRadius: '16px',
+                borderRadius: '14px',
                 backdropFilter: 'blur(20px)',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
                 cursor: 'pointer',
                 transition: 'all 0.3s',
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.5)'
-                e.currentTarget.style.transform = 'translateY(-8px)'
-                e.currentTarget.style.boxShadow = '0 20px 50px rgba(6, 182, 212, 0.15)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.2)'
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = 'none'
-              }}
             >
-              <div>
-                <div style={{ fontSize: '40px', marginBottom: '16px' }}>{feature.icon}</div>
-                <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px' }}>{feature.title}</h3>
+              <div style={{ fontSize: 'clamp(24px, 6vw, 32px)', marginBottom: '12px', color: '#06b6d4' }}>
+                {feature.icon}
               </div>
-              <p style={{ fontSize: '14px', color: '#94a3b8' }}>{feature.desc}</p>
+              <h3 style={{ fontSize: 'clamp(14px, 3.5vw, 20px)', fontWeight: '700', marginBottom: '8px' }}>
+                {feature.title}
+              </h3>
+              <p style={{ fontSize: 'clamp(12px, 3vw, 14px)', color: '#94a3b8' }}>{feature.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Courses Preview */}
+      {/* Courses */}
       <section style={{
         position: 'relative',
-        padding: '120px 40px',
+        padding: 'clamp(80px, 20vw, 120px) 20px',
         maxWidth: '1400px',
         margin: '0 auto',
-        zIndex: 2,
         borderTop: '1px solid rgba(6, 182, 212, 0.1)',
+        zIndex: 2,
       }}>
-        <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(60px, 15vw, 80px)' }}>
           <h2 style={{
-            fontSize: '56px',
+            fontSize: 'clamp(32px, 8vw, 56px)',
             fontWeight: '800',
-            marginBottom: '16px',
+            marginBottom: 'clamp(12px, 3vw, 16px)',
             letterSpacing: '-1px',
             background: 'linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%)',
             WebkitBackgroundClip: 'text',
@@ -443,67 +389,63 @@ export default function HomePage() {
           }}>
             Premium Courses
           </h2>
-          <p style={{ fontSize: '18px', color: '#94a3b8', maxWidth: '600px', margin: '0 auto' }}>
-            Explore our hand-picked collection of industry-leading courses
-          </p>
         </div>
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '28px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gap: 'clamp(16px, 4vw, 28px)',
+          marginBottom: 'clamp(40px, 10vw, 60px)',
         }}>
           {[
-            { icon: '📊', title: 'Data Science', students: '2.4K', rating: 4.9 },
-            { icon: '🌐', title: 'Web Dev', students: '3.1K', rating: 4.8 },
-            { icon: '🤖', title: 'AI & ML', students: '1.8K', rating: 4.7 },
+            { icon: '●', title: 'Data Science', students: '2.4K', rating: 4.9 },
+            { icon: '■', title: 'Web Dev', students: '3.1K', rating: 4.8 },
+            { icon: '▲', title: 'AI & ML', students: '1.8K', rating: 4.7 },
           ].map((course, i) => (
             <div
               key={i}
               style={{
-                padding: '32px',
+                padding: 'clamp(20px, 5vw, 32px)',
                 background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%)',
                 border: '1px solid rgba(6, 182, 212, 0.2)',
-                borderRadius: '16px',
+                borderRadius: '14px',
                 backdropFilter: 'blur(20px)',
                 cursor: 'pointer',
                 transition: 'all 0.3s',
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.5)'
-                e.currentTarget.style.transform = 'translateY(-8px)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.2)'
-                e.currentTarget.style.transform = 'translateY(0)'
-              }}
             >
-              <div style={{ fontSize: '48px', marginBottom: '16px' }}>{course.icon}</div>
-              <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '16px' }}>{course.title}</h3>
+              <div style={{ fontSize: 'clamp(28px, 7vw, 48px)', marginBottom: '12px', color: '#06b6d4' }}>
+                {course.icon}
+              </div>
+              <h3 style={{ fontSize: 'clamp(14px, 3.5vw, 20px)', fontWeight: '700', marginBottom: '12px' }}>
+                {course.title}
+              </h3>
               <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                paddingTop: '16px',
+                paddingTop: '12px',
                 borderTop: '1px solid rgba(6, 182, 212, 0.2)',
+                fontSize: 'clamp(11px, 2.5vw, 13px)',
+                color: '#94a3b8',
               }}>
-                <span style={{ fontSize: '13px', color: '#94a3b8' }}>{course.students} students</span>
-                <span style={{ fontSize: '13px', color: '#fbbf24', fontWeight: '600' }}>⭐ {course.rating}</span>
+                <span>{course.students}</span>
+                <span style={{ color: '#fbbf24' }}>⭐ {course.rating}</span>
               </div>
             </div>
           ))}
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '60px' }}>
+        <div style={{ textAlign: 'center' }}>
           <a href="/courses" style={{
             display: 'inline-block',
-            padding: '12px 32px',
+            padding: 'clamp(10px, 2.5vw, 12px) clamp(20px, 5vw, 32px)',
             background: 'rgba(6, 182, 212, 0.15)',
             border: '1px solid rgba(6, 182, 212, 0.4)',
-            borderRadius: '10px',
+            borderRadius: '8px',
             color: '#06b6d4',
             fontWeight: '700',
-            fontSize: '14px',
+            fontSize: 'clamp(12px, 3vw, 14px)',
             textDecoration: 'none',
             transition: 'all 0.3s',
           }}>
@@ -512,69 +454,61 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA */}
       <section style={{
         position: 'relative',
-        padding: '120px 40px',
+        padding: 'clamp(60px, 15vw, 120px) 20px',
         maxWidth: '1400px',
         margin: '0 auto',
         textAlign: 'center',
         zIndex: 2,
       }}>
         <h2 style={{
-          fontSize: '56px',
+          fontSize: 'clamp(28px, 7vw, 56px)',
           fontWeight: '800',
-          marginBottom: '24px',
+          marginBottom: 'clamp(16px, 4vw, 24px)',
           letterSpacing: '-1px',
           background: 'linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
         }}>
-          Ready to transform your future?
+          Ready to transform?
         </h2>
         <p style={{
-          fontSize: '18px',
+          fontSize: 'clamp(14px, 3.5vw, 18px)',
           color: '#94a3b8',
-          marginBottom: '48px',
+          marginBottom: 'clamp(28px, 7vw, 48px)',
           maxWidth: '600px',
-          margin: '0 auto 48px',
+          margin: '0 auto clamp(28px, 7vw, 48px)',
         }}>
-          Join thousands of professionals who are already learning, growing, and advancing their careers with iLEARN.
+          Join thousands of professionals advancing their careers with iLEARN.
         </p>
         <button
           onClick={() => setShowLogin(true)}
           style={{
-            padding: '16px 48px',
+            padding: 'clamp(12px, 3vw, 16px) clamp(24px, 6vw, 48px)',
             background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
             border: 'none',
-            borderRadius: '12px',
+            borderRadius: '10px',
             color: 'white',
             fontWeight: '700',
-            fontSize: '16px',
+            fontSize: 'clamp(14px, 3vw, 16px)',
             cursor: 'pointer',
             transition: 'all 0.3s',
             boxShadow: '0 20px 50px rgba(6, 182, 212, 0.3)',
           }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-4px)'
-            e.currentTarget.style.boxShadow = '0 30px 70px rgba(6, 182, 212, 0.4)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)'
-            e.currentTarget.style.boxShadow = '0 20px 50px rgba(6, 182, 212, 0.3)'
-          }}
         >
-          Start Free Today
+          Start Today
         </button>
       </section>
 
       {/* Footer */}
       <footer style={{
-        padding: '40px',
+        padding: '20px',
         borderTop: '1px solid rgba(6, 182, 212, 0.1)',
         textAlign: 'center',
         color: '#64748b',
-        fontSize: '14px',
+        fontSize: 'clamp(11px, 2.5vw, 14px)',
         zIndex: 2,
         position: 'relative',
       }}>
@@ -604,8 +538,8 @@ export default function HomePage() {
             style={{
               background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.85) 100%)',
               border: '1px solid rgba(6, 182, 212, 0.3)',
-              borderRadius: '20px',
-              padding: '48px',
+              borderRadius: '16px',
+              padding: 'clamp(28px, 6vw, 48px)',
               maxWidth: '420px',
               width: '100%',
               backdropFilter: 'blur(30px)',
@@ -613,36 +547,28 @@ export default function HomePage() {
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '8px', letterSpacing: '-0.5px' }}>
+            <h2 style={{ fontSize: 'clamp(22px, 5vw, 28px)', fontWeight: '700', marginBottom: '8px' }}>
               Welcome Back
             </h2>
-            <p style={{ color: '#94a3b8', marginBottom: '32px', fontSize: '14px' }}>
-              Sign in to your learning dashboard
+            <p style={{ color: '#94a3b8', marginBottom: '24px', fontSize: 'clamp(12px, 3vw, 14px)' }}>
+              Sign in to your dashboard
             </p>
-            <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <input
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 style={{
-                  padding: '12px 16px',
+                  padding: '10px 14px',
                   background: 'rgba(255, 255, 255, 0.05)',
                   border: '1px solid rgba(6, 182, 212, 0.3)',
                   borderRadius: '8px',
                   color: 'white',
-                  fontSize: '14px',
+                  fontSize: 'clamp(12px, 3vw, 14px)',
                   fontFamily: 'inherit',
                   transition: 'all 0.3s',
                   outline: 'none',
-                }}
-                onFocus={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'
-                  e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.6)'
-                }}
-                onBlur={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
-                  e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.3)'
                 }}
               />
               <input
@@ -651,68 +577,41 @@ export default function HomePage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 style={{
-                  padding: '12px 16px',
+                  padding: '10px 14px',
                   background: 'rgba(255, 255, 255, 0.05)',
                   border: '1px solid rgba(6, 182, 212, 0.3)',
                   borderRadius: '8px',
                   color: 'white',
-                  fontSize: '14px',
+                  fontSize: 'clamp(12px, 3vw, 14px)',
                   fontFamily: 'inherit',
                   transition: 'all 0.3s',
                   outline: 'none',
-                }}
-                onFocus={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'
-                  e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.6)'
-                }}
-                onBlur={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
-                  e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.3)'
                 }}
               />
               <button
                 type="submit"
                 style={{
-                  padding: '12px',
+                  padding: '10px',
                   background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
                   border: 'none',
                   borderRadius: '8px',
                   color: 'white',
                   fontWeight: '700',
+                  fontSize: 'clamp(12px, 3vw, 14px)',
                   cursor: 'pointer',
-                  marginTop: '8px',
+                  marginTop: '6px',
                   transition: 'all 0.3s',
-                  boxShadow: '0 10px 30px rgba(6, 182, 212, 0.2)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
                 }}
               >
                 Sign In
               </button>
             </form>
-            <p style={{ textAlign: 'center', color: '#64748b', fontSize: '13px', marginTop: '20px' }}>
+            <p style={{ textAlign: 'center', color: '#64748b', fontSize: 'clamp(11px, 2.5vw, 13px)', marginTop: '16px' }}>
               Demo: <strong>admin / admin123</strong>
             </p>
           </div>
         </div>
       )}
-
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </div>
   )
 }
