@@ -24,19 +24,12 @@ export default function HomePage() {
 
   return (
     <div style={{ background: '#0a0e27', color: '#fff', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
-      {/* Fixed Background */}
       <div style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
+        position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
         background: 'radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.2) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)',
-        zIndex: 0,
-        pointerEvents: 'none',
+        zIndex: 0, pointerEvents: 'none',
       }} />
 
-      {/* Nav */}
       <nav style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(10, 14, 39, 0.3)', backdropFilter: 'blur(40px)', borderBottom: '1px solid rgba(139, 92, 246, 0.1)', padding: '16px 20px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1400px', margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -47,7 +40,6 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {/* Hero */}
       <section style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '80px 20px', zIndex: 2 }}>
         <div style={{ maxWidth: '1000px', textAlign: 'center' }}>
           <h1 style={{ fontSize: 'clamp(40px, 12vw, 100px)', fontWeight: '900', lineHeight: '1.1', marginBottom: '24px', letterSpacing: '-2px', background: 'linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: Math.max(0, 1 - scrollY / 500) }}>Learn Smarter. Grow Faster.</h1>
@@ -56,10 +48,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Horizontal Features - Text Bold, Images Faded Behind */}
       <HorizontalFeaturesSection scrollY={scrollY} />
 
-      {/* Stats with Animated Counters */}
       <section style={{ position: 'relative', padding: '120px 20px', maxWidth: '1200px', margin: '0 auto', zIndex: 2 }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '60px', textAlign: 'center' }}>
           <AnimatedCounter value={50} label="K+ Learners" suffix="K+" scrollY={scrollY} offset={2400} index={0} />
@@ -68,23 +58,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Final CTA - Start Journey */}
       <section style={{ position: 'relative', padding: '120px 20px', maxWidth: '1000px', margin: '0 auto', textAlign: 'center', zIndex: 2 }}>
         <h2 style={{ fontSize: 'clamp(32px, 8vw, 56px)', fontWeight: '800', marginBottom: '24px', background: 'linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Ready to start your learning journey?</h2>
         <p style={{ fontSize: '18px', color: '#9ca3af', marginBottom: '48px', maxWidth: '600px', margin: '0 auto 48px' }}>Join thousands of learners achieving their goals with iLEARN today.</p>
         <button onClick={() => setShowLogin(true)} style={{ padding: '16px 48px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '10px', color: 'white', fontWeight: '700', fontSize: '16px', cursor: 'pointer', boxShadow: '0 20px 50px rgba(139, 92, 246, 0.3)' }}>Start Journey</button>
       </section>
 
-      {/* Footer */}
       <footer style={{ padding: '40px 20px', borderTop: '1px solid rgba(139, 92, 246, 0.1)', textAlign: 'center', color: '#6b7280', fontSize: '14px', zIndex: 2, position: 'relative' }}>© 2024 iLEARN.</footer>
 
-      {/* Login */}
       {showLogin && <LoginModal showLogin={showLogin} setShowLogin={setShowLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin} />}
     </div>
   )
 }
 
-// Horizontal Features - Text BOLD, Images FADED Behind
 function HorizontalFeaturesSection({ scrollY }: { scrollY: number }) {
   const features = [
     { title: 'AI Study Assistant', preview: <ChatPreview /> },
@@ -96,14 +82,14 @@ function HorizontalFeaturesSection({ scrollY }: { scrollY: number }) {
   ]
 
   const progress = Math.min(1, Math.max(0, (scrollY - 800) / 2000))
-  const scrollAmount = -progress * (features.length - 1) * 380
+  const scrollAmount = -progress * (features.length - 1) * 420
 
   return (
     <section style={{ position: 'relative', height: '400vh', zIndex: 2 }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', padding: '0 20px' }}>
-        <div style={{ display: 'flex', gap: '28px', width: 'fit-content', transform: `translateX(${scrollAmount}px)`, transition: 'transform 0.05s linear' }}>
+        <div style={{ display: 'flex', gap: '32px', width: 'fit-content', transform: `translateX(${scrollAmount}px)`, transition: 'transform 0.05s linear' }}>
           {features.map((f, i) => (
-            <BoldTextCard key={i} title={f.title} preview={f.preview} progress={progress} index={i} total={features.length} />
+            <FeatureCard key={i} title={f.title} preview={f.preview} progress={progress} index={i} total={features.length} />
           ))}
         </div>
       </div>
@@ -111,23 +97,21 @@ function HorizontalFeaturesSection({ scrollY }: { scrollY: number }) {
   )
 }
 
-// Card: BOLD Text, Faded Image Behind
-function BoldTextCard({ title, preview, progress, index, total }: any) {
+function FeatureCard({ title, preview, progress, index, total }: any) {
   const cardProgress = Math.max(0, Math.min(1, (progress * total - index) * 1.5))
   const isCenter = Math.abs(progress * total - index) < 0.5
 
   return (
     <div style={{
-      minWidth: '420px',
-      height: '560px',
+      minWidth: '460px',
+      height: '600px',
       position: 'relative',
-      borderRadius: '24px',
+      borderRadius: '28px',
       overflow: 'hidden',
       opacity: Math.max(0.4, 1 - Math.abs(progress * total - index) * 0.3),
       transform: `scale(${Math.max(0.85, 1 - Math.abs(progress * total - index) * 0.15)})`,
       transition: 'all 0.1s ease-out',
     }}>
-      {/* Image Background - FADED */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -135,40 +119,36 @@ function BoldTextCard({ title, preview, progress, index, total }: any) {
         right: 0,
         bottom: 0,
         opacity: 0.25,
-        filter: 'blur(2px)',
       }}>
         {preview}
       </div>
 
-      {/* Light Overlay */}
       <div style={{
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        background: 'linear-gradient(135deg, rgba(10, 14, 39, 0.7) 0%, rgba(10, 14, 39, 0.65) 100%)',
-        backdropFilter: 'blur(8px)',
+        background: 'linear-gradient(135deg, rgba(10, 14, 39, 0.65) 0%, rgba(10, 14, 39, 0.6) 100%)',
+        backdropFilter: 'blur(12px)',
       }} />
 
-      {/* Border */}
       <div style={{
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        border: `1.5px solid ${isCenter ? 'rgba(139, 92, 246, 0.7)' : 'rgba(139, 92, 246, 0.3)'}`,
-        borderRadius: '24px',
+        border: `2px solid ${isCenter ? 'rgba(139, 92, 246, 0.8)' : 'rgba(139, 92, 246, 0.3)'}`,
+        borderRadius: '28px',
         pointerEvents: 'none',
         transition: 'border-color 0.3s',
       }} />
 
-      {/* BOLD TEXT - PRIMARY */}
       <div style={{
         position: 'relative',
         zIndex: 2,
-        padding: '56px 48px',
+        padding: '60px 48px',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -176,14 +156,14 @@ function BoldTextCard({ title, preview, progress, index, total }: any) {
         alignItems: 'center',
         textAlign: 'center',
         opacity: cardProgress,
-        transform: `translateY(${(1 - cardProgress) * 20}px)`,
+        transform: `translateY(${(1 - cardProgress) * 24}px)`,
         transition: 'all 0.2s ease-out',
       }}>
         <h3 style={{
-          fontSize: '42px',
+          fontSize: '52px',
           fontWeight: '900',
           color: '#fff',
-          lineHeight: '1.2',
+          lineHeight: '1.15',
           letterSpacing: '-1px',
           margin: '0',
         }}>
@@ -194,7 +174,6 @@ function BoldTextCard({ title, preview, progress, index, total }: any) {
   )
 }
 
-// Animated Counter
 function AnimatedCounter({ value, label, suffix, scrollY, offset, index }: any) {
   const progress = Math.max(0, Math.min(1, (scrollY - offset + 200) / 300))
   const displayValue = Math.floor(progress * value)
@@ -217,50 +196,19 @@ function AnimatedCounter({ value, label, suffix, scrollY, offset, index }: any) 
       }}>
         {displayValue}{suffix}
       </div>
-      <div style={{ fontSize: '16px', color: '#9ca3af', fontWeight: '600', letterSpacing: '0.5px' }}>
+      <div style={{ fontSize: '16px', color: '#9ca3af', fontWeight: '600' }}>
         {label}
       </div>
     </div>
   )
 }
 
-// Preview Components
-function ChatPreview() {
-  return <div style={{ padding: '20px', fontSize: '12px', height: '100%', display: 'flex', flexDirection: 'column', gap: '12px', justifyContent: 'center' }}><div style={{ background: 'rgba(139, 92, 246, 0.4)', padding: '10px 14px', borderRadius: '8px', color: '#d1d5db' }}>How do I solve this?</div><div style={{ background: 'rgba(59, 130, 246, 0.4)', padding: '10px 14px', borderRadius: '8px', color: '#d1d5db', alignSelf: 'flex-end' }}>Here's how...</div></div>
-}
-
-function AnalyticsPreview() {
-  return <div style={{ padding: '24px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '16px' }}><div style={{ background: 'rgba(139, 92, 246, 0.3)', height: '8px', borderRadius: '4px', overflow: 'hidden' }}><div style={{ background: '#60a5fa', height: '100%', width: '72%' }} /></div><svg viewBox="0 0 100 40" style={{ height: '50px' }}><polyline points="5,30 15,20 25,25 35,15 45,22 55,18 65,28 75,20 85,25 95,15" stroke="#60a5fa" strokeWidth="2" fill="none" /></svg></div>
-}
-
-function PlannerPreview() {
-  return <div style={{ padding: '16px', height: '100%', display: 'flex', flexDirection: 'column', gap: '10px', justifyContent: 'center' }}>{[{ d: 'Mon', w: 65 }, { d: 'Tue', w: 45 }, { d: 'Wed', w: 75 }].map(x => <div key={x.d} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#9ca3af' }}><span style={{ minWidth: '32px' }}>{x.d}</span><div style={{ flex: 1, background: 'rgba(139, 92, 246, 0.3)', height: '6px', borderRadius: '3px', overflow: 'hidden' }}><div style={{ background: '#a78bfa', height: '100%', width: `${x.w}%` }} /></div></div>)}</div>
-}
-
-function CoursePreview() {
-  return <div style={{ padding: '16px', height: '100%', display: 'flex', flexDirection: 'column', gap: '12px', justifyContent: 'center' }}>{[{ t: 'Physics 101' }, { t: 'Python Dev' }, { t: 'Data Science' }].map(x => <div key={x.t} style={{ background: 'rgba(59, 130, 246, 0.25)', padding: '12px', borderRadius: '8px', fontSize: '12px', fontWeight: '700', color: '#d1d5db', borderLeft: '3px solid #60a5fa' }}>{x.t}</div>)}</div>
-}
-
-function FlashcardPreview() {
-  return <div style={{ padding: '24px', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}><div style={{ background: 'rgba(139, 92, 246, 0.3)', padding: '24px', borderRadius: '12px', textAlign: 'center', minHeight: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><div style={{ fontSize: '16px', color: '#d1d5db', fontWeight: '700' }}>Question?</div></div></div>
-}
-
-function ExamPreview() {
-  return (
-    <div style={{ padding: '20px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
-      <div style={{ fontSize: '14px', color: '#d1d5db', fontWeight: '700' }}>Mock Exam</div>
-      <div style={{ background: 'rgba(139, 92, 246, 0.3)', padding: '14px', borderRadius: '8px' }}>
-        <div style={{ fontSize: '18px', fontWeight: '800', color: '#60a5fa', marginBottom: '8px' }}>85/100</div>
-        <div style={{ background: 'rgba(0, 0, 0, 0.4)', height: '6px', borderRadius: '3px', overflow: 'hidden' }}>
-          <div style={{ background: '#22c55e', height: '100%', width: '85%' }} />
-        </div>
-      </div>
-      <div style={{ fontSize: '12px', color: '#9ca3af', padding: '8px', background: 'rgba(59, 130, 246, 0.15)', borderRadius: '6px' }}>
-        34/40 Correct ✓
-      </div>
-    </div>
-  )
-}
+function ChatPreview() { return <div style={{ padding: '20px', fontSize: '13px', height: '100%', display: 'flex', flexDirection: 'column', gap: '12px', justifyContent: 'flex-end' }}><div style={{ background: 'rgba(139, 92, 246, 0.3)', padding: '12px 14px', borderRadius: '8px', color: '#d1d5db' }}>How do I solve this?</div><div style={{ background: 'rgba(59, 130, 246, 0.3)', padding: '12px 14px', borderRadius: '8px', color: '#d1d5db', alignSelf: 'flex-end' }}>Here's how...</div></div> }
+function AnalyticsPreview() { return <div style={{ padding: '28px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '18px' }}><div style={{ background: 'rgba(139, 92, 246, 0.3)', height: '10px', borderRadius: '5px', overflow: 'hidden' }}><div style={{ background: '#60a5fa', height: '100%', width: '72%' }} /></div><svg viewBox="0 0 100 40" style={{ height: '55px' }}><polyline points="5,30 15,20 25,25 35,15 45,22 55,18 65,28 75,20 85,25 95,15" stroke="#60a5fa" strokeWidth="2" fill="none" /></svg></div> }
+function PlannerPreview() { return <div style={{ padding: '20px', height: '100%', display: 'flex', flexDirection: 'column', gap: '12px', justifyContent: 'center' }}>{[{ d: 'Mon', w: 65 }, { d: 'Tue', w: 45 }, { d: 'Wed', w: 75 }].map(x => <div key={x.d} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: '#9ca3af' }}><span style={{ minWidth: '36px' }}>{x.d}</span><div style={{ flex: 1, background: 'rgba(139, 92, 246, 0.3)', height: '7px', borderRadius: '4px', overflow: 'hidden' }}><div style={{ background: '#a78bfa', height: '100%', width: `${x.w}%` }} /></div></div>)}</div> }
+function CoursePreview() { return <div style={{ padding: '20px', height: '100%', display: 'flex', flexDirection: 'column', gap: '14px', justifyContent: 'center' }}>{[{ t: 'Physics 101' }, { t: 'Python Dev' }, { t: 'Data Science' }].map(x => <div key={x.t} style={{ background: 'rgba(59, 130, 246, 0.25)', padding: '14px', borderRadius: '10px', fontSize: '13px', fontWeight: '700', color: '#d1d5db', borderLeft: '4px solid #60a5fa' }}>{x.t}</div>)}</div> }
+function FlashcardPreview() { return <div style={{ padding: '28px', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}><div style={{ background: 'rgba(139, 92, 246, 0.3)', padding: '28px', borderRadius: '14px', textAlign: 'center', minHeight: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><div style={{ fontSize: '18px', color: '#d1d5db', fontWeight: '700' }}>Question?</div></div></div> }
+function ExamPreview() { return <div style={{ padding: '24px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '16px' }}><div style={{ fontSize: '15px', color: '#d1d5db', fontWeight: '700' }}>Mock Exam</div><div style={{ background: 'rgba(139, 92, 246, 0.3)', padding: '16px', borderRadius: '10px' }}><div style={{ fontSize: '24px', fontWeight: '900', color: '#60a5fa', marginBottom: '10px' }}>85/100</div><div style={{ background: 'rgba(0, 0, 0, 0.4)', height: '7px', borderRadius: '4px', overflow: 'hidden' }}><div style={{ background: '#22c55e', height: '100%', width: '85%' }} /></div></div><div style={{ fontSize: '13px', color: '#9ca3af', padding: '10px', background: 'rgba(59, 130, 246, 0.15)', borderRadius: '6px' }}>34/40 Correct ✓</div></div> }
 
 function LoginModal({ showLogin, setShowLogin, username, setUsername, password, setPassword, handleLogin }: any) {
   return (
