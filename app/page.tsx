@@ -2,16 +2,16 @@
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 
-// Icon Components (Clean SVG style)
+// Icon Components
 const Icons = {
   Brain: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v12M9 9h6M9 15h6"/></svg>,
-  TrendingUp: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>,
-  Users: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
-  Award: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg>,
-  Zap: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
-  Target: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="9"/></svg>,
-  BookOpen: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>,
   Sparkles: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>,
+  Zap: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
+  TrendingUp: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>,
+  BookOpen: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>,
+  Target: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="9"/></svg>,
+  CheckCircle: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>,
+  Users: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
 }
 
 export default function HomePage() {
@@ -42,7 +42,7 @@ export default function HomePage() {
       fontFamily: '"Inter", -apple-system, sans-serif',
       overflow: 'hidden',
     }}>
-      {/* Animated Background Gradients */}
+      {/* Background */}
       <div style={{
         position: 'fixed',
         top: 0,
@@ -103,14 +103,6 @@ export default function HomePage() {
               transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
               boxShadow: '0 8px 24px rgba(139, 92, 246, 0.3)',
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)'
-              e.currentTarget.style.boxShadow = '0 12px 32px rgba(139, 92, 246, 0.4)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.3)'
-            }}
           >
             Get Started
           </button>
@@ -162,8 +154,8 @@ export default function HomePage() {
             WebkitTextFillColor: 'transparent',
             animation: 'fadeInUp 0.8s ease-out 0.1s both',
           }}>
-            Master Any Skill.<br />
-            Powered by AI.
+            Learn Smarter.<br />
+            Master Faster.
           </h1>
 
           <p style={{
@@ -175,7 +167,7 @@ export default function HomePage() {
             margin: '0 auto clamp(32px, 8vw, 48px)',
             animation: 'fadeInUp 0.8s ease-out 0.2s both',
           }}>
-            Personalized learning paths, expert instruction, and AI mentorship. Learn at your pace, achieve your goals.
+            AI-powered learning paths, personalized study plans, and real-time progress tracking. Everything you need to achieve your goals.
           </p>
 
           <div style={{
@@ -199,16 +191,8 @@ export default function HomePage() {
                 transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
                 boxShadow: '0 20px 50px rgba(139, 92, 246, 0.3)',
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)'
-                e.currentTarget.style.boxShadow = '0 30px 70px rgba(139, 92, 246, 0.4)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = '0 20px 50px rgba(139, 92, 246, 0.3)'
-              }}
             >
-              Start Learning Free
+              Start Free Today
             </button>
             <a href="#features" style={{
               padding: 'clamp(12px, 3vw, 16px) clamp(24px, 6vw, 48px)',
@@ -218,16 +202,15 @@ export default function HomePage() {
               color: '#e5e7eb',
               fontWeight: '700',
               fontSize: 'clamp(14px, 3vw, 16px)',
-              cursor: 'pointer',
               textDecoration: 'none',
               transition: 'all 0.3s',
               display: 'inline-block',
             }}>
-              Learn More
+              Explore Features
             </a>
           </div>
 
-          {/* Stats */}
+          {/* Social Proof */}
           <div style={{
             marginTop: 'clamp(60px, 15vw, 80px)',
             display: 'grid',
@@ -238,8 +221,8 @@ export default function HomePage() {
           }}>
             {[
               { value: '50K+', label: 'Active Learners' },
+              { value: '200+', label: 'Courses' },
               { value: '95%', label: 'Completion Rate' },
-              { value: '4.9★', label: 'Average Rating' },
             ].map((stat, i) => (
               <div
                 key={i}
@@ -270,7 +253,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* AI Features Section */}
+      <section style={{
+        position: 'relative',
+        padding: 'clamp(80px, 20vw, 120px) 20px',
+        maxWidth: '1400px',
+        margin: '0 auto',
+        zIndex: 2,
+      }}>
+        <ScrollReveal>
+          <div style={{ textAlign: 'center', marginBottom: 'clamp(60px, 15vw, 80px)' }}>
+            <h2 style={{
+              fontSize: 'clamp(32px, 8vw, 56px)',
+              fontWeight: '800',
+              marginBottom: 'clamp(12px, 3vw, 16px)',
+              letterSpacing: '-1px',
+              background: 'linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}>
+              Supercharged by AI
+            </h2>
+            <p style={{ fontSize: 'clamp(14px, 3.5vw, 18px)', color: '#9ca3af' }}>
+              Intelligent features designed to accelerate your learning
+            </p>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: 'clamp(16px, 4vw, 24px)',
+          }}>
+            {[
+              { Icon: Icons.Brain, title: 'AI Study Assistant', desc: 'Get instant answers, explanations, and personalized help' },
+              { Icon: Icons.Sparkles, title: 'Smart Learning Paths', desc: 'Adaptive courses that adjust to your pace and style' },
+              { Icon: Icons.TrendingUp, title: 'Progress Analytics', desc: 'Real-time insights into your learning performance' },
+              { Icon: Icons.Target, title: 'Personalized Goals', desc: 'Set targets and get AI-powered recommendations' },
+              { Icon: Icons.CheckCircle, title: 'Smart Quizzes', desc: 'Adaptive assessments that focus on your weak areas' },
+              { Icon: Icons.Zap, title: 'Rapid Revision', desc: 'Flashcards and spaced repetition for retention' },
+            ].map((feature, i) => (
+              <FeatureCard key={i} {...feature} delay={i * 0.1} />
+            ))}
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* Learning Tools Section */}
       <section id="features" style={{
         position: 'relative',
         padding: 'clamp(80px, 20vw, 120px) 20px',
@@ -289,33 +317,57 @@ export default function HomePage() {
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}>
-              Everything You Need to Learn
+              Complete Learning Toolkit
             </h2>
             <p style={{ fontSize: 'clamp(14px, 3.5vw, 18px)', color: '#9ca3af' }}>
-              Powerful features designed for your success
+              Everything you need to master any subject
             </p>
           </div>
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gap: 'clamp(16px, 4vw, 24px)',
           }}>
             {[
-              { Icon: Icons.Brain, title: 'AI Learning', desc: 'Personalized paths that adapt to you' },
-              { Icon: Icons.TrendingUp, title: 'Progress Tracking', desc: 'Real-time analytics & insights' },
-              { Icon: Icons.Users, title: 'Community', desc: 'Learn alongside experts' },
-              { Icon: Icons.Award, title: 'Certifications', desc: 'Industry-recognized credentials' },
-              { Icon: Icons.Zap, title: 'Live Mentorship', desc: 'Direct access to instructors' },
-              { Icon: Icons.Target, title: 'Structured Path', desc: 'Clear learning objectives' },
-            ].map((feature, i) => (
-              <FeatureCard key={i} {...feature} delay={i * 0.1} />
+              {
+                title: '200+ Premium Courses',
+                desc: 'From programming to business, data science to creative skills',
+                categories: ['Programming', 'Data Science', 'Design', 'Business'],
+              },
+              {
+                title: 'Interactive Lessons',
+                desc: 'Learn by doing with hands-on projects and coding exercises',
+                categories: ['Video Lessons', 'Live Code', 'Challenges', 'Assignments'],
+              },
+              {
+                title: 'Study Planning Tools',
+                desc: 'AI-generated study schedules customized to your goals and timeline',
+                categories: ['Calendar', 'Milestones', 'Time Blocking', 'Reminders'],
+              },
+              {
+                title: 'Comprehensive Notes',
+                desc: 'Auto-generated notes, highlights, and summaries for every lesson',
+                categories: ['Auto-Notes', 'Highlighting', 'Annotations', 'Export'],
+              },
+              {
+                title: 'Mock Exams',
+                desc: 'Practice tests that simulate real exams with detailed feedback',
+                categories: ['Full Tests', 'Timed Mode', 'Analysis', 'Retake'],
+              },
+              {
+                title: 'Community Support',
+                desc: 'Connect with learners, ask questions, and grow together',
+                categories: ['Forums', 'Study Groups', 'Mentors', 'Network'],
+              },
+            ].map((tool, i) => (
+              <ToolCard key={i} {...tool} delay={i * 0.08} />
             ))}
           </div>
         </ScrollReveal>
       </section>
 
-      {/* Dashboard Preview */}
+      {/* Why Choose iLEARN */}
       <section style={{
         position: 'relative',
         padding: 'clamp(80px, 20vw, 120px) 20px',
@@ -334,61 +386,49 @@ export default function HomePage() {
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}>
-              Your Learning Dashboard
+              Why Choose iLEARN?
             </h2>
           </div>
 
           <div style={{
-            background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%)',
-            border: '1px solid rgba(139, 92, 246, 0.2)',
-            borderRadius: '20px',
-            padding: 'clamp(20px, 5vw, 40px)',
-            backdropFilter: 'blur(30px)',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: 'clamp(16px, 4vw, 24px)',
           }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 'clamp(12px, 3vw, 20px)', marginBottom: 'clamp(24px, 6vw, 40px)' }}>
-              {[
-                { label: 'Hours', value: '142' },
-                { label: 'Courses', value: '3' },
-                { label: 'Certificates', value: '2' },
-              ].map((stat, i) => (
-                <div key={i} style={{
-                  padding: 'clamp(16px, 4vw, 24px)',
-                  background: 'rgba(139, 92, 246, 0.15)',
-                  borderRadius: '10px',
+            {[
+              { icon: '⚡', title: 'Learn Faster', desc: 'AI adapts to your pace and learning style' },
+              { icon: '📈', title: 'Track Progress', desc: 'See real-time analytics and growth metrics' },
+              { icon: '🎯', title: 'Goal Focused', desc: 'Structured paths to achieve your objectives' },
+              { icon: '👥', title: 'Community', desc: 'Learn alongside 50K+ motivated learners' },
+              { icon: '✅', title: 'Certificates', desc: 'Earn recognized credentials' },
+              { icon: '🔄', title: 'Lifetime Access', desc: 'Study on your schedule, whenever you want' },
+            ].map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: 'clamp(20px, 5vw, 32px)',
+                  background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%)',
                   border: '1px solid rgba(139, 92, 246, 0.2)',
-                }}>
-                  <div style={{ fontSize: 'clamp(18px, 5vw, 24px)', fontWeight: '800', background: 'linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '6px' }}>
-                    {stat.value}
-                  </div>
-                  <div style={{ fontSize: 'clamp(11px, 2.5vw, 13px)', color: '#9ca3af' }}>{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(12px, 3vw, 20px)' }}>
-              {[
-                { title: 'Data Science', progress: 65 },
-                { title: 'Web Dev', progress: 32 },
-              ].map((course, i) => (
-                <div key={i} style={{
-                  padding: 'clamp(14px, 3vw, 20px)',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  borderRadius: '10px',
-                  border: '1px solid rgba(139, 92, 246, 0.2)',
-                }}>
-                  <p style={{ fontSize: 'clamp(12px, 3vw, 14px)', fontWeight: '700', marginBottom: '10px' }}>{course.title}</p>
-                  <div style={{ height: '5px', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '3px', overflow: 'hidden' }}>
-                    <div style={{ height: '100%', background: 'linear-gradient(90deg, #8b5cf6 0%, #3b82f6 100%)', width: `${course.progress}%` }} />
-                  </div>
-                  <p style={{ fontSize: 'clamp(10px, 2.5vw, 12px)', color: '#9ca3af', marginTop: '6px' }}>{course.progress}%</p>
-                </div>
-              ))}
-            </div>
+                  borderRadius: '14px',
+                  backdropFilter: 'blur(20px)',
+                  transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  opacity: 0,
+                  transform: 'translateY(20px)',
+                  animation: `slideInLeft 0.6s ease-out ${i * 0.08}s both`,
+                }}
+              >
+                <div style={{ fontSize: '32px', marginBottom: '12px' }}>{item.icon}</div>
+                <h3 style={{ fontSize: 'clamp(14px, 3.5vw, 18px)', fontWeight: '700', marginBottom: '8px' }}>
+                  {item.title}
+                </h3>
+                <p style={{ fontSize: 'clamp(12px, 3vw, 14px)', color: '#9ca3af' }}>{item.desc}</p>
+              </div>
+            ))}
           </div>
         </ScrollReveal>
       </section>
 
-      {/* CTA Section */}
+      {/* Final CTA */}
       <section style={{
         position: 'relative',
         padding: 'clamp(60px, 15vw, 120px) 20px',
@@ -406,14 +446,14 @@ export default function HomePage() {
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}>
-            Ready to transform?
+            Ready to transform your learning?
           </h2>
           <p style={{
             fontSize: 'clamp(14px, 3.5vw, 18px)',
             color: '#9ca3af',
             marginBottom: 'clamp(28px, 7vw, 48px)',
           }}>
-            Join thousands of learners advancing their careers today.
+            Join 50K+ learners already achieving their goals with iLEARN.
           </p>
           <button
             onClick={() => setShowLogin(true)}
@@ -430,7 +470,7 @@ export default function HomePage() {
               boxShadow: '0 20px 50px rgba(139, 92, 246, 0.3)',
             }}
           >
-            Start Today
+            Start Learning Free
           </button>
         </ScrollReveal>
       </section>
@@ -445,7 +485,7 @@ export default function HomePage() {
         zIndex: 2,
         position: 'relative',
       }}>
-        © 2024 iLEARN. The future of learning is here.
+        © 2024 iLEARN. Learn smarter, grow faster.
       </footer>
 
       {/* Login Modal */}
@@ -483,10 +523,10 @@ export default function HomePage() {
             onClick={(e) => e.stopPropagation()}
           >
             <h2 style={{ fontSize: 'clamp(22px, 5vw, 28px)', fontWeight: '700', marginBottom: '8px' }}>
-              Welcome Back
+              Welcome
             </h2>
             <p style={{ color: '#9ca3af', marginBottom: '24px', fontSize: 'clamp(12px, 3vw, 14px)' }}>
-              Sign in to continue learning
+              Sign in to start learning
             </p>
             <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <input
@@ -622,7 +662,7 @@ function ScrollReveal({ children }: { children: React.ReactNode }) {
   )
 }
 
-// Feature Card with Hover Animation
+// Feature Card
 function FeatureCard({ Icon, title, desc, delay }: any) {
   return (
     <div
@@ -634,6 +674,8 @@ function FeatureCard({ Icon, title, desc, delay }: any) {
         backdropFilter: 'blur(20px)',
         cursor: 'pointer',
         transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        opacity: 0,
+        transform: 'translateY(20px)',
         animation: `slideInLeft 0.6s ease-out ${delay}s both`,
       }}
       onMouseEnter={(e) => {
@@ -652,6 +694,55 @@ function FeatureCard({ Icon, title, desc, delay }: any) {
         {title}
       </h3>
       <p style={{ fontSize: 'clamp(12px, 3vw, 14px)', color: '#9ca3af' }}>{desc}</p>
+    </div>
+  )
+}
+
+// Tool Card
+function ToolCard({ title, desc, categories, delay }: any) {
+  return (
+    <div
+      style={{
+        padding: 'clamp(20px, 5vw, 32px)',
+        background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%)',
+        border: '1px solid rgba(139, 92, 246, 0.2)',
+        borderRadius: '14px',
+        backdropFilter: 'blur(20px)',
+        cursor: 'pointer',
+        transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        opacity: 0,
+        transform: 'translateY(20px)',
+        animation: `slideInLeft 0.6s ease-out ${delay}s both`,
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-8px)'
+        e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.5)'
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)'
+        e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)'
+      }}
+    >
+      <h3 style={{ fontSize: 'clamp(14px, 3.5vw, 18px)', fontWeight: '700', marginBottom: '8px' }}>
+        {title}
+      </h3>
+      <p style={{ fontSize: 'clamp(12px, 3vw, 14px)', color: '#9ca3af', marginBottom: '16px' }}>
+        {desc}
+      </p>
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        {categories.map((cat: string, i: number) => (
+          <span key={i} style={{
+            padding: '4px 10px',
+            background: 'rgba(139, 92, 246, 0.2)',
+            borderRadius: '6px',
+            fontSize: 'clamp(10px, 2.5vw, 11px)',
+            fontWeight: '600',
+            color: '#a78bfa',
+          }}>
+            {cat}
+          </span>
+        ))}
+      </div>
     </div>
   )
 }
