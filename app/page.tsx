@@ -28,9 +28,8 @@ export default function HomePage() {
       color: '#fff',
       minHeight: '100vh',
       fontFamily: '"Inter", -apple-system, sans-serif',
-      overflow: 'hidden',
     }}>
-      {/* Animated Background Layers */}
+      {/* Background */}
       <div style={{
         position: 'fixed',
         top: 0,
@@ -73,7 +72,6 @@ export default function HomePage() {
               justifyContent: 'center',
               fontWeight: '900',
               fontSize: '20px',
-              boxShadow: '0 8px 32px rgba(139, 92, 246, 0.3)',
             }}>i</div>
             <span style={{ fontSize: '16px', fontWeight: '800' }}>iLEARN</span>
           </div>
@@ -89,15 +87,6 @@ export default function HomePage() {
               fontSize: '14px',
               cursor: 'pointer',
               transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-              boxShadow: '0 8px 24px rgba(139, 92, 246, 0.3)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)'
-              e.currentTarget.style.boxShadow = '0 12px 32px rgba(139, 92, 246, 0.4)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.3)'
             }}
           >
             Get Started
@@ -116,195 +105,119 @@ export default function HomePage() {
         zIndex: 2,
         overflow: 'hidden',
       }}>
-        <div style={{
-          maxWidth: '1000px',
-          textAlign: 'center',
-          position: 'relative',
-          zIndex: 3,
-        }}>
-          {/* Reveal Text on Scroll */}
-          <TextReveal text="Learn Smarter." delay={0} scrollY={scrollY} />
-          <TextReveal text="Grow Faster." delay={100} scrollY={scrollY} />
-          
-          <p style={{
-            fontSize: 'clamp(16px, 4vw, 20px)',
-            color: '#9ca3af',
-            lineHeight: '1.6',
-            maxWidth: '600px',
-            margin: '32px auto 48px',
-            opacity: Math.max(0, 1 - scrollY / 600),
-            transform: `translateY(${scrollY * 0.1}px)`,
-            transition: 'all 0.1s linear',
-          }}>
-            AI-powered learning that adapts to you. Personalized paths, expert instruction, real-time insights.
-          </p>
-
-          {/* CTA Buttons */}
+        <div style={{ maxWidth: '1000px', textAlign: 'center', position: 'relative', zIndex: 3 }}>
           <div style={{
-            display: 'flex',
-            gap: '16px',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            opacity: Math.max(0, 1 - scrollY / 600),
+            opacity: Math.max(0, 1 - scrollY / 500),
+            transform: `translateY(${scrollY * 0.1}px)`,
           }}>
-            <button
-              onClick={() => setShowLogin(true)}
-              style={{
-                padding: '14px 40px',
-                background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
-                border: 'none',
-                borderRadius: '10px',
-                color: 'white',
-                fontWeight: '700',
-                fontSize: '15px',
-                cursor: 'pointer',
-                boxShadow: '0 20px 50px rgba(139, 92, 246, 0.3)',
-                transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)'
-              }}
-            >
-              Start Free
-            </button>
-            <button
-              style={{
-                padding: '14px 40px',
-                background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                borderRadius: '10px',
-                color: '#e5e7eb',
-                fontWeight: '700',
-                fontSize: '15px',
-                cursor: 'pointer',
-                transition: 'all 0.3s',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'
-              }}
-            >
-              Learn More
-            </button>
+            <h1 style={{
+              fontSize: 'clamp(40px, 12vw, 100px)',
+              fontWeight: '900',
+              lineHeight: '1.1',
+              marginBottom: '24px',
+              letterSpacing: '-2px',
+              background: 'linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}>
+              Learn Smarter. Grow Faster.
+            </h1>
+
+            <p style={{
+              fontSize: 'clamp(16px, 4vw, 20px)',
+              color: '#9ca3af',
+              lineHeight: '1.6',
+              maxWidth: '600px',
+              margin: '32px auto 48px',
+            }}>
+              AI-powered learning that adapts to you. Personalized paths, expert instruction, real-time insights.
+            </p>
+
+            <div style={{
+              display: 'flex',
+              gap: '16px',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+            }}>
+              <button
+                onClick={() => setShowLogin(true)}
+                style={{
+                  padding: '14px 40px',
+                  background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
+                  border: 'none',
+                  borderRadius: '10px',
+                  color: 'white',
+                  fontWeight: '700',
+                  fontSize: '15px',
+                  cursor: 'pointer',
+                  boxShadow: '0 20px 50px rgba(139, 92, 246, 0.3)',
+                  transition: 'all 0.3s',
+                }}
+              >
+                Start Free
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* Parallax Elements */}
-        <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: '10%',
-          width: '200px',
-          height: '200px',
-          background: 'radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.3), transparent)',
-          borderRadius: '50%',
-          filter: 'blur(40px)',
-          transform: `translateY(${scrollY * 0.5}px)`,
-          zIndex: 1,
-        }} />
-        <div style={{
-          position: 'absolute',
-          bottom: '10%',
-          right: '5%',
-          width: '300px',
-          height: '300px',
-          background: 'radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.2), transparent)',
-          borderRadius: '50%',
-          filter: 'blur(60px)',
-          transform: `translateY(${scrollY * 0.3}px)`,
-          zIndex: 1,
-        }} />
       </section>
 
-      {/* Features Section */}
-      <section style={{
-        position: 'relative',
-        padding: '120px 20px',
-        maxWidth: '1400px',
-        margin: '0 auto',
-        zIndex: 2,
-      }}>
-        <SectionHeading scrollY={scrollY} offset={800}>
-          Powerful Features
-        </SectionHeading>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '24px',
-          marginTop: '80px',
-        }}>
-          {[
-            { title: 'AI Study Assistant', desc: 'Instant help whenever you need it', delay: 0 },
-            { title: 'Smart Learning Paths', desc: 'Personalized to your goals', delay: 100 },
-            { title: 'Progress Analytics', desc: 'Real-time insights into your performance', delay: 200 },
-            { title: 'Mock Exams', desc: 'Practice with AI-graded assessments', delay: 300 },
-            { title: 'Study Planner', desc: 'AI generates your perfect schedule', delay: 400 },
-            { title: 'Community', desc: 'Learn with 50K+ motivated learners', delay: 500 },
-          ].map((feature, i) => (
-            <FeatureCard key={i} {...feature} scrollY={scrollY} offset={1000 + i * 100} />
-          ))}
-        </div>
-      </section>
+      {/* Horizontal Scrolling Features - LIKE DOBERMAN */}
+      <HorizontalFeatures scrollY={scrollY} />
 
       {/* Stats Section */}
       <section style={{
         position: 'relative',
-        padding: '120px 20px',
+        padding: '100px 20px',
         maxWidth: '1000px',
         margin: '0 auto',
         zIndex: 2,
       }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gridTemplateColumns: 'repeat(3, 1fr)',
           gap: '40px',
           textAlign: 'center',
         }}>
-          {[
-            { end: 50, label: 'K+ Learners', offset: 2000 },
-            { end: 200, label: '+ Courses', offset: 2100 },
-            { end: 95, label: '% Completion', offset: 2200 },
-          ].map((stat, i) => (
-            <AnimatedCounter key={i} {...stat} scrollY={scrollY} />
-          ))}
+          <StatItem value={50} label="K+ Learners" scrollY={scrollY} offset={2500} />
+          <StatItem value={200} label="+ Courses" scrollY={scrollY} offset={2500} />
+          <StatItem value={95} label="% Completion" scrollY={scrollY} offset={2500} />
         </div>
       </section>
 
-      {/* Why Choose Section */}
+      {/* Why Choose */}
       <section style={{
         position: 'relative',
-        padding: '120px 20px',
+        padding: '100px 20px',
         maxWidth: '1400px',
         margin: '0 auto',
         zIndex: 2,
       }}>
-        <SectionHeading scrollY={scrollY} offset={2400}>
+        <h2 style={{
+          fontSize: 'clamp(32px, 8vw, 56px)',
+          fontWeight: '800',
+          textAlign: 'center',
+          marginBottom: '80px',
+          background: 'linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}>
           Why iLEARN?
-        </SectionHeading>
+        </h2>
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
           gap: '24px',
-          marginTop: '80px',
         }}>
           {[
-            { icon: '⚡', title: 'Learn Faster', desc: 'AI adapts to your pace', delay: 0 },
-            { icon: '📈', title: 'Track Progress', desc: 'Real-time analytics', delay: 100 },
-            { icon: '🎯', title: 'Goal Focused', desc: 'Structured paths', delay: 200 },
-            { icon: '👥', title: 'Community', desc: '50K+ active learners', delay: 300 },
-            { icon: '✅', title: 'Certificates', desc: 'Industry-recognized', delay: 400 },
-            { icon: '🔄', title: 'Lifetime Access', desc: 'Learn at your pace', delay: 500 },
+            { icon: '⚡', title: 'Learn Faster', desc: 'AI adapts to your pace', offset: 3000 },
+            { icon: '📈', title: 'Track Progress', desc: 'Real-time analytics', offset: 3100 },
+            { icon: '🎯', title: 'Goal Focused', desc: 'Structured paths', offset: 3200 },
+            { icon: '👥', title: 'Community', desc: '50K+ active learners', offset: 3300 },
+            { icon: '✅', title: 'Certificates', desc: 'Industry-recognized', offset: 3400 },
+            { icon: '🔄', title: 'Lifetime Access', desc: 'Learn at your pace', offset: 3500 },
           ].map((item, i) => (
-            <BenefitCard key={i} {...item} scrollY={scrollY} offset={2600 + i * 80} />
+            <BenefitItem key={i} {...item} scrollY={scrollY} />
           ))}
         </div>
       </section>
@@ -312,25 +225,25 @@ export default function HomePage() {
       {/* Final CTA */}
       <section style={{
         position: 'relative',
-        padding: '120px 20px',
+        padding: '100px 20px',
         maxWidth: '1000px',
         margin: '0 auto',
         textAlign: 'center',
         zIndex: 2,
       }}>
-        <SectionHeading scrollY={scrollY} offset={3400}>
-          Ready to transform your learning?
-        </SectionHeading>
-
-        <p style={{
-          fontSize: '18px',
-          color: '#9ca3af',
-          marginTop: '24px',
-          marginBottom: '48px',
+        <h2 style={{
+          fontSize: 'clamp(32px, 8vw, 56px)',
+          fontWeight: '800',
+          marginBottom: '24px',
+          background: 'linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
         }}>
-          Join thousands of learners achieving their goals with iLEARN.
+          Ready to transform?
+        </h2>
+        <p style={{ fontSize: '18px', color: '#9ca3af', marginBottom: '48px' }}>
+          Join thousands of learners achieving their goals.
         </p>
-
         <button
           onClick={() => setShowLogin(true)}
           style={{
@@ -343,7 +256,7 @@ export default function HomePage() {
             fontSize: '15px',
             cursor: 'pointer',
             boxShadow: '0 20px 50px rgba(139, 92, 246, 0.3)',
-            transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            transition: 'all 0.3s',
           }}
         >
           Start Learning Free
@@ -365,7 +278,7 @@ export default function HomePage() {
 
       {/* Login Modal */}
       {showLogin && (
-        <LoginModal 
+        <LoginModal
           showLogin={showLogin}
           setShowLogin={setShowLogin}
           username={username}
@@ -377,81 +290,123 @@ export default function HomePage() {
       )}
 
       <style>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
       `}</style>
     </div>
   )
 }
 
-// Text Reveal Component
-function TextReveal({ text, delay, scrollY }: { text: string; delay: number; scrollY: number }) {
-  const words = text.split(' ')
-  const baseOpacity = Math.max(0, 1 - scrollY / 800)
+// Horizontal Features - LIKE DOBERMAN
+function HorizontalFeatures({ scrollY }: { scrollY: number }) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [containerTop, setContainerTop] = useState(0)
+
+  useEffect(() => {
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (rect) setContainerTop(window.scrollY + rect.top)
+  }, [])
+
+  const scrollInContainer = Math.max(0, scrollY - containerTop + window.innerHeight)
+  const maxScroll = 3000
+  const progress = Math.min(1, scrollInContainer / maxScroll)
+
+  const features = [
+    { title: 'AI Study Assistant', desc: 'Instant answers 24/7' },
+    { title: 'Smart Learning Paths', desc: 'Personalized courses' },
+    { title: 'Progress Analytics', desc: 'Real-time insights' },
+    { title: 'Study Planner', desc: 'AI schedules' },
+    { title: 'Study Reminder', desc: 'Never miss a session' },
+    { title: 'Mock Exams', desc: 'Practice with AI feedback' },
+  ]
 
   return (
-    <h1 style={{
-      fontSize: 'clamp(40px, 12vw, 100px)',
-      fontWeight: '900',
-      lineHeight: '1.1',
-      marginBottom: '24px',
-      letterSpacing: '-2px',
-      background: 'linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      opacity: baseOpacity,
-      transform: `translateY(${scrollY * 0.1}px)`,
-      transition: 'all 0.1s linear',
+    <section ref={containerRef} style={{
+      position: 'relative',
+      height: '400vh',
+      zIndex: 2,
     }}>
-      {words.map((word, i) => (
-        <span key={i} style={{
-          display: 'inline-block',
-          marginRight: '0.2em',
-          opacity: Math.max(0, 1 - Math.max(0, scrollY - 200 - i * delay) / 300),
-          transform: `translateY(${Math.min(0, 30 - Math.max(0, scrollY - 200 - i * delay) / 10)}px)`,
-          transition: 'all 0.1s linear',
+      <div style={{
+        position: 'sticky',
+        top: 0,
+        height: '100vh',
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0 20px',
+      }}>
+        <div style={{
+          display: 'flex',
+          gap: '20px',
+          width: 'fit-content',
+          transform: `translateX(${-progress * (features.length - 1) * 320}px)`,
+          transition: 'transform 0.05s linear',
         }}>
-          {word}
-        </span>
-      ))}
-    </h1>
+          {features.map((feature, i) => (
+            <div
+              key={i}
+              style={{
+                minWidth: '320px',
+                height: '400px',
+                padding: '40px',
+                background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 100%)',
+                border: '1px solid rgba(139, 92, 246, 0.3)',
+                borderRadius: '20px',
+                backdropFilter: 'blur(20px)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                textAlign: 'center',
+                opacity: Math.max(0.6, 1 - Math.abs(progress * features.length - i) * 0.3),
+                transform: `scale(${Math.max(0.9, 1 - Math.abs(progress * features.length - i) * 0.1)})`,
+                transition: 'all 0.1s ease-out',
+              }}
+            >
+              <h3 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '12px', color: '#fff' }}>
+                {feature.title}
+              </h3>
+              <p style={{ fontSize: '16px', color: '#9ca3af' }}>
+                {feature.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 
-// Section Heading Component
-function SectionHeading({ children, scrollY, offset }: { children: string; scrollY: number; offset: number }) {
-  const progress = Math.max(0, Math.min(1, (scrollY - offset) / 300))
+// Stat Item with early fade-in
+function StatItem({ value, label, scrollY, offset }: any) {
+  const progress = Math.max(0, Math.min(1, (scrollY - offset + 200) / 200))
 
   return (
-    <h2 style={{
-      fontSize: 'clamp(32px, 8vw, 56px)',
-      fontWeight: '800',
-      letterSpacing: '-1px',
-      background: 'linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
+    <div style={{
       opacity: progress,
       transform: `translateY(${(1 - progress) * 20}px)`,
       transition: 'all 0.1s linear',
     }}>
-      {children}
-    </h2>
+      <div style={{
+        fontSize: 'clamp(40px, 8vw, 60px)',
+        fontWeight: '800',
+        background: 'linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        marginBottom: '8px',
+      }}>
+        {Math.floor(progress * value)}{value === 95 ? '%' : '+'}
+      </div>
+      <div style={{ fontSize: '14px', color: '#9ca3af', fontWeight: '600' }}>
+        {label}
+      </div>
+    </div>
   )
 }
 
-// Feature Card Component
-function FeatureCard({ title, desc, delay, scrollY, offset }: any) {
-  const progress = Math.max(0, Math.min(1, (scrollY - offset) / 300))
+// Benefit Item with early fade-in
+function BenefitItem({ icon, title, desc, offset, scrollY }: any) {
+  const progress = Math.max(0, Math.min(1, (scrollY - offset + 200) / 200))
 
   return (
     <div style={{
@@ -459,43 +414,18 @@ function FeatureCard({ title, desc, delay, scrollY, offset }: any) {
       background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%)',
       border: '1px solid rgba(139, 92, 246, 0.2)',
       borderRadius: '16px',
-      backdropFilter: 'blur(20px)',
       opacity: progress,
-      transform: `translateY(${(1 - progress) * 30}px)`,
+      transform: `translateY(${(1 - progress) * 20}px)`,
       transition: 'all 0.1s linear, border-color 0.3s',
       cursor: 'pointer',
     }}
     onMouseEnter={(e) => {
       e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.5)'
-      e.currentTarget.style.transform = `translateY(${(1 - progress) * 30 - 8}px)`
+      e.currentTarget.style.transform = `translateY(${(1 - progress) * 20 - 8}px)`
     }}
     onMouseLeave={(e) => {
       e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)'
-      e.currentTarget.style.transform = `translateY(${(1 - progress) * 30}px)`
-    }}>
-      <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>
-        {title}
-      </h3>
-      <p style={{ fontSize: '14px', color: '#9ca3af' }}>
-        {desc}
-      </p>
-    </div>
-  )
-}
-
-// Benefit Card Component
-function BenefitCard({ icon, title, desc, scrollY, offset }: any) {
-  const progress = Math.max(0, Math.min(1, (scrollY - offset) / 300))
-
-  return (
-    <div style={{
-      padding: '32px',
-      background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%)',
-      border: '1px solid rgba(139, 92, 246, 0.2)',
-      borderRadius: '16px',
-      opacity: progress,
-      transform: `translateY(${(1 - progress) * 30}px) scale(${0.95 + progress * 0.05})`,
-      transition: 'all 0.1s linear',
+      e.currentTarget.style.transform = `translateY(${(1 - progress) * 20}px)`
     }}>
       <div style={{ fontSize: '40px', marginBottom: '12px' }}>{icon}</div>
       <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>
@@ -508,35 +438,7 @@ function BenefitCard({ icon, title, desc, scrollY, offset }: any) {
   )
 }
 
-// Animated Counter Component
-function AnimatedCounter({ end, label, offset, scrollY }: any) {
-  const progress = Math.max(0, Math.min(1, (scrollY - offset) / 400))
-  const value = Math.floor(progress * end)
-
-  return (
-    <div style={{
-      opacity: progress,
-      transform: `translateY(${(1 - progress) * 20}px)`,
-      transition: 'all 0.1s linear',
-    }}>
-      <div style={{
-        fontSize: 'clamp(36px, 8vw, 60px)',
-        fontWeight: '800',
-        background: 'linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        marginBottom: '8px',
-      }}>
-        {value}{end === 95 ? '%' : '+'}
-      </div>
-      <div style={{ fontSize: '14px', color: '#9ca3af', fontWeight: '600' }}>
-        {label}
-      </div>
-    </div>
-  )
-}
-
-// Login Modal Component
+// Login Modal
 function LoginModal({ showLogin, setShowLogin, username, setUsername, password, setPassword, handleLogin }: any) {
   return (
     <div
@@ -590,7 +492,6 @@ function LoginModal({ showLogin, setShowLogin, username, setUsername, password, 
               color: 'white',
               fontSize: '14px',
               fontFamily: 'inherit',
-              outline: 'none',
             }}
           />
           <input
@@ -606,7 +507,6 @@ function LoginModal({ showLogin, setShowLogin, username, setUsername, password, 
               color: 'white',
               fontSize: '14px',
               fontFamily: 'inherit',
-              outline: 'none',
             }}
           />
           <button
