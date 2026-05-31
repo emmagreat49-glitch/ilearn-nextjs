@@ -17,7 +17,7 @@ export default function HomePage() {
   }, [])
 
   useEffect(() => {
-    if (scrollY >= 2600 && !counterStarted) {
+    if (scrollY >= 3600 && !counterStarted) {
       setCounterStarted(true)
     }
   }, [scrollY, counterStarted])
@@ -123,11 +123,11 @@ function HorizontalFeaturesSection({ scrollY }: { scrollY: number }) {
     },
   ]
 
-  const progress = Math.min(1, Math.max(0, (scrollY - 800) / 2000))
+  const progress = Math.min(1, Math.max(0, (scrollY - 800) / 3200))
   const scrollAmount = -progress * (features.length - 1) * 420
 
   return (
-    <section style={{ position: 'relative', height: '450vh', zIndex: 2 }}>
+    <section style={{ position: 'relative', height: '600vh', zIndex: 2 }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', padding: '0 20px' }}>
         <div style={{ display: 'flex', gap: '32px', width: 'fit-content', transform: `translateX(${scrollAmount}px)`, transition: 'transform 0.05s linear' }}>
           {features.map((f, i) => (
