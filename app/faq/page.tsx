@@ -28,18 +28,22 @@ export default function FAQPage() {
       <nav style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(10, 14, 39, 0.5)', backdropFilter: 'blur(50px)', borderBottom: '1px solid rgba(139, 92, 246, 0.15)', padding: '20px 20px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1400px', margin: '0 auto' }}>
           <button onClick={() => router.push('/')} style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'none', border: 'none', cursor: 'pointer' }}>
-            <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: '12px', padding: '6px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', boxShadow: '0 8px 32px rgba(139, 92, 246, 0.4)' }}>
+            <svg width="44" height="44" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: '12px', padding: '6px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', boxShadow: '0 8px 32px rgba(139, 92, 246, 0.4)' }}>
               <defs>
-                <linearGradient id="iFaqGrad3d" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id="logo3dFaq" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" style={{ stopColor: '#ffffff', stopOpacity: 1 }} />
                   <stop offset="100%" style={{ stopColor: '#ffffff', stopOpacity: 1 }} />
                 </linearGradient>
               </defs>
               {/* Dot */}
-              <circle cx="22" cy="8" r="3" fill="url(#iFaqGrad3d)"/>
-              {/* 3D perspective bar */}
-              <path d="M 18 16 L 20 16 L 26 36 L 24 36 Z" fill="url(#iFaqGrad3d)" opacity="0.7"/>
-              <path d="M 20 16 L 26 16 L 28 36 L 26 36 Z" fill="url(#iFaqGrad3d)"/>
+              <circle cx="35" cy="30" r="12" fill="url(#logo3dFaq)"/>
+              {/* 3D Rounded Bar */}
+              {/* Left shadow side */}
+              <path d="M 20 55 Q 15 55 15 65 L 15 115 Q 15 125 20 125 L 30 130 Q 28 130 25 130 L 25 65 Q 25 55 30 55 Z" fill="url(#logo3dFaq)" opacity="0.4"/>
+              {/* Main front face */}
+              <path d="M 30 55 Q 25 55 25 65 L 25 115 Q 25 125 30 125 L 50 125 Q 55 125 55 115 L 55 65 Q 55 55 50 55 Z" fill="url(#logo3dFaq)"/>
+              {/* Top highlight */}
+              <ellipse cx="40" cy="55" rx="15" ry="4" fill="url(#logo3dFaq)" opacity="0.6"/>
             </svg>
             <span style={{ fontSize: '18px', fontWeight: '800', letterSpacing: '-0.5px', color: '#fff' }}>iLEARN</span>
           </button>
