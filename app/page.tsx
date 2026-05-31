@@ -60,7 +60,7 @@ export default function HomePage() {
           </svg>
             <span style={{ fontSize: '18px', fontWeight: '800', letterSpacing: '-0.5px' }}>iLEARN</span>
           </div>
-          <button onClick={() => setShowLogin(true)} style={{ padding: '12px 28px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '12px', color: 'white', fontWeight: '600', cursor: 'pointer', fontSize: '15px', boxShadow: '0 8px 24px rgba(139, 92, 246, 0.35)' }}>Get Started</button>
+          <button onClick={() => router.push("/login")} style={{ padding: '12px 28px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '12px', color: 'white', fontWeight: '600', cursor: 'pointer', fontSize: '15px', boxShadow: '0 8px 24px rgba(139, 92, 246, 0.35)' }}>Get Started</button>
         </div>
       </nav>
 
@@ -69,7 +69,7 @@ export default function HomePage() {
           <h1 style={{ fontSize: 'clamp(48px, 13vw, 110px)', fontWeight: '950', lineHeight: '1.08', marginBottom: '28px', letterSpacing: '-2.5px', background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: Math.max(0, 1 - scrollY / 500) }}>Learn Smarter. Grow Faster.</h1>
           <p style={{ fontSize: 'clamp(17px, 4.2vw, 22px)', color: '#cbd5e1', lineHeight: '1.7', maxWidth: '750px', margin: '28px auto 24px', fontWeight: '500' }}>Experience the future of personalized learning. AI-powered study paths, real-time insights, and adaptive lessons designed to unlock your full potential.</p>
           <p style={{ fontSize: 'clamp(15px, 3.8vw, 18px)', color: '#94a3b8', lineHeight: '1.8', maxWidth: '700px', margin: '0 auto 56px', fontWeight: '400' }}>8 premium features. Zero compromise. From intelligent tutoring to performance analytics—everything you need to excel is right here.</p>
-          <button onClick={() => setShowLogin(true)} style={{ padding: '16px 48px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '12px', color: 'white', fontWeight: '700', cursor: 'pointer', boxShadow: '0 20px 60px rgba(139, 92, 246, 0.4)', fontSize: '16px', transition: 'all 0.3s ease', letterSpacing: '-0.3px' }}>Start Learning Free</button>
+          <button onClick={() => router.push("/login")} style={{ padding: '16px 48px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '12px', color: 'white', fontWeight: '700', cursor: 'pointer', boxShadow: '0 20px 60px rgba(139, 92, 246, 0.4)', fontSize: '16px', transition: 'all 0.3s ease', letterSpacing: '-0.3px' }}>Start Learning Free</button>
         </div>
       </section>
 
@@ -113,7 +113,7 @@ export default function HomePage() {
       <section style={{ position: 'relative', padding: '120px 20px 100px', maxWidth: '1100px', margin: '0 auto', textAlign: 'center', zIndex: 2 }}>
         <h2 style={{ fontSize: 'clamp(36px, 8vw, 60px)', fontWeight: '900', marginBottom: '24px', background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-1px', opacity: scrollY >= 5700 ? 1 : 0.6, transform: scrollY >= 5700 ? 'translateY(0px)' : 'translateY(30px)', transition: 'all 0.7s ease-out' }}>Start Your Learning Transformation Today</h2>
         <p style={{ fontSize: '18px', color: '#cbd5e1', marginBottom: '56px', maxWidth: '700px', margin: '0 auto 56px', lineHeight: '1.8', fontWeight: '500', opacity: scrollY >= 5750 ? 1 : 0.5, transform: scrollY >= 5750 ? 'translateY(0px)' : 'translateY(30px)', transition: 'all 0.7s ease-out 0.1s' }}>Join thousands of top-performing students accelerating their academic growth. Your personalized learning journey awaits.</p>
-        <button onClick={() => setShowLogin(true)} style={{ padding: '16px 52px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '12px', color: 'white', fontWeight: '700', fontSize: '16px', cursor: 'pointer', boxShadow: '0 20px 60px rgba(139, 92, 246, 0.4)', transition: 'all 0.3s ease', letterSpacing: '-0.3px', opacity: scrollY >= 5800 ? 1 : 0.5, transform: scrollY >= 5800 ? 'translateY(0px)' : 'translateY(30px)' }}>Start My Journey</button>
+        <button onClick={() => router.push("/login")} style={{ padding: '16px 52px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '12px', color: 'white', fontWeight: '700', fontSize: '16px', cursor: 'pointer', boxShadow: '0 20px 60px rgba(139, 92, 246, 0.4)', transition: 'all 0.3s ease', letterSpacing: '-0.3px', opacity: scrollY >= 5800 ? 1 : 0.5, transform: scrollY >= 5800 ? 'translateY(0px)' : 'translateY(30px)' }}>Start My Journey</button>
       </section>
 
       <footer style={{ padding: '60px 20px 40px', borderTop: '1px solid rgba(139, 92, 246, 0.2)', textAlign: 'center', color: '#64748b', fontSize: '15px', zIndex: 2, position: 'relative', background: 'linear-gradient(180deg, transparent 0%, rgba(139, 92, 246, 0.05) 100%)' }}>
