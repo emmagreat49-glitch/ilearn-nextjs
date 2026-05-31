@@ -153,7 +153,7 @@ function HorizontalFeaturesSection({ scrollY }: { scrollY: number }) {
   return (
     <section style={{ position: 'relative', height: '600vh', zIndex: 2 }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', padding: '0 20px' }}>
-        <div style={{ display: 'flex', gap: '28px', width: 'fit-content', transform: `translateX(${scrollAmount}px)`, transition: 'transform 0.05s linear' }}>
+        <div style={{ display: 'flex', gap: '28px', width: 'fit-content', transform: `translateX(${scrollAmount}px)`, transition: 'transform 0.05s linear', paddingLeft: '60px', paddingRight: '60px' }}>
           {features.map((f, i) => (
             <FeatureCard key={i} title={f.title} desc={f.desc} preview={getPreview(i)} progress={progress} index={i} total={features.length} />
           ))}
