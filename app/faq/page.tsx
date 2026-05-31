@@ -30,15 +30,16 @@ export default function FAQPage() {
           <button onClick={() => router.push('/')} style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'none', border: 'none', cursor: 'pointer' }}>
             <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: '12px', padding: '6px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', boxShadow: '0 8px 32px rgba(139, 92, 246, 0.4)' }}>
               <defs>
-                <linearGradient id="iFaqGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id="iFaqGrad3d" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" style={{ stopColor: '#ffffff', stopOpacity: 1 }} />
                   <stop offset="100%" style={{ stopColor: '#ffffff', stopOpacity: 1 }} />
                 </linearGradient>
               </defs>
               {/* Dot */}
-              <circle cx="22" cy="10" r="2.5" fill="url(#iFaqGrad)"/>
-              {/* Rounded bar */}
-              <rect x="18" y="16" width="8" height="22" rx="4" fill="url(#iFaqGrad)"/>
+              <circle cx="22" cy="8" r="3" fill="url(#iFaqGrad3d)"/>
+              {/* 3D perspective bar */}
+              <path d="M 18 16 L 20 16 L 26 36 L 24 36 Z" fill="url(#iFaqGrad3d)" opacity="0.7"/>
+              <path d="M 20 16 L 26 16 L 28 36 L 26 36 Z" fill="url(#iFaqGrad3d)"/>
             </svg>
             <span style={{ fontSize: '18px', fontWeight: '800', letterSpacing: '-0.5px', color: '#fff' }}>iLEARN</span>
           </button>
