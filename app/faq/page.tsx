@@ -28,7 +28,17 @@ export default function FAQPage() {
       <nav style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(10, 14, 39, 0.5)', backdropFilter: 'blur(50px)', borderBottom: '1px solid rgba(139, 92, 246, 0.15)', padding: '20px 20px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1400px', margin: '0 auto' }}>
           <button onClick={() => router.push('/')} style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'none', border: 'none', cursor: 'pointer' }}>
-            <div style={{ width: '44px', height: '44px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '22px', boxShadow: '0 8px 32px rgba(139, 92, 246, 0.4)' }}>i</div>
+            <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: '12px', padding: '6px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', boxShadow: '0 8px 32px rgba(139, 92, 246, 0.4)' }}>
+              <defs>
+                <linearGradient id="faqGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: '#ffffff', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: '#ffffff', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
+              <path d="M 10 28 L 15 13" stroke="url(#faqGrad)" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.85"/>
+              <line x1="18" y1="10" x2="18" y2="32" stroke="url(#faqGrad)" strokeWidth="2" strokeLinecap="round"/>
+              <circle cx="17" cy="20" r="1.2" fill="url(#faqGrad)" opacity="0.5"/>
+            </svg>
             <span style={{ fontSize: '18px', fontWeight: '800', letterSpacing: '-0.5px', color: '#fff' }}>iLEARN</span>
           </button>
           <button onClick={() => router.push('/')} style={{ padding: '12px 28px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '12px', color: 'white', fontWeight: '600', cursor: 'pointer', fontSize: '15px', boxShadow: '0 8px 24px rgba(139, 92, 246, 0.35)' }}>Back to Home</button>
