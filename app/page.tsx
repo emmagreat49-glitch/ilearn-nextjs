@@ -43,28 +43,37 @@ export default function HomePage() {
       <section style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '80px 20px', zIndex: 2 }}>
         <div style={{ maxWidth: '1000px', textAlign: 'center' }}>
           <h1 style={{ fontSize: 'clamp(40px, 12vw, 100px)', fontWeight: '900', lineHeight: '1.1', marginBottom: '24px', letterSpacing: '-2px', background: 'linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: Math.max(0, 1 - scrollY / 500) }}>Learn Smarter. Grow Faster.</h1>
-          <p style={{ fontSize: 'clamp(16px, 4vw, 20px)', color: '#9ca3af', lineHeight: '1.6', maxWidth: '600px', margin: '32px auto 48px' }}>AI-powered learning that adapts to you. Personalized paths, expert instruction, real-time insights.</p>
-          <button onClick={() => setShowLogin(true)} style={{ padding: '14px 40px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '10px', color: 'white', fontWeight: '700', cursor: 'pointer', boxShadow: '0 20px 50px rgba(139, 92, 246, 0.3)' }}>Start Free</button>
+          <p style={{ fontSize: 'clamp(16px, 4vw, 20px)', color: '#9ca3af', lineHeight: '1.6', maxWidth: '700px', margin: '32px auto 20px' }}>Meet your AI-powered learning companion. Personalized study paths, real-time insights, and adaptive lessons designed to match your pace and learning style.</p>
+          <p style={{ fontSize: 'clamp(14px, 3.5vw, 18px)', color: '#6b7280', lineHeight: '1.7', maxWidth: '650px', margin: '0 auto 48px' }}>Unlock premium features: AI tutoring, analytics dashboard, study planning, course curation, smart flashcards, and mock exams with instant feedback.</p>
+          <button onClick={() => setShowLogin(true)} style={{ padding: '14px 40px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '10px', color: 'white', fontWeight: '700', cursor: 'pointer', boxShadow: '0 20px 50px rgba(139, 92, 246, 0.3)', fontSize: '16px' }}>Start Free</button>
         </div>
+      </section>
+
+      <section style={{ position: 'relative', padding: '60px 20px 40px', maxWidth: '1200px', margin: '0 auto', zIndex: 2, textAlign: 'center' }}>
+        <h2 style={{ fontSize: 'clamp(28px, 6vw, 48px)', fontWeight: '800', marginBottom: '16px', color: '#fff' }}>Powerful Tools for Serious Learners</h2>
+        <p style={{ fontSize: '16px', color: '#9ca3af', maxWidth: '600px', margin: '0 auto 20px', lineHeight: '1.6' }}>Access cutting-edge features that adapt to your unique learning journey. From AI conversations to performance analytics, everything you need in one platform.</p>
       </section>
 
       <HorizontalFeaturesSection scrollY={scrollY} />
 
       <section style={{ position: 'relative', padding: '120px 20px', maxWidth: '1200px', margin: '0 auto', zIndex: 2 }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '60px', textAlign: 'center' }}>
-          <AnimatedCounter value={50} label="K+ Learners" suffix="K+" scrollY={scrollY} offset={2400} index={0} />
-          <AnimatedCounter value={200} label="+ Courses" suffix="+" scrollY={scrollY} offset={2400} index={1} />
-          <AnimatedCounter value={95} label="% Completion" suffix="%" scrollY={scrollY} offset={2400} index={2} />
+          <AnimatedCounter value={50} label="K+ Active Learners" suffix="K+" scrollY={scrollY} offset={2400} index={0} />
+          <AnimatedCounter value={200} label="Expert-Curated Courses" suffix="+" scrollY={scrollY} offset={2400} index={1} />
+          <AnimatedCounter value={95} label="Student Success Rate" suffix="%" scrollY={scrollY} offset={2400} index={2} />
         </div>
       </section>
 
-      <section style={{ position: 'relative', padding: '120px 20px', maxWidth: '1000px', margin: '0 auto', textAlign: 'center', zIndex: 2 }}>
-        <h2 style={{ fontSize: 'clamp(32px, 8vw, 56px)', fontWeight: '800', marginBottom: '24px', background: 'linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Ready to start your learning journey?</h2>
-        <p style={{ fontSize: '18px', color: '#9ca3af', marginBottom: '48px', maxWidth: '600px', margin: '0 auto 48px' }}>Join thousands of learners achieving their goals with iLEARN today.</p>
+      <section style={{ position: 'relative', padding: '100px 20px 80px', maxWidth: '1000px', margin: '0 auto', textAlign: 'center', zIndex: 2 }}>
+        <h2 style={{ fontSize: 'clamp(32px, 8vw, 56px)', fontWeight: '800', marginBottom: '20px', background: 'linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Ready to Transform Your Learning?</h2>
+        <p style={{ fontSize: '18px', color: '#9ca3af', marginBottom: '48px', maxWidth: '650px', margin: '0 auto 48px', lineHeight: '1.7' }}>Join thousands of students who are already accelerating their academic progress with iLEARN's intelligent learning system. Start your free trial today.</p>
         <button onClick={() => setShowLogin(true)} style={{ padding: '16px 48px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '10px', color: 'white', fontWeight: '700', fontSize: '16px', cursor: 'pointer', boxShadow: '0 20px 50px rgba(139, 92, 246, 0.3)' }}>Start Journey</button>
       </section>
 
-      <footer style={{ padding: '40px 20px', borderTop: '1px solid rgba(139, 92, 246, 0.1)', textAlign: 'center', color: '#6b7280', fontSize: '14px', zIndex: 2, position: 'relative' }}>© 2024 iLEARN.</footer>
+      <footer style={{ padding: '40px 20px', borderTop: '1px solid rgba(139, 92, 246, 0.1)', textAlign: 'center', color: '#6b7280', fontSize: '14px', zIndex: 2, position: 'relative' }}>
+        <p style={{ margin: '0 0 12px 0' }}>© 2024 iLEARN. All rights reserved.</p>
+        <p style={{ margin: '0', color: '#4b5563' }}>Empowering learners worldwide with AI-driven education.</p>
+      </footer>
 
       {showLogin && <LoginModal showLogin={showLogin} setShowLogin={setShowLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin} />}
     </div>
@@ -112,27 +121,30 @@ function FeatureCard({ title, preview, progress, index, total }: any) {
       transform: `scale(${Math.max(0.85, 1 - Math.abs(progress * total - index) * 0.15)})`,
       transition: 'all 0.1s ease-out',
     }}>
+      {/* Image Background - MORE VISIBLE (40-45% opacity) */}
       <div style={{
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        opacity: 0.25,
+        opacity: 0.42,
       }}>
         {preview}
       </div>
 
+      {/* Overlay - Lighter to let images show through */}
       <div style={{
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        background: 'linear-gradient(135deg, rgba(10, 14, 39, 0.65) 0%, rgba(10, 14, 39, 0.6) 100%)',
+        background: 'linear-gradient(135deg, rgba(10, 14, 39, 0.55) 0%, rgba(10, 14, 39, 0.5) 100%)',
         backdropFilter: 'blur(12px)',
       }} />
 
+      {/* Border */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -145,6 +157,7 @@ function FeatureCard({ title, preview, progress, index, total }: any) {
         transition: 'border-color 0.3s',
       }} />
 
+      {/* BOLD TEXT - PRIMARY */}
       <div style={{
         position: 'relative',
         zIndex: 2,
