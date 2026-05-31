@@ -7,6 +7,7 @@ export default function HomePage() {
   const [username, setUsername] = useState('admin')
   const [password, setPassword] = useState('admin123')
   const [scrollY, setScrollY] = useState(0)
+  const [counterStarted, setCounterStarted] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -14,6 +15,12 @@ export default function HomePage() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    if (scrollY >= 2600 && !counterStarted) {
+      setCounterStarted(true)
+    }
+  }, [scrollY, counterStarted])
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
@@ -44,7 +51,7 @@ export default function HomePage() {
         <div style={{ maxWidth: '1100px', textAlign: 'center' }}>
           <h1 style={{ fontSize: 'clamp(48px, 13vw, 110px)', fontWeight: '950', lineHeight: '1.08', marginBottom: '28px', letterSpacing: '-2.5px', background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: Math.max(0, 1 - scrollY / 500) }}>Learn Smarter. Grow Faster.</h1>
           <p style={{ fontSize: 'clamp(17px, 4.2vw, 22px)', color: '#cbd5e1', lineHeight: '1.7', maxWidth: '750px', margin: '28px auto 24px', fontWeight: '500' }}>Experience the future of personalized learning. AI-powered study paths, real-time insights, and adaptive lessons designed to unlock your full potential.</p>
-          <p style={{ fontSize: 'clamp(15px, 3.8vw, 18px)', color: '#94a3b8', lineHeight: '1.8', maxWidth: '700px', margin: '0 auto 56px', fontWeight: '400' }}>6 premium features. Zero compromise. From intelligent tutoring to performance analytics—everything you need to excel is right here.</p>
+          <p style={{ fontSize: 'clamp(15px, 3.8vw, 18px)', color: '#94a3b8', lineHeight: '1.8', maxWidth: '700px', margin: '0 auto 56px', fontWeight: '400' }}>8 premium features. Zero compromise. From intelligent tutoring to performance analytics—everything you need to excel is right here.</p>
           <button onClick={() => setShowLogin(true)} style={{ padding: '16px 48px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '12px', color: 'white', fontWeight: '700', cursor: 'pointer', boxShadow: '0 20px 60px rgba(139, 92, 246, 0.4)', fontSize: '16px', transition: 'all 0.3s ease', letterSpacing: '-0.3px' }}>Start Learning Free</button>
         </div>
       </section>
@@ -58,9 +65,9 @@ export default function HomePage() {
 
       <section style={{ position: 'relative', padding: '160px 20px 120px', maxWidth: '1300px', margin: '0 auto', zIndex: 2 }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '70px', textAlign: 'center' }}>
-          <AnimatedCounter value={50} label="Active Learners Worldwide" suffix="K+" scrollY={scrollY} offset={2800} index={0} />
-          <AnimatedCounter value={200} label="Expert-Curated Courses" suffix="+" scrollY={scrollY} offset={2800} index={1} />
-          <AnimatedCounter value={95} label="Student Success Rate" suffix="%" scrollY={scrollY} offset={2800} index={2} />
+          <AnimatedCounter value={50} label="Active Learners Worldwide" suffix="K+" counterStarted={counterStarted} index={0} />
+          <AnimatedCounter value={200} label="Expert-Curated Courses" suffix="+" counterStarted={counterStarted} index={1} />
+          <AnimatedCounter value={95} label="Student Success Rate" suffix="%" counterStarted={counterStarted} index={2} />
         </div>
       </section>
 
@@ -83,28 +90,36 @@ export default function HomePage() {
 function HorizontalFeaturesSection({ scrollY }: { scrollY: number }) {
   const features = [
     {
-      title: 'AI Study Assistant',
-      desc: 'Instant answers powered by advanced AI. Get explanations, solve problems, and learn concepts in real-time.'
+      title: 'Ask Sage',
+      desc: 'Your premium AI learning companion. Get instant explanations, solve complex problems, and master concepts in real-time.'
     },
     {
       title: 'Learning Analytics',
-      desc: 'Track every milestone. Real-time insights into your progress, performance trends, and areas for improvement.'
+      desc: 'Track every milestone with precision. Real-time insights into your progress, performance trends, and areas for improvement.'
     },
     {
       title: 'Smart Study Planner',
-      desc: 'Personalized schedules that adapt to you. Get daily study recommendations optimized for your learning style.'
+      desc: 'Personalized schedules that adapt to you. Get daily study recommendations optimized for your unique learning style.'
     },
     {
       title: 'Curated Course Library',
-      desc: 'Browse 200+ expert-designed courses. From fundamentals to advanced topics, all in one place.'
+      desc: 'Browse 200+ expert-designed courses. From fundamentals to advanced topics, all vetted and structured for success.'
     },
     {
       title: 'Intelligent Flashcards',
-      desc: 'Spaced repetition at its finest. Smart recall system that maximizes retention and reduces study time.'
+      desc: 'Spaced repetition perfected. Smart recall system that maximizes retention and reduces study time significantly.'
     },
     {
-      title: 'AI-Powered Mock Exams',
+      title: 'Mock Exams',
       desc: 'Practice like the real thing. Instant feedback, detailed performance analysis, and personalized improvement plans.'
+    },
+    {
+      title: 'Study Reminders',
+      desc: 'Never miss a study session. Smart notifications, scheduled reminders, and adaptive study schedule recommendations.'
+    },
+    {
+      title: 'Certifications',
+      desc: 'Earn verified digital credentials. Showcase your achievements with blockchain-verified certificates employers recognize.'
     },
   ]
 
@@ -112,7 +127,7 @@ function HorizontalFeaturesSection({ scrollY }: { scrollY: number }) {
   const scrollAmount = -progress * (features.length - 1) * 420
 
   return (
-    <section style={{ position: 'relative', height: '400vh', zIndex: 2 }}>
+    <section style={{ position: 'relative', height: '450vh', zIndex: 2 }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', padding: '0 20px' }}>
         <div style={{ display: 'flex', gap: '32px', width: 'fit-content', transform: `translateX(${scrollAmount}px)`, transition: 'transform 0.05s linear' }}>
           {features.map((f, i) => (
@@ -126,12 +141,14 @@ function HorizontalFeaturesSection({ scrollY }: { scrollY: number }) {
 
 function getPreview(index: number) {
   const previews = [
-    <ChatPreview />,
+    <SageAIPreview />,
     <AnalyticsPreview />,
     <PlannerPreview />,
     <CoursePreview />,
     <FlashcardPreview />,
-    <ExamPreview />
+    <ExamPreview />,
+    <ReminderPreview />,
+    <CertificationPreview />
   ]
   return previews[index]
 }
@@ -152,7 +169,6 @@ function FeatureCard({ title, desc, preview, progress, index, total }: any) {
       transition: 'all 0.1s ease-out',
       boxShadow: isCenter ? '0 40px 80px rgba(139, 92, 246, 0.35)' : '0 20px 50px rgba(139, 92, 246, 0.15)',
     }}>
-      {/* Image Background - VISIBLE (45% opacity) */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -164,7 +180,6 @@ function FeatureCard({ title, desc, preview, progress, index, total }: any) {
         {preview}
       </div>
 
-      {/* Premium Overlay */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -175,7 +190,6 @@ function FeatureCard({ title, desc, preview, progress, index, total }: any) {
         backdropFilter: 'blur(14px)',
       }} />
 
-      {/* Premium Border */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -189,7 +203,6 @@ function FeatureCard({ title, desc, preview, progress, index, total }: any) {
         boxShadow: isCenter ? 'inset 0 0 40px rgba(139, 92, 246, 0.2)' : 'none',
       }} />
 
-      {/* Content */}
       <div style={{
         position: 'relative',
         zIndex: 2,
@@ -229,16 +242,36 @@ function FeatureCard({ title, desc, preview, progress, index, total }: any) {
   )
 }
 
-function AnimatedCounter({ value, label, suffix, scrollY, offset, index }: any) {
-  const progress = Math.max(0, Math.min(1, (scrollY - offset + 300) / 400))
-  const displayValue = Math.floor(progress * value)
-  const delayedProgress = Math.max(0, progress - index * 0.15)
+function AnimatedCounter({ value, label, suffix, counterStarted, index }: any) {
+  const [displayValue, setDisplayValue] = useState(0)
+
+  useEffect(() => {
+    if (!counterStarted) return
+
+    let current = 0
+    const increment = value / 40
+    const interval = setInterval(() => {
+      current += increment
+      if (current >= value) {
+        setDisplayValue(value)
+        clearInterval(interval)
+      } else {
+        setDisplayValue(Math.floor(current))
+      }
+    }, 30)
+
+    return () => clearInterval(interval)
+  }, [counterStarted, value])
+
+  const baseDelay = index * 0.15
+  const opacity = counterStarted ? 1 : 0
+  const transform = counterStarted ? 'translateY(0px) scale(1)' : 'translateY(40px) scale(0.93)'
 
   return (
     <div style={{
-      opacity: delayedProgress,
-      transform: `translateY(${(1 - delayedProgress) * 40}px) scale(${0.93 + delayedProgress * 0.07})`,
-      transition: 'all 0.2s ease-out',
+      opacity,
+      transform,
+      transition: `all 0.5s ease-out ${baseDelay}s`,
     }}>
       <div style={{
         fontSize: 'clamp(56px, 12vw, 84px)',
@@ -258,12 +291,14 @@ function AnimatedCounter({ value, label, suffix, scrollY, offset, index }: any) 
   )
 }
 
-function ChatPreview() { return <div style={{ padding: '20px', fontSize: '13px', height: '100%', display: 'flex', flexDirection: 'column', gap: '12px', justifyContent: 'flex-end' }}><div style={{ background: 'rgba(139, 92, 246, 0.35)', padding: '12px 14px', borderRadius: '10px', color: '#e0e7ff', fontSize: '14px' }}>Explain quantum mechanics</div><div style={{ background: 'rgba(59, 130, 246, 0.35)', padding: '12px 14px', borderRadius: '10px', color: '#e0e7ff', alignSelf: 'flex-end', fontSize: '14px' }}>Quantum mechanics explores...</div></div> }
+function SageAIPreview() { return <div style={{ padding: '20px', fontSize: '13px', height: '100%', display: 'flex', flexDirection: 'column', gap: '12px', justifyContent: 'flex-end' }}><div style={{ background: 'rgba(139, 92, 246, 0.35)', padding: '12px 14px', borderRadius: '10px', color: '#e0e7ff', fontSize: '14px' }}>Explain quantum mechanics</div><div style={{ background: 'rgba(59, 130, 246, 0.35)', padding: '12px 14px', borderRadius: '10px', color: '#e0e7ff', alignSelf: 'flex-end', fontSize: '14px' }}>Quantum mechanics explores...</div></div> }
 function AnalyticsPreview() { return <div style={{ padding: '28px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '20px' }}><div style={{ background: 'rgba(139, 92, 246, 0.3)', height: '11px', borderRadius: '6px', overflow: 'hidden' }}><div style={{ background: '#60a5fa', height: '100%', width: '76%' }} /></div><svg viewBox="0 0 100 40" style={{ height: '60px' }}><polyline points="5,30 15,18 25,24 35,12 45,20 55,14 65,28 75,16 85,22 95,10" stroke="#60a5fa" strokeWidth="2.5" fill="none" /></svg></div> }
 function PlannerPreview() { return <div style={{ padding: '22px', height: '100%', display: 'flex', flexDirection: 'column', gap: '14px', justifyContent: 'center' }}>{[{ d: 'Mon', w: 68 }, { d: 'Tue', w: 48 }, { d: 'Wed', w: 78 }].map(x => <div key={x.d} style={{ display: 'flex', alignItems: 'center', gap: '11px', fontSize: '14px', color: '#cbd5e1' }}><span style={{ minWidth: '38px', fontWeight: '600' }}>{x.d}</span><div style={{ flex: 1, background: 'rgba(139, 92, 246, 0.3)', height: '8px', borderRadius: '5px', overflow: 'hidden' }}><div style={{ background: '#c084fc', height: '100%', width: `${x.w}%` }} /></div></div>)}</div> }
 function CoursePreview() { return <div style={{ padding: '22px', height: '100%', display: 'flex', flexDirection: 'column', gap: '16px', justifyContent: 'center' }}>{[{ t: 'Advanced Physics', c: '#a78bfa' }, { t: 'Full-Stack Dev', c: '#60a5fa' }, { t: 'Data Science', c: '#34d399' }].map(x => <div key={x.t} style={{ background: 'rgba(59, 130, 246, 0.25)', padding: '14px', borderRadius: '11px', fontSize: '14px', fontWeight: '700', color: '#e0e7ff', borderLeft: `5px solid ${x.c}` }}>{x.t}</div>)}</div> }
 function FlashcardPreview() { return <div style={{ padding: '30px', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}><div style={{ background: 'rgba(139, 92, 246, 0.3)', padding: '32px 24px', borderRadius: '16px', textAlign: 'center', minHeight: '110px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><div style={{ fontSize: '18px', color: '#e0e7ff', fontWeight: '750' }}>What is photosynthesis?</div></div></div> }
-function ExamPreview() { return <div style={{ padding: '26px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '18px' }}><div style={{ fontSize: '15px', color: '#e0e7ff', fontWeight: '750' }}>Practice Physics Exam</div><div style={{ background: 'rgba(139, 92, 246, 0.32)', padding: '18px', borderRadius: '12px' }}><div style={{ fontSize: '28px', fontWeight: '950', color: '#60a5fa', marginBottom: '12px' }}>92/100</div><div style={{ background: 'rgba(0, 0, 0, 0.4)', height: '8px', borderRadius: '5px', overflow: 'hidden' }}><div style={{ background: '#34d399', height: '100%', width: '92%' }} /></div></div><div style={{ fontSize: '14px', color: '#cbd5e1', padding: '12px', background: 'rgba(59, 130, 246, 0.18)', borderRadius: '8px', fontWeight: '600' }}>37/40 Correct • +18% from last attempt</div></div> }
+function ExamPreview() { return <div style={{ padding: '26px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '18px' }}><div style={{ fontSize: '15px', color: '#e0e7ff', fontWeight: '750' }}>Practice Physics Exam</div><div style={{ background: 'rgba(139, 92, 246, 0.32)', padding: '18px', borderRadius: '12px' }}><div style={{ fontSize: '28px', fontWeight: '950', color: '#60a5fa', marginBottom: '12px' }}>92/100</div><div style={{ background: 'rgba(0, 0, 0, 0.4)', height: '8px', borderRadius: '5px', overflow: 'hidden' }}><div style={{ background: '#34d399', height: '100%', width: '92%' }} /></div></div><div style={{ fontSize: '14px', color: '#cbd5e1', padding: '12px', background: 'rgba(59, 130, 246, 0.18)', borderRadius: '8px', fontWeight: '600' }}>37/40 Correct • +18% from last</div></div> }
+function ReminderPreview() { return <div style={{ padding: '24px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '16px' }}><div style={{ fontSize: '14px', color: '#e0e7ff', fontWeight: '700' }}>Study Schedule</div><div style={{ background: 'rgba(139, 92, 246, 0.3)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(139, 92, 246, 0.5)' }}><div style={{ fontSize: '13px', color: '#cbd5e1', marginBottom: '8px' }}>📅 Today at 3:00 PM</div><div style={{ fontSize: '12px', color: '#94a3b8' }}>Physics - 1.5 hours</div></div><div style={{ background: 'rgba(59, 130, 246, 0.25)', padding: '14px', borderRadius: '10px', borderLeft: '3px solid #60a5fa' }}><div style={{ fontSize: '13px', color: '#cbd5e1', marginBottom: '4px' }}>🔔 Tomorrow 9:00 AM</div><div style={{ fontSize: '12px', color: '#94a3b8' }}>Math - 1 hour</div></div></div> }
+function CertificationPreview() { return <div style={{ padding: '24px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '14px' }}><div style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(59, 130, 246, 0.3) 100%)', padding: '16px 20px', borderRadius: '12px', border: '1.5px solid rgba(139, 92, 246, 0.4)', textAlign: 'center' }}><div style={{ fontSize: '12px', color: '#a78bfa', fontWeight: '700', marginBottom: '6px' }}>✓ VERIFIED</div><div style={{ fontSize: '14px', color: '#e0e7ff', fontWeight: '800', marginBottom: '4px' }}>AI & Machine Learning</div><div style={{ fontSize: '11px', color: '#94a3b8' }}>Issued by iLEARN</div></div><div style={{ fontSize: '13px', color: '#cbd5e1', padding: '12px', background: 'rgba(59, 130, 246, 0.15)', borderRadius: '8px', textAlign: 'center' }}>Achievement unlocked</div></div> }
 
 function LoginModal({ showLogin, setShowLogin, username, setUsername, password, setPassword, handleLogin }: any) {
   return (
