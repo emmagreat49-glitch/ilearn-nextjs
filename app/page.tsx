@@ -94,10 +94,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <FAQSection scrollY={scrollY} />
-
-      <FAQSection scrollY={scrollY} />
-
       <section style={{ position: 'relative', padding: '120px 20px 100px', maxWidth: '1100px', margin: '0 auto', textAlign: 'center', zIndex: 2 }}>
         <h2 style={{ fontSize: 'clamp(36px, 8vw, 60px)', fontWeight: '900', marginBottom: '24px', background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-1px', opacity: scrollY >= 5700 ? 1 : 0.6, transform: scrollY >= 5700 ? 'translateY(0px)' : 'translateY(30px)', transition: 'all 0.7s ease-out' }}>Start Your Learning Transformation Today</h2>
         <p style={{ fontSize: '18px', color: '#cbd5e1', marginBottom: '56px', maxWidth: '700px', margin: '0 auto 56px', lineHeight: '1.8', fontWeight: '500', opacity: scrollY >= 5750 ? 1 : 0.5, transform: scrollY >= 5750 ? 'translateY(0px)' : 'translateY(30px)', transition: 'all 0.7s ease-out 0.1s' }}>Join thousands of top-performing students accelerating their academic growth. Your personalized learning journey awaits.</p>
