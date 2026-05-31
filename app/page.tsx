@@ -8,6 +8,7 @@ export default function HomePage() {
   const [password, setPassword] = useState('admin123')
   const [scrollY, setScrollY] = useState(0)
   const [counterStarted, setCounterStarted] = useState(false)
+  const [visibleSections, setVisibleSections] = useState<{[key: string]: boolean}>({})
   const router = useRouter()
 
   useEffect(() => {
@@ -66,7 +67,7 @@ export default function HomePage() {
       <section style={{ position: 'relative', padding: '160px 20px 120px', maxWidth: '1300px', margin: '0 auto', zIndex: 2 }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '70px', textAlign: 'center' }}>
           <AnimatedCounter value={50} label="Active Learners Worldwide" suffix="K+" counterStarted={counterStarted} index={0} />
-          <AnimatedCounter value={200} label="Expert-Curated Courses" suffix="+" counterStarted={counterStarted} index={1} />
+          <AnimatedCounter value={20} label="Expert-Curated Courses" suffix="+" counterStarted={counterStarted} index={1} />
           <AnimatedCounter value={95} label="Student Success Rate" suffix="%" counterStarted={counterStarted} index={2} />
         </div>
       </section>
@@ -78,27 +79,27 @@ export default function HomePage() {
         </div>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', maxWidth: '1000px', margin: '0 auto', marginBottom: '60px' }}>
-          <div style={{ padding: '24px', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%)', border: '1.5px solid rgba(139, 92, 246, 0.3)', borderRadius: '16px', textAlign: 'center' }}>
+          <div style={{ padding: '24px', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%)', border: '1.5px solid rgba(139, 92, 246, 0.3)', borderRadius: '16px', textAlign: 'center', opacity: scrollY >= 4500 ? 1 : 0.5, transform: scrollY >= 4500 ? 'translateY(0px)' : 'translateY(20px)', transition: 'all 0.6s ease-out' }}>
             <div style={{ fontSize: '32px', fontWeight: '900', color: '#60a5fa', marginBottom: '8px' }}>200+</div>
             <div style={{ fontSize: '15px', color: '#cbd5e1', fontWeight: '600' }}>Universities & Colleges</div>
           </div>
-          <div style={{ padding: '24px', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%)', border: '1.5px solid rgba(139, 92, 246, 0.3)', borderRadius: '16px', textAlign: 'center' }}>
+          <div style={{ padding: '24px', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%)', border: '1.5px solid rgba(139, 92, 246, 0.3)', borderRadius: '16px', textAlign: 'center', opacity: scrollY >= 4500 ? 1 : 0.5, transform: scrollY >= 4500 ? 'translateY(0px)' : 'translateY(20px)', transition: 'all 0.6s ease-out 0.1s' }}>
             <div style={{ fontSize: '32px', fontWeight: '900', color: '#a78bfa', marginBottom: '8px' }}>ISO 27001</div>
             <div style={{ fontSize: '15px', color: '#cbd5e1', fontWeight: '600' }}>Security Certified</div>
           </div>
-          <div style={{ padding: '24px', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%)', border: '1.5px solid rgba(139, 92, 246, 0.3)', borderRadius: '16px', textAlign: 'center' }}>
+          <div style={{ padding: '24px', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%)', border: '1.5px solid rgba(139, 92, 246, 0.3)', borderRadius: '16px', textAlign: 'center', opacity: scrollY >= 4500 ? 1 : 0.5, transform: scrollY >= 4500 ? 'translateY(0px)' : 'translateY(20px)', transition: 'all 0.6s ease-out 0.2s' }}>
             <div style={{ fontSize: '32px', fontWeight: '900', color: '#34d399', marginBottom: '8px' }}>GDPR</div>
             <div style={{ fontSize: '15px', color: '#cbd5e1', fontWeight: '600' }}>Compliant</div>
           </div>
         </div>
       </section>
 
-      <FAQSection />
+      <FAQSection scrollY={scrollY} />
 
       <section style={{ position: 'relative', padding: '120px 20px 100px', maxWidth: '1100px', margin: '0 auto', textAlign: 'center', zIndex: 2 }}>
-        <h2 style={{ fontSize: 'clamp(36px, 8vw, 60px)', fontWeight: '900', marginBottom: '24px', background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-1px' }}>Start Your Learning Transformation Today</h2>
-        <p style={{ fontSize: '18px', color: '#cbd5e1', marginBottom: '56px', maxWidth: '700px', margin: '0 auto 56px', lineHeight: '1.8', fontWeight: '500' }}>Join thousands of top-performing students accelerating their academic growth. Your personalized learning journey awaits.</p>
-        <button onClick={() => setShowLogin(true)} style={{ padding: '16px 52px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '12px', color: 'white', fontWeight: '700', fontSize: '16px', cursor: 'pointer', boxShadow: '0 20px 60px rgba(139, 92, 246, 0.4)', transition: 'all 0.3s ease', letterSpacing: '-0.3px' }}>Start My Journey</button>
+        <h2 style={{ fontSize: 'clamp(36px, 8vw, 60px)', fontWeight: '900', marginBottom: '24px', background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-1px', opacity: scrollY >= 5700 ? 1 : 0.6, transform: scrollY >= 5700 ? 'translateY(0px)' : 'translateY(30px)', transition: 'all 0.7s ease-out' }}>Start Your Learning Transformation Today</h2>
+        <p style={{ fontSize: '18px', color: '#cbd5e1', marginBottom: '56px', maxWidth: '700px', margin: '0 auto 56px', lineHeight: '1.8', fontWeight: '500', opacity: scrollY >= 5750 ? 1 : 0.5, transform: scrollY >= 5750 ? 'translateY(0px)' : 'translateY(30px)', transition: 'all 0.7s ease-out 0.1s' }}>Join thousands of top-performing students accelerating their academic growth. Your personalized learning journey awaits.</p>
+        <button onClick={() => setShowLogin(true)} style={{ padding: '16px 52px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', border: 'none', borderRadius: '12px', color: 'white', fontWeight: '700', fontSize: '16px', cursor: 'pointer', boxShadow: '0 20px 60px rgba(139, 92, 246, 0.4)', transition: 'all 0.3s ease', letterSpacing: '-0.3px', opacity: scrollY >= 5800 ? 1 : 0.5, transform: scrollY >= 5800 ? 'translateY(0px)' : 'translateY(30px)' }}>Start My Journey</button>
       </section>
 
       <footer style={{ padding: '60px 20px 40px', borderTop: '1px solid rgba(139, 92, 246, 0.2)', textAlign: 'center', color: '#64748b', fontSize: '15px', zIndex: 2, position: 'relative', background: 'linear-gradient(180deg, transparent 0%, rgba(139, 92, 246, 0.05) 100%)' }}>
@@ -113,47 +114,23 @@ export default function HomePage() {
 
 function HorizontalFeaturesSection({ scrollY }: { scrollY: number }) {
   const features = [
-    {
-      title: 'Ask Sage',
-      desc: 'Your premium AI learning companion. Get instant explanations, solve complex problems, and master concepts in real-time.'
-    },
-    {
-      title: 'Learning Analytics',
-      desc: 'Track every milestone with precision. Real-time insights into your progress, performance trends, and areas for improvement.'
-    },
-    {
-      title: 'Smart Study Planner',
-      desc: 'Personalized schedules that adapt to you. Get daily study recommendations optimized for your unique learning style.'
-    },
-    {
-      title: 'Curated Course Library',
-      desc: 'Browse 200+ expert-designed courses. From fundamentals to advanced topics, all vetted and structured for success.'
-    },
-    {
-      title: 'Intelligent Flashcards',
-      desc: 'Spaced repetition perfected. Smart recall system that maximizes retention and reduces study time significantly.'
-    },
-    {
-      title: 'Mock Exams',
-      desc: 'Practice like the real thing. Instant feedback, detailed performance analysis, and personalized improvement plans.'
-    },
-    {
-      title: 'Study Reminders',
-      desc: 'Never miss a study session. Smart notifications, scheduled reminders, and adaptive study schedule recommendations.'
-    },
-    {
-      title: 'Certifications',
-      desc: 'Earn verified digital credentials. Showcase your achievements with blockchain-verified certificates employers recognize.'
-    },
+    { title: 'Ask Sage', desc: 'Your premium AI learning companion. Get instant explanations, solve complex problems, and master concepts in real-time.' },
+    { title: 'Learning Analytics', desc: 'Track every milestone with precision. Real-time insights into your progress, performance trends, and areas for improvement.' },
+    { title: 'Smart Study Planner', desc: 'Personalized schedules that adapt to you. Get daily study recommendations optimized for your unique learning style.' },
+    { title: 'Curated Course Library', desc: 'Browse 200+ expert-designed courses. From fundamentals to advanced topics, all vetted and structured for success.' },
+    { title: 'Intelligent Flashcards', desc: 'Spaced repetition perfected. Smart recall system that maximizes retention and reduces study time significantly.' },
+    { title: 'Mock Exams', desc: 'Practice like the real thing. Instant feedback, detailed performance analysis, and personalized improvement plans.' },
+    { title: 'Study Reminders', desc: 'Never miss a study session. Smart notifications, scheduled reminders, and adaptive study schedule recommendations.' },
+    { title: 'Certifications', desc: 'Earn verified digital credentials. Showcase your achievements with blockchain-verified certificates employers recognize.' },
   ]
 
-  const progress = Math.min(1, Math.max(0, (scrollY - 800) / 4200))
+  const progress = Math.min(1, Math.max(0, (scrollY - 800) / 4500))
   const scrollAmount = -progress * (features.length - 1) * 420
 
   return (
-    <section style={{ position: 'relative', height: '700vh', zIndex: 2 }}>
+    <section style={{ position: 'relative', height: '750vh', zIndex: 2 }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', padding: '0 20px' }}>
-        <div style={{ display: 'flex', gap: '28px', width: 'fit-content', transform: `translateX(${scrollAmount}px)`, transition: 'transform 0.05s linear', paddingLeft: '120px', paddingRight: '120px' }}>
+        <div style={{ display: 'flex', gap: '28px', width: 'fit-content', transform: `translateX(${scrollAmount}px)`, transition: 'transform 0.05s linear', paddingLeft: '140px', paddingRight: '140px' }}>
           {features.map((f, i) => (
             <FeatureCard key={i} title={f.title} desc={f.desc} preview={getPreview(i)} progress={progress} index={i} total={features.length} />
           ))}
@@ -165,14 +142,8 @@ function HorizontalFeaturesSection({ scrollY }: { scrollY: number }) {
 
 function getPreview(index: number) {
   const previews = [
-    <SageAIPreview />,
-    <AnalyticsPreview />,
-    <PlannerPreview />,
-    <CoursePreview />,
-    <FlashcardPreview />,
-    <ExamPreview />,
-    <ReminderPreview />,
-    <CertificationPreview />
+    <SageAIPreview />, <AnalyticsPreview />, <PlannerPreview />, <CoursePreview />,
+    <FlashcardPreview />, <ExamPreview />, <ReminderPreview />, <CertificationPreview />
   ]
   return previews[index]
 }
@@ -183,84 +154,18 @@ function FeatureCard({ title, desc, preview, progress, index, total }: any) {
 
   return (
     <div style={{
-      minWidth: '420px',
-      height: '600px',
-      position: 'relative',
-      borderRadius: '32px',
-      overflow: 'hidden',
+      minWidth: '420px', height: '600px', position: 'relative', borderRadius: '32px', overflow: 'hidden',
       opacity: Math.max(0.35, 1 - Math.abs(progress * total - index) * 0.35),
       transform: `scale(${Math.max(0.82, 1 - Math.abs(progress * total - index) * 0.18)})`,
       transition: 'all 0.1s ease-out',
       boxShadow: isCenter ? '0 40px 80px rgba(139, 92, 246, 0.35)' : '0 20px 50px rgba(139, 92, 246, 0.15)',
     }}>
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        opacity: 0.45,
-      }}>
-        {preview}
-      </div>
-
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: 'linear-gradient(135deg, rgba(10, 14, 39, 0.52) 0%, rgba(10, 14, 39, 0.48) 100%)',
-        backdropFilter: 'blur(14px)',
-      }} />
-
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        border: `2.5px solid ${isCenter ? 'rgba(139, 92, 246, 0.85)' : 'rgba(139, 92, 246, 0.35)'}`,
-        borderRadius: '32px',
-        pointerEvents: 'none',
-        transition: 'border-color 0.3s',
-        boxShadow: isCenter ? 'inset 0 0 40px rgba(139, 92, 246, 0.2)' : 'none',
-      }} />
-
-      <div style={{
-        position: 'relative',
-        zIndex: 2,
-        padding: '64px 52px',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        opacity: cardProgress,
-        transform: `translateY(${(1 - cardProgress) * 28}px)`,
-        transition: 'all 0.25s ease-out',
-      }}>
-        <h3 style={{
-          fontSize: '56px',
-          fontWeight: '950',
-          color: '#fff',
-          lineHeight: '1.12',
-          letterSpacing: '-1.2px',
-          margin: '0 0 24px 0',
-        }}>
-          {title}
-        </h3>
-        <p style={{
-          fontSize: '16px',
-          color: '#cbd5e1',
-          lineHeight: '1.7',
-          margin: '0',
-          fontWeight: '500',
-          maxWidth: '380px',
-        }}>
-          {desc}
-        </p>
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, opacity: 0.45 }}>{preview}</div>
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(135deg, rgba(10, 14, 39, 0.52) 0%, rgba(10, 14, 39, 0.48) 100%)', backdropFilter: 'blur(14px)' }} />
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, border: `2.5px solid ${isCenter ? 'rgba(139, 92, 246, 0.85)' : 'rgba(139, 92, 246, 0.35)'}`, borderRadius: '32px', pointerEvents: 'none', transition: 'border-color 0.3s', boxShadow: isCenter ? 'inset 0 0 40px rgba(139, 92, 246, 0.2)' : 'none' }} />
+      <div style={{ position: 'relative', zIndex: 2, padding: '64px 52px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', opacity: cardProgress, transform: `translateY(${(1 - cardProgress) * 28}px)`, transition: 'all 0.25s ease-out' }}>
+        <h3 style={{ fontSize: '56px', fontWeight: '950', color: '#fff', lineHeight: '1.12', letterSpacing: '-1.2px', margin: '0 0 24px 0' }}>{title}</h3>
+        <p style={{ fontSize: '16px', color: '#cbd5e1', lineHeight: '1.7', margin: '0', fontWeight: '500', maxWidth: '380px' }}>{desc}</p>
       </div>
     </div>
   )
@@ -271,9 +176,8 @@ function AnimatedCounter({ value, label, suffix, counterStarted, index }: any) {
 
   useEffect(() => {
     if (!counterStarted) return
-
     let current = 0
-    const increment = value / 40
+    const increment = value / 50
     const interval = setInterval(() => {
       current += increment
       if (current >= value) {
@@ -282,35 +186,22 @@ function AnimatedCounter({ value, label, suffix, counterStarted, index }: any) {
       } else {
         setDisplayValue(Math.floor(current))
       }
-    }, 30)
-
+    }, 25)
     return () => clearInterval(interval)
   }, [counterStarted, value])
 
-  const baseDelay = index * 0.15
+  const baseDelay = index * 0.2
   const opacity = counterStarted ? 1 : 0
   const transform = counterStarted ? 'translateY(0px) scale(1)' : 'translateY(40px) scale(0.93)'
 
   return (
     <div style={{
-      opacity,
-      transform,
-      transition: `all 0.5s ease-out ${baseDelay}s`,
+      opacity, transform, transition: `all 0.6s ease-out ${baseDelay}s`,
     }}>
-      <div style={{
-        fontSize: 'clamp(56px, 12vw, 84px)',
-        fontWeight: '950',
-        background: 'linear-gradient(135deg, #c084fc 0%, #60a5fa 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        marginBottom: '16px',
-        letterSpacing: '-1.5px',
-      }}>
+      <div style={{ fontSize: 'clamp(56px, 12vw, 84px)', fontWeight: '950', background: 'linear-gradient(135deg, #c084fc 0%, #60a5fa 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '16px', letterSpacing: '-1.5px' }}>
         {displayValue}{suffix}
       </div>
-      <div style={{ fontSize: '17px', color: '#cbd5e1', fontWeight: '600', letterSpacing: '-0.3px' }}>
-        {label}
-      </div>
+      <div style={{ fontSize: '17px', color: '#cbd5e1', fontWeight: '600', letterSpacing: '-0.3px' }}>{label}</div>
     </div>
   )
 }
@@ -324,42 +215,17 @@ function ExamPreview() { return <div style={{ padding: '26px', height: '100%', d
 function ReminderPreview() { return <div style={{ padding: '24px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '16px' }}><div style={{ fontSize: '14px', color: '#e0e7ff', fontWeight: '700' }}>Study Schedule</div><div style={{ background: 'rgba(139, 92, 246, 0.3)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(139, 92, 246, 0.5)' }}><div style={{ fontSize: '13px', color: '#cbd5e1', marginBottom: '8px' }}>📅 Today at 3:00 PM</div><div style={{ fontSize: '12px', color: '#94a3b8' }}>Physics - 1.5 hours</div></div><div style={{ background: 'rgba(59, 130, 246, 0.25)', padding: '14px', borderRadius: '10px', borderLeft: '3px solid #60a5fa' }}><div style={{ fontSize: '13px', color: '#cbd5e1', marginBottom: '4px' }}>🔔 Tomorrow 9:00 AM</div><div style={{ fontSize: '12px', color: '#94a3b8' }}>Math - 1 hour</div></div></div> }
 function CertificationPreview() { return <div style={{ padding: '24px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '14px' }}><div style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(59, 130, 246, 0.3) 100%)', padding: '16px 20px', borderRadius: '12px', border: '1.5px solid rgba(139, 92, 246, 0.4)', textAlign: 'center' }}><div style={{ fontSize: '12px', color: '#a78bfa', fontWeight: '700', marginBottom: '6px' }}>✓ VERIFIED</div><div style={{ fontSize: '14px', color: '#e0e7ff', fontWeight: '800', marginBottom: '4px' }}>AI & Machine Learning</div><div style={{ fontSize: '11px', color: '#94a3b8' }}>Issued by iLEARN</div></div><div style={{ fontSize: '13px', color: '#cbd5e1', padding: '12px', background: 'rgba(59, 130, 246, 0.15)', borderRadius: '8px', textAlign: 'center' }}>Achievement unlocked</div></div> }
 
-function FAQSection() {
+function FAQSection({ scrollY }: any) {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
-
   const faqs = [
-    {
-      q: "What is iLEARN?",
-      a: "iLEARN is a premium AI-powered learning platform designed for students who want personalized, adaptive education. It combines intelligent tutoring, analytics, and study tools to help you excel academically."
-    },
-    {
-      q: "How does Sage AI work?",
-      a: "Sage is your personal AI tutor powered by advanced language models. Ask any question, get instant explanations, solve complex problems, and learn concepts in real-time. Sage adapts to your learning style."
-    },
-    {
-      q: "Is there a free trial?",
-      a: "Yes! We offer a 14-day free trial with full access to all premium features. No credit card required. Cancel anytime if you're not satisfied."
-    },
-    {
-      q: "What's included in Premium?",
-      a: "Premium includes: Sage AI unlimited, Learning Analytics, Smart Study Planner, 200+ Curated Courses, Intelligent Flashcards, Mock Exams, Study Reminders, and Digital Certifications."
-    },
-    {
-      q: "Can I cancel my subscription anytime?",
-      a: "Absolutely. You can cancel your subscription anytime from your account settings. We won't charge you after your current billing cycle ends. No questions asked."
-    },
-    {
-      q: "Is my data secure and private?",
-      a: "Yes. iLEARN is ISO 27001 certified and fully GDPR compliant. Your study data is encrypted, never sold, and protected by industry-leading security standards."
-    },
-    {
-      q: "Is iLEARN mobile-friendly?",
-      a: "Yes! iLEARN works seamlessly on desktop, tablet, and mobile devices. Study on the go with our responsive design."
-    },
-    {
-      q: "Do you offer group or institution plans?",
-      a: "Yes. We offer special pricing for schools, universities, and study groups. Contact our sales team at enterprise@ilearn.com for custom quotes."
-    }
+    { q: "What is iLEARN?", a: "iLEARN is a premium AI-powered learning platform designed for students who want personalized, adaptive education. It combines intelligent tutoring, analytics, and study tools to help you excel academically." },
+    { q: "How does Sage AI work?", a: "Sage is your personal AI tutor powered by advanced language models. Ask any question, get instant explanations, solve complex problems, and learn concepts in real-time. Sage adapts to your learning style." },
+    { q: "Is there a free trial?", a: "Yes! We offer a 14-day free trial with full access to all premium features. No credit card required. Cancel anytime if you're not satisfied." },
+    { q: "What's included in Premium?", a: "Premium includes: Sage AI unlimited, Learning Analytics, Smart Study Planner, 200+ Curated Courses, Intelligent Flashcards, Mock Exams, Study Reminders, and Digital Certifications." },
+    { q: "Can I cancel my subscription anytime?", a: "Absolutely. You can cancel your subscription anytime from your account settings. We won't charge you after your current billing cycle ends. No questions asked." },
+    { q: "Is my data secure and private?", a: "Yes. iLEARN is ISO 27001 certified and fully GDPR compliant. Your study data is encrypted, never sold, and protected by industry-leading security standards." },
+    { q: "Is iLEARN mobile-friendly?", a: "Yes! iLEARN works seamlessly on desktop, tablet, and mobile devices. Study on the go with our responsive design." },
+    { q: "Do you offer group or institution plans?", a: "Yes. We offer special pricing for schools, universities, and study groups. Contact our sales team at enterprise@ilearn.com for custom quotes." }
   ]
 
   return (
@@ -371,58 +237,13 @@ function FAQSection() {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {faqs.map((faq, index) => (
-          <div
-            key={index}
-            style={{
-              background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%)',
-              border: '1.5px solid rgba(139, 92, 246, 0.25)',
-              borderRadius: '14px',
-              overflow: 'hidden',
-              transition: 'all 0.3s ease',
-              boxShadow: openIndex === index ? '0 20px 60px rgba(139, 92, 246, 0.2)' : 'none',
-            }}
-          >
-            <button
-              onClick={() => setOpenIndex(openIndex === index ? null : index)}
-              style={{
-                width: '100%',
-                padding: '20px 28px',
-                background: 'transparent',
-                border: 'none',
-                textAlign: 'left',
-                cursor: 'pointer',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                fontSize: '16px',
-                fontWeight: '700',
-                color: '#e0e7ff',
-                transition: 'all 0.3s ease',
-              }}
-            >
+          <div key={index} style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%)', border: '1.5px solid rgba(139, 92, 246, 0.25)', borderRadius: '14px', overflow: 'hidden', transition: 'all 0.3s ease', boxShadow: openIndex === index ? '0 20px 60px rgba(139, 92, 246, 0.2)' : 'none', opacity: scrollY >= 5000 ? 1 : 0.6, transform: scrollY >= 5000 ? 'translateY(0px)' : 'translateY(20px)' }}>
+            <button onClick={() => setOpenIndex(openIndex === index ? null : index)} style={{ width: '100%', padding: '20px 28px', background: 'transparent', border: 'none', textAlign: 'left', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '16px', fontWeight: '700', color: '#e0e7ff', transition: 'all 0.3s ease' }}>
               <span>{faq.q}</span>
-              <span style={{
-                fontSize: '20px',
-                color: '#a78bfa',
-                transition: 'transform 0.3s ease',
-                transform: openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)',
-              }}>
-                ▼
-              </span>
+              <span style={{ fontSize: '20px', color: '#a78bfa', transition: 'transform 0.3s ease', transform: openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</span>
             </button>
-
             {openIndex === index && (
-              <div style={{
-                padding: '0 28px 24px 28px',
-                borderTop: '1px solid rgba(139, 92, 246, 0.2)',
-                fontSize: '15px',
-                color: '#cbd5e1',
-                lineHeight: '1.7',
-                fontWeight: '500',
-                animation: 'fadeIn 0.3s ease',
-              }}>
-                {faq.a}
-              </div>
+              <div style={{ padding: '0 28px 24px 28px', borderTop: '1px solid rgba(139, 92, 246, 0.2)', fontSize: '15px', color: '#cbd5e1', lineHeight: '1.7', fontWeight: '500' }}>{faq.a}</div>
             )}
           </div>
         ))}
