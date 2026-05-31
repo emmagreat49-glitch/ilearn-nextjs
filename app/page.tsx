@@ -171,7 +171,7 @@ function FeatureCard({ title, desc, preview, progress, index, total }: any) {
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, border: `2.5px solid ${isCenter ? 'rgba(139, 92, 246, 0.85)' : 'rgba(139, 92, 246, 0.35)'}`, borderRadius: '32px', pointerEvents: 'none', transition: 'border-color 0.3s', boxShadow: isCenter ? 'inset 0 0 40px rgba(139, 92, 246, 0.2)' : 'none' }} />
       <div style={{ position: 'relative', zIndex: 2, padding: '64px 52px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', opacity: cardProgress, transform: `translateY(${(1 - cardProgress) * 28}px)`, transition: 'all 0.25s ease-out' }}>
         <h3 style={{ fontSize: '56px', fontWeight: '950', color: '#fff', lineHeight: '1.12', letterSpacing: '-1.2px', margin: '0 0 24px 0' }}>{title}</h3>
-        <p style={{ fontSize: '16px', color: '#cbd5e1', lineHeight: '1.7', margin: '0', fontWeight: '500', maxWidth: '380px' }}>{desc}</p>
+        <p style={{ fontSize: 'clamp(15px, 3.5vw, 17px)', color: '#f1f5f9', lineHeight: '1.8', margin: '0', fontWeight: '600', maxWidth: '360px', letterSpacing: '-0.2px' }}>{desc}</p>
       </div>
     </div>
   )
