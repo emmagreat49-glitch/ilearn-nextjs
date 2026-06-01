@@ -32,26 +32,21 @@ export default function ForgotPasswordPage() {
     setLoading(true)
 
     try {
-      // Check if user exists
       const usersData = localStorage.getItem('ilearn_users')
       const users = usersData ? JSON.parse(usersData) : []
       const user = users.find((u: any) => u.email === email)
 
       if (!user) {
-        // Don't reveal if email exists for security
         setSubmitted(true)
         setLoading(false)
         return
       }
 
-      // Generate reset token
       const token = Math.random().toString(36).substring(7) + Date.now().toString(36)
       const resetTokens = JSON.parse(localStorage.getItem('ilearn_reset_tokens') || '{}')
-      resetTokens[token] = { email, expiresAt: Date.now() + 3600000 } // 1 hour expiry
+      resetTokens[token] = { email, expiresAt: Date.now() + 3600000 }
       localStorage.setItem('ilearn_reset_tokens', JSON.stringify(resetTokens))
 
-      // In production, send email with reset link
-      // For now, show reset link locally
       const resetLink = `${window.location.origin}/forgot-password?token=${token}`
       console.log('Password reset link (in production, this would be emailed):', resetLink)
 
@@ -96,7 +91,6 @@ export default function ForgotPasswordPage() {
         return
       }
 
-      // Update user password
       const usersData = localStorage.getItem('ilearn_users')
       const users = usersData ? JSON.parse(usersData) : []
       const userIndex = users.findIndex((u: any) => u.email === tokenData.email)
@@ -117,10 +111,9 @@ export default function ForgotPasswordPage() {
     }
   }
 
-  // Reset Password Form
   if (resetting) {
     return (
-      <div style={{ background: '#0a0e27', color: '#fff', minHeight: '100vh', fontFamily: 'Inter, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px 20px' }}>
+      <div style={{ background: '#0a0e27', color: '#fff', minHeight: '100vh', fontFamily: 'Inter, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
         <div style={{
           position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
           background: 'radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
@@ -152,11 +145,13 @@ export default function ForgotPasswordPage() {
             background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%)',
             border: '1.5px solid rgba(139, 92, 246, 0.25)',
             borderRadius: '18px',
-            padding: '36px 28px',
+            padding: '24px 16px',
             backdropFilter: 'blur(40px)',
             boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+            boxSizing: 'border-box',
+            width: '100%',
           }}>
-            <div style={{ marginBottom: '20px' }}>
+            <div style={{ marginBottom: '18px' }}>
               <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: '#e0e7ff', letterSpacing: '-0.2px', textTransform: 'uppercase' }}>New Password</label>
               <input
                 type="password"
@@ -229,7 +224,7 @@ export default function ForgotPasswordPage() {
               disabled={loading}
               style={{
                 width: '100%',
-                padding: '11px 20px',
+                padding: '10px 16px',
                 background: loading ? 'rgba(139, 92, 246, 0.5)' : 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
                 border: 'none',
                 borderRadius: '10px',
@@ -240,6 +235,9 @@ export default function ForgotPasswordPage() {
                 transition: 'all 0.3s ease',
                 boxShadow: loading ? 'none' : '0 12px 32px rgba(139, 92, 246, 0.3)',
                 letterSpacing: '-0.2px',
+                boxSizing: 'border-box',
+                display: 'block',
+                margin: '0',
               }}
             >
               {loading ? 'Resetting...' : 'Reset Password'}
@@ -254,9 +252,8 @@ export default function ForgotPasswordPage() {
     )
   }
 
-  // Request Password Reset Form
   return (
-    <div style={{ background: '#0a0e27', color: '#fff', minHeight: '100vh', fontFamily: 'Inter, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px 20px' }}>
+    <div style={{ background: '#0a0e27', color: '#fff', minHeight: '100vh', fontFamily: 'Inter, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
       <div style={{
         position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
         background: 'radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
@@ -278,7 +275,7 @@ export default function ForgotPasswordPage() {
             <button
               onClick={() => router.push('/login')}
               style={{
-                padding: '11px 28px',
+                padding: '10px 24px',
                 background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
                 border: 'none',
                 borderRadius: '10px',
@@ -320,9 +317,11 @@ export default function ForgotPasswordPage() {
               background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%)',
               border: '1.5px solid rgba(139, 92, 246, 0.25)',
               borderRadius: '18px',
-              padding: '36px 28px',
+              padding: '24px 16px',
               backdropFilter: 'blur(40px)',
               boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+              boxSizing: 'border-box',
+              width: '100%',
             }}>
               <div style={{ marginBottom: '24px' }}>
                 <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: '#e0e7ff', letterSpacing: '-0.2px', textTransform: 'uppercase' }}>Email Address</label>
@@ -366,7 +365,7 @@ export default function ForgotPasswordPage() {
                 disabled={loading}
                 style={{
                   width: '100%',
-                  padding: '11px 20px',
+                  padding: '10px 16px',
                   background: loading ? 'rgba(139, 92, 246, 0.5)' : 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
                   border: 'none',
                   borderRadius: '10px',
@@ -377,6 +376,9 @@ export default function ForgotPasswordPage() {
                   transition: 'all 0.3s ease',
                   boxShadow: loading ? 'none' : '0 12px 32px rgba(139, 92, 246, 0.3)',
                   letterSpacing: '-0.2px',
+                  boxSizing: 'border-box',
+                  display: 'block',
+                  margin: '0',
                 }}
               >
                 {loading ? 'Sending...' : 'Send Reset Link'}
