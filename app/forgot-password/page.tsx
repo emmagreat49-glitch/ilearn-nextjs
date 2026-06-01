@@ -85,7 +85,7 @@ export default function ForgotPasswordPage() {
 
     try {
       const resetTokens = JSON.parse(localStorage.getItem('ilearn_reset_tokens') || '{}')
-      const tokenData = resetTokens[resetToken]
+      const tokenData = resetToken ? resetTokens[resetToken] : null
 
       if (!tokenData || tokenData.expiresAt < Date.now()) {
         setError('Reset link has expired. Please request a new one.')
@@ -100,7 +100,7 @@ export default function ForgotPasswordPage() {
       if (userIndex !== -1) {
         users[userIndex].password = password
         localStorage.setItem('ilearn_users', JSON.stringify(users))
-        delete resetTokens[resetToken]
+        delete resetTokens[resetToken as string]
         localStorage.setItem('ilearn_reset_tokens', JSON.stringify(resetTokens))
 
         setTimeout(() => {
