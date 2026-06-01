@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const router = useRouter()
@@ -15,6 +16,19 @@ export default function LoginPage() {
     setLoading(true)
 
     try {
+      // Support both "admin" and email login
+      const isAdminLogin = email === 'admin'
+      
+      if (isAdminLogin && password === 'admin123') {
+        localStorage.setItem('ilearn_user', JSON.stringify({ email: 'admin', name: 'Admin' }))
+        localStorage.setItem('ilearn_session', JSON.stringify({ loggedIn: true, timestamp: Date.now() }))
+        
+        setTimeout(() => {
+          router.push('/dashboard')
+        }, 500)
+        return
+      }
+
       const usersData = localStorage.getItem('ilearn_users')
       const users = usersData ? JSON.parse(usersData) : []
       
@@ -86,10 +100,10 @@ export default function LoginPage() {
           <div style={{ marginBottom: '20px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: '#e0e7ff', letterSpacing: '-0.2px', textTransform: 'uppercase' }}>Email</label>
             <input
-              type="email"
+              type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
+              placeholder="admin or email"
               style={{
                 width: '100%',
                 padding: '11px 14px',
@@ -114,35 +128,71 @@ export default function LoginPage() {
             />
           </div>
 
-          <div style={{ marginBottom: '24px' }}>
+          <div style={{ marginBottom: '24px', position: 'relative' }}>
             <label style={{ fontSize: '13px', fontWeight: '600', color: '#e0e7ff', letterSpacing: '-0.2px', textTransform: 'uppercase', marginBottom: '8px', display: 'block' }}>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              style={{
-                width: '100%',
-                padding: '11px 14px',
-                background: 'rgba(255, 255, 255, 0.05)',
-                border: '1.5px solid rgba(139, 92, 246, 0.25)',
-                borderRadius: '10px',
-                color: '#fff',
-                fontSize: '14px',
-                fontWeight: '500',
-                outline: 'none',
-                transition: 'all 0.3s ease',
-                boxSizing: 'border-box',
-              }}
-              onFocus={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.6)'
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'
-              }}
-              onBlur={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.25)'
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
-              }}
-            />
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                style={{
+                  width: '100%',
+                  padding: '11px 14px 11px 14px',
+                  paddingRight: '42px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1.5px solid rgba(139, 92, 246, 0.25)',
+                  borderRadius: '10px',
+                  color: '#fff',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  outline: 'none',
+                  transition: 'all 0.3s ease',
+                  boxSizing: 'border-box',
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.6)'
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.25)'
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
+                }}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '12px',
+                  background: 'none',
+                  border: 'none',
+                  color: '#94a3b8',
+                  cursor: 'pointer',
+                  padding: '0',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '24px',
+                  height: '24px',
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#cbd5e1'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}
+              >
+                {showPassword ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
 
           <div style={{ marginBottom: '28px' }}>
