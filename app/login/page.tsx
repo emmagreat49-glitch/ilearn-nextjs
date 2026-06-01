@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
@@ -15,11 +15,9 @@ export default function LoginPage() {
     setLoading(true)
 
     try {
-      // Get users from localStorage
       const usersData = localStorage.getItem('ilearn_users')
       const users = usersData ? JSON.parse(usersData) : []
       
-      // Find user
       const user = users.find((u: any) => u.email === email)
       
       if (!user) {
@@ -28,14 +26,12 @@ export default function LoginPage() {
         return
       }
       
-      // Simple password check (in production, use bcrypt)
       if (user.password !== password) {
         setError('Invalid email or password')
         setLoading(false)
         return
       }
       
-      // Store session
       localStorage.setItem('ilearn_user', JSON.stringify({ email: user.email, name: user.name }))
       localStorage.setItem('ilearn_session', JSON.stringify({ loggedIn: true, timestamp: Date.now() }))
       
@@ -49,7 +45,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div style={{ background: '#0a0e27', color: '#fff', minHeight: '100vh', fontFamily: 'Inter, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px 20px' }}>
+    <div style={{ background: '#0a0e27', color: '#fff', minHeight: '100vh', fontFamily: 'Inter, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
       <div style={{
         position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
         background: 'radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
@@ -57,9 +53,7 @@ export default function LoginPage() {
       }} />
 
       <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: '420px' }}>
-        {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          {/* Logo */}
           <div style={{ marginBottom: '28px', display: 'flex', justifyContent: 'center' }}>
             <svg width="52" height="52" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: '12px', padding: '8px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', boxShadow: '0 8px 32px rgba(139, 92, 246, 0.4)' }}>
               <defs>
@@ -79,16 +73,16 @@ export default function LoginPage() {
           <p style={{ fontSize: '14px', color: '#cbd5e1', fontWeight: '500', margin: 0 }}>Sign in to continue learning</p>
         </div>
 
-        {/* Login Form */}
         <form onSubmit={handleLogin} style={{
           background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%)',
           border: '1.5px solid rgba(139, 92, 246, 0.25)',
           borderRadius: '18px',
-          padding: '36px 28px',
+          padding: '24px 16px',
           backdropFilter: 'blur(40px)',
           boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+          boxSizing: 'border-box',
+          width: '100%',
         }}>
-          {/* Email Field */}
           <div style={{ marginBottom: '20px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: '#e0e7ff', letterSpacing: '-0.2px', textTransform: 'uppercase' }}>Email</label>
             <input
@@ -120,11 +114,8 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Password Field */}
           <div style={{ marginBottom: '24px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <label style={{ fontSize: '13px', fontWeight: '600', color: '#e0e7ff', letterSpacing: '-0.2px', textTransform: 'uppercase' }}>Password</label>
-            </div>
+            <label style={{ fontSize: '13px', fontWeight: '600', color: '#e0e7ff', letterSpacing: '-0.2px', textTransform: 'uppercase', marginBottom: '8px', display: 'block' }}>Password</label>
             <input
               type="password"
               value={password}
@@ -154,27 +145,24 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Forgot Password Link - Better positioned */}
           <div style={{ marginBottom: '28px' }}>
             <a href="/forgot-password" style={{ fontSize: '13px', color: '#a78bfa', textDecoration: 'none', fontWeight: '600', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#c4b5fd'} onMouseLeave={(e) => e.currentTarget.style.color = '#a78bfa'}>
               Forgot password?
             </a>
           </div>
 
-          {/* Error Message */}
           {error && (
             <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '10px', padding: '12px 14px', marginBottom: '20px', fontSize: '13px', color: '#fca5a5', fontWeight: '500' }}>
               {error}
             </div>
           )}
 
-          {/* Sign In Button */}
           <button
             type="submit"
             disabled={loading}
             style={{
               width: '100%',
-              padding: '11px 20px',
+              padding: '10px 16px',
               background: loading ? 'rgba(139, 92, 246, 0.5)' : 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
               border: 'none',
               borderRadius: '10px',
@@ -185,6 +173,9 @@ export default function LoginPage() {
               transition: 'all 0.3s ease',
               boxShadow: loading ? 'none' : '0 12px 32px rgba(139, 92, 246, 0.3)',
               letterSpacing: '-0.2px',
+              boxSizing: 'border-box',
+              display: 'block',
+              margin: '0',
             }}
             onMouseEnter={(e) => {
               if (!loading) {
@@ -203,7 +194,6 @@ export default function LoginPage() {
           </button>
         </form>
 
-        {/* Create Account Link */}
         <div style={{ textAlign: 'center', marginTop: '28px' }}>
           <p style={{ fontSize: '13px', color: '#cbd5e1', fontWeight: '500', margin: '0' }}>
             Don't have an account?{' '}
@@ -213,7 +203,6 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Footer */}
         <div style={{ marginTop: '40px', paddingTop: '20px', borderTop: '1px solid rgba(139, 92, 246, 0.15)', textAlign: 'center', fontSize: '11px', color: '#64748b' }}>
           Powered by Sage • Premium learning redefined
         </div>
