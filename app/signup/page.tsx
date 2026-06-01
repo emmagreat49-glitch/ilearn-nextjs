@@ -15,7 +15,6 @@ export default function SignupPage() {
     e.preventDefault()
     setError('')
 
-    // Validation
     if (!fullName || !email || !password || !confirmPassword) {
       setError('All fields are required')
       return
@@ -34,29 +33,24 @@ export default function SignupPage() {
     setLoading(true)
 
     try {
-      // Get existing users from localStorage
       const usersData = localStorage.getItem('ilearn_users')
       const users = usersData ? JSON.parse(usersData) : []
       
-      // Check if email already exists
       if (users.find((u: any) => u.email === email)) {
         setError('Email already registered')
         setLoading(false)
         return
       }
       
-      // Add new user
       users.push({
         name: fullName,
         email: email,
-        password: password, // In production, use bcrypt
+        password: password,
         createdAt: new Date().toISOString()
       })
       
-      // Save to localStorage
       localStorage.setItem('ilearn_users', JSON.stringify(users))
       
-      // Redirect to login
       setTimeout(() => {
         router.push('/login?signup=success')
       }, 800)
@@ -67,7 +61,7 @@ export default function SignupPage() {
   }
 
   return (
-    <div style={{ background: '#0a0e27', color: '#fff', minHeight: '100vh', fontFamily: 'Inter, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px 20px' }}>
+    <div style={{ background: '#0a0e27', color: '#fff', minHeight: '100vh', fontFamily: 'Inter, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
       <div style={{
         position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
         background: 'radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
@@ -75,7 +69,6 @@ export default function SignupPage() {
       }} />
 
       <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: '420px' }}>
-        {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <div style={{ marginBottom: '28px', display: 'flex', justifyContent: 'center' }}>
             <svg width="52" height="52" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: '12px', padding: '8px', background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)', boxShadow: '0 8px 32px rgba(139, 92, 246, 0.4)' }}>
@@ -96,17 +89,17 @@ export default function SignupPage() {
           <p style={{ fontSize: '14px', color: '#cbd5e1', fontWeight: '500', margin: 0 }}>Start learning smarter with Sage</p>
         </div>
 
-        {/* Signup Form */}
         <form onSubmit={handleSignup} style={{
           background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%)',
           border: '1.5px solid rgba(139, 92, 246, 0.25)',
           borderRadius: '18px',
-          padding: '36px 28px',
+          padding: '24px 16px',
           backdropFilter: 'blur(40px)',
           boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+          boxSizing: 'border-box',
+          width: '100%',
         }}>
-          {/* Full Name */}
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: '18px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: '#e0e7ff', letterSpacing: '-0.2px', textTransform: 'uppercase' }}>Full Name</label>
             <input
               type="text"
@@ -137,8 +130,7 @@ export default function SignupPage() {
             />
           </div>
 
-          {/* Email */}
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: '18px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: '#e0e7ff', letterSpacing: '-0.2px', textTransform: 'uppercase' }}>Email</label>
             <input
               type="email"
@@ -169,8 +161,7 @@ export default function SignupPage() {
             />
           </div>
 
-          {/* Password */}
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: '18px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: '#e0e7ff', letterSpacing: '-0.2px', textTransform: 'uppercase' }}>Password</label>
             <input
               type="password"
@@ -201,7 +192,6 @@ export default function SignupPage() {
             />
           </div>
 
-          {/* Confirm Password */}
           <div style={{ marginBottom: '24px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: '#e0e7ff', letterSpacing: '-0.2px', textTransform: 'uppercase' }}>Confirm Password</label>
             <input
@@ -233,20 +223,18 @@ export default function SignupPage() {
             />
           </div>
 
-          {/* Error Message */}
           {error && (
             <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '10px', padding: '12px 14px', marginBottom: '20px', fontSize: '13px', color: '#fca5a5', fontWeight: '500' }}>
               {error}
             </div>
           )}
 
-          {/* Create Account Button */}
           <button
             type="submit"
             disabled={loading}
             style={{
               width: '100%',
-              padding: '11px 20px',
+              padding: '10px 16px',
               background: loading ? 'rgba(139, 92, 246, 0.5)' : 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
               border: 'none',
               borderRadius: '10px',
@@ -257,6 +245,9 @@ export default function SignupPage() {
               transition: 'all 0.3s ease',
               boxShadow: loading ? 'none' : '0 12px 32px rgba(139, 92, 246, 0.3)',
               letterSpacing: '-0.2px',
+              boxSizing: 'border-box',
+              display: 'block',
+              margin: '0',
             }}
             onMouseEnter={(e) => {
               if (!loading) {
@@ -275,7 +266,6 @@ export default function SignupPage() {
           </button>
         </form>
 
-        {/* Sign In Link */}
         <div style={{ textAlign: 'center', marginTop: '28px' }}>
           <p style={{ fontSize: '13px', color: '#cbd5e1', fontWeight: '500', margin: '0' }}>
             Already have an account?{' '}
@@ -285,7 +275,6 @@ export default function SignupPage() {
           </p>
         </div>
 
-        {/* Footer */}
         <div style={{ marginTop: '40px', paddingTop: '20px', borderTop: '1px solid rgba(139, 92, 246, 0.15)', textAlign: 'center', fontSize: '11px', color: '#64748b' }}>
           Powered by Sage • Premium learning redefined
         </div>
