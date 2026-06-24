@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
-import { supabase } from '@/app/lib/supabase'
+import { useState, useEffect } from 'react'
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('')
@@ -22,13 +21,31 @@ export default function ForgotPasswordPage() {
     if (token) {
       setResetToken(token)
       setStep('reset')
-      // Token validation happens on Supabase side
-      setVerifying(false)
-      setTokenValid(true)
+      verifyToken(token)
     } else {
       setVerifying(false)
     }
   }, [])
+
+  const verifyToken = async (token: string) => {
+    try {
+      const res = await fetch(`/api/verify-reset-token/${token}`)
+      const data = await res.json()
+      
+      if (data.valid) {
+        setTokenValid(true)
+        setMessage('')
+      } else {
+        setError(data.error || 'Invalid or expired token')
+        setTokenValid(false)
+      }
+    } catch (err) {
+      setError('Failed to verify token')
+      setTokenValid(false)
+    } finally {
+      setVerifying(false)
+    }
+  }
 
   const handleSendReset = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -37,15 +54,19 @@ export default function ForgotPasswordPage() {
     setMessage('')
 
     try {
-      const { error: err } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/forgot-password`,
+      const res = await fetch('/api/forgot-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
       })
 
-      if (err) {
-        setError(err.message || 'Failed to send reset email')
-      } else {
-        setMessage('Check your email for the password reset link!')
+      const data = await res.json()
+
+      if (data.success) {
+        setMessage(data.message)
         setEmail('')
+      } else {
+        setError(data.error || 'Failed to send reset email')
       }
     } catch (err: any) {
       setError(err.message || 'An error occurred')
@@ -73,17 +94,21 @@ export default function ForgotPasswordPage() {
     }
 
     try {
-      const { error: err } = await supabase.auth.updateUser({
-        password: newPassword,
+      const res = await fetch('/api/reset-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: resetToken, password: newPassword }),
       })
 
-      if (err) {
-        setError(err.message || 'Failed to reset password')
-      } else {
+      const data = await res.json()
+
+      if (data.success) {
         setMessage('Password reset successfully! Redirecting to login...')
         setTimeout(() => {
           window.location.href = '/login'
         }, 2000)
+      } else {
+        setError(data.error || 'Failed to reset password')
       }
     } catch (err: any) {
       setError(err.message || 'An error occurred')
@@ -216,7 +241,7 @@ export default function ForgotPasswordPage() {
         ) : (
           <>
             <h1 style={titleStyle}>Set New Password</h1>
-            {tokenValid && (
+            {tokenValid ? (
               <form onSubmit={handleResetPassword}>
                 <label style={labelStyle}>New Password</label>
                 <input
@@ -246,13 +271,18 @@ export default function ForgotPasswordPage() {
                   {loading ? 'Resetting...' : 'Reset Password'}
                 </button>
               </form>
+            ) : (
+              <div style={errorStyle}>
+                {error || 'Token is invalid or has expired'}
+              </div>
             )}
           </>
         )}
 
         {message && <div style={messageStyle}>{message}</div>}
-        {error && <div style={errorStyle}>{error}</div>}
+        {error && step === 'email' && <div style={errorStyle}>{error}</div>}
       </div>
     </div>
   )
 }// Deployment trigger - Tue Jun 23 11:03:01 UTC 2026
+// Redeploy trigger
