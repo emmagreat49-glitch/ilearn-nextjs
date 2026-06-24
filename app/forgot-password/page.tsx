@@ -14,7 +14,6 @@ export default function ForgotPasswordPage() {
   const [tokenValid, setTokenValid] = useState(false)
   const [verifying, setVerifying] = useState(true)
 
-  // Check if there's a reset token in URL
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const token = params.get('token')
@@ -31,13 +30,9 @@ export default function ForgotPasswordPage() {
     try {
       const res = await fetch(`/api/verify-reset-token/${token}`)
       const data = await res.json()
-      
-      if (data.valid) {
-        setTokenValid(true)
-        setMessage('')
-      } else {
-        setError(data.error || 'Invalid or expired token')
-        setTokenValid(false)
+      setTokenValid(data.valid || false)
+      if (!data.valid) {
+        setError(data.error || 'Invalid token')
       }
     } catch (err) {
       setError('Failed to verify token')
@@ -61,15 +56,14 @@ export default function ForgotPasswordPage() {
       })
 
       const data = await res.json()
-
       if (data.success) {
         setMessage(data.message)
         setEmail('')
       } else {
-        setError(data.error || 'Failed to send reset email')
+        setError(data.error || 'Failed')
       }
     } catch (err: any) {
-      setError(err.message || 'An error occurred')
+      setError(err.message || 'Error')
     } finally {
       setLoading(false)
     }
@@ -101,17 +95,16 @@ export default function ForgotPasswordPage() {
       })
 
       const data = await res.json()
-
       if (data.success) {
-        setMessage('Password reset successfully! Redirecting to login...')
+        setMessage('Password reset successfully!')
         setTimeout(() => {
           window.location.href = '/login'
         }, 2000)
       } else {
-        setError(data.error || 'Failed to reset password')
+        setError(data.error || 'Failed')
       }
     } catch (err: any) {
-      setError(err.message || 'An error occurred')
+      setError(err.message || 'Error')
     } finally {
       setLoading(false)
     }
@@ -127,111 +120,65 @@ export default function ForgotPasswordPage() {
         justifyContent: 'center',
         color: '#ffffff'
       }}>
-        <div>Verifying reset link...</div>
+        Verifying...
       </div>
     )
   }
 
-  const containerStyle: React.CSSProperties = {
-    background: '#0a0e27',
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '16px',
-  }
-
-  const cardStyle: React.CSSProperties = {
-    background: 'rgba(139, 92, 246, 0.1)',
-    border: '1px solid rgba(139, 92, 246, 0.2)',
-    borderRadius: '12px',
-    padding: '24px',
-    maxWidth: '400px',
-    width: '100%',
-  }
-
-  const titleStyle: React.CSSProperties = {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: '12px',
-    textAlign: 'center',
-  }
-
-  const labelStyle: React.CSSProperties = {
-    fontSize: '14px',
-    color: '#cbd5e1',
-    marginBottom: '8px',
-    display: 'block',
-  }
-
-  const inputStyle: React.CSSProperties = {
-    width: '100%',
-    padding: '12px',
-    marginBottom: '16px',
-    background: 'rgba(15, 23, 42, 0.6)',
-    border: '1px solid rgba(139, 92, 246, 0.3)',
-    borderRadius: '8px',
-    color: '#ffffff',
-    fontSize: '14px',
-    boxSizing: 'border-box',
-  }
-
-  const buttonStyle: React.CSSProperties = {
-    width: '100%',
-    padding: '12px',
-    background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
-    border: 'none',
-    borderRadius: '8px',
-    color: '#ffffff',
-    fontSize: '14px',
-    fontWeight: 'bold',
-    cursor: loading ? 'not-allowed' : 'pointer',
-    opacity: loading ? 0.6 : 1,
-    transition: 'opacity 0.2s',
-  }
-
-  const messageStyle: React.CSSProperties = {
-    marginTop: '16px',
-    padding: '12px',
-    borderRadius: '8px',
-    fontSize: '14px',
-    textAlign: 'center',
-    background: 'rgba(16, 185, 129, 0.1)',
-    border: '1px solid rgba(16, 185, 129, 0.3)',
-    color: '#10b981',
-  }
-
-  const errorStyle: React.CSSProperties = {
-    marginTop: '16px',
-    padding: '12px',
-    borderRadius: '8px',
-    fontSize: '14px',
-    textAlign: 'center',
-    background: 'rgba(239, 68, 68, 0.1)',
-    border: '1px solid rgba(239, 68, 68, 0.3)',
-    color: '#ef4444',
-  }
-
   return (
-    <div style={containerStyle}>
-      <div style={cardStyle}>
+    <div style={{
+      background: '#0a0e27',
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '16px',
+    }}>
+      <div style={{
+        background: 'rgba(139, 92, 246, 0.1)',
+        border: '1px solid rgba(139, 92, 246, 0.2)',
+        borderRadius: '12px',
+        padding: '24px',
+        maxWidth: '400px',
+        width: '100%',
+      }}>
         {step === 'email' ? (
           <>
-            <h1 style={titleStyle}>Reset Password</h1>
+            <h1 style={{ fontSize: '24px', color: '#ffffff', marginBottom: '20px', textAlign: 'center' }}>
+              Reset Password
+            </h1>
             <form onSubmit={handleSendReset}>
-              <label style={labelStyle}>Email Address</label>
+              <label style={{ color: '#cbd5e1', marginBottom: '8px', display: 'block' }}>Email</label>
               <input
                 type="email"
-                style={inputStyle}
-                placeholder="Enter your email"
+                style={{
+                  width: '100%',
+                  padding: '12px',
+                  marginBottom: '16px',
+                  background: 'rgba(15, 23, 42, 0.6)',
+                  border: '1px solid rgba(139, 92, 246, 0.3)',
+                  borderRadius: '8px',
+                  color: '#ffffff',
+                  boxSizing: 'border-box',
+                }}
+                placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <button
                 type="submit"
-                style={buttonStyle}
+                style={{
+                  width: '100%',
+                  padding: '12px',
+                  background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
+                  border: 'none',
+                  borderRadius: '8px',
+                  color: '#ffffff',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  opacity: loading ? 0.6 : 1,
+                }}
                 disabled={loading}
               >
                 {loading ? 'Sending...' : 'Send Reset Link'}
@@ -240,24 +187,42 @@ export default function ForgotPasswordPage() {
           </>
         ) : (
           <>
-            <h1 style={titleStyle}>Set New Password</h1>
+            <h1 style={{ fontSize: '24px', color: '#ffffff', marginBottom: '20px', textAlign: 'center' }}>
+              New Password
+            </h1>
             {tokenValid ? (
               <form onSubmit={handleResetPassword}>
-                <label style={labelStyle}>New Password</label>
+                <label style={{ color: '#cbd5e1', marginBottom: '8px', display: 'block' }}>Password</label>
                 <input
                   type="password"
-                  style={inputStyle}
-                  placeholder="Enter new password"
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    marginBottom: '16px',
+                    background: 'rgba(15, 23, 42, 0.6)',
+                    border: '1px solid rgba(139, 92, 246, 0.3)',
+                    borderRadius: '8px',
+                    color: '#ffffff',
+                    boxSizing: 'border-box',
+                  }}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   required
                   minLength={8}
                 />
-                <label style={labelStyle}>Confirm Password</label>
+                <label style={{ color: '#cbd5e1', marginBottom: '8px', display: 'block' }}>Confirm</label>
                 <input
                   type="password"
-                  style={inputStyle}
-                  placeholder="Confirm password"
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    marginBottom: '16px',
+                    background: 'rgba(15, 23, 42, 0.6)',
+                    border: '1px solid rgba(139, 92, 246, 0.3)',
+                    borderRadius: '8px',
+                    color: '#ffffff',
+                    boxSizing: 'border-box',
+                  }}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
@@ -265,24 +230,32 @@ export default function ForgotPasswordPage() {
                 />
                 <button
                   type="submit"
-                  style={buttonStyle}
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
+                    border: 'none',
+                    borderRadius: '8px',
+                    color: '#ffffff',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                  }}
                   disabled={loading}
                 >
                   {loading ? 'Resetting...' : 'Reset Password'}
                 </button>
               </form>
             ) : (
-              <div style={errorStyle}>
-                {error || 'Token is invalid or has expired'}
+              <div style={{ color: '#ef4444' }}>
+                {error || 'Invalid token'}
               </div>
             )}
           </>
         )}
 
-        {message && <div style={messageStyle}>{message}</div>}
-        {error && step === 'email' && <div style={errorStyle}>{error}</div>}
+        {message && <div style={{ marginTop: '16px', padding: '12px', color: '#10b981', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '8px' }}>{message}</div>}
+        {error && step === 'email' && <div style={{ marginTop: '16px', padding: '12px', color: '#ef4444', background: 'rgba(239, 68, 68, 0.1)', borderRadius: '8px' }}>{error}</div>}
       </div>
     </div>
   )
-}// Deployment trigger - Tue Jun 23 11:03:01 UTC 2026
-// Redeploy trigger
+}
